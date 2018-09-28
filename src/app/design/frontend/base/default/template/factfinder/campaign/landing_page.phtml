@@ -1,0 +1,35 @@
+<?php
+/** @var Omikron_Factfinder_Helper_Data $dataHelper */
+$dataHelper = Mage::helper('factfinder/data');
+?>
+
+<?php if ($dataHelper->getFFPushedproductscampaign()) { ?>
+    <ff-campaign-pushed-products name="<?php echo $dataHelper->getProductLandingPageCampaignName(); ?>">
+        <span id="landingPageCampaignCaption">
+            <ff-campaign-feedbacktext label="<?php echo $dataHelper->getFeedbackLandingPageLabel(); ?>">{{{text}}}</ff-campaign-feedbacktext>
+        </span><div class="category-products"><ff-record-list unresolved>
+                <ff-record>
+                    <a data-anchor="{{record.ProductUrl}}"
+                       data-redirect="{{record.ProductUrl}}" data-redirect-target="_self" class="product-name result-product-name">
+                        <img data-image="{{record.ImageName}}" class="product-image">
+                        <h2 class="result-product-name">
+                            {{record.Name}}
+                        </h2>
+                    </a>
+
+                    <div class="priceContainer">
+                        <span class="brand">{{record.Manufacturer}}</span>
+                        <span class="price">{{record.Price}}</span>
+                    </div>
+
+                    <div class="actions">
+                        <a title="View Details" class="button" data-anchor="{{record.ProductUrl}}" data-redirect="{{record.ProductUrl}}" data-redirect-target="_self"><?php echo $this->__('View Details'); ?></a>
+                    </div>
+                </ff-record>
+            </ff-record-list>
+        </div>
+    </ff-campaign-pushed-products>
+
+    <ff-campaign-landing-page page-id="<?php echo $dataHelper->getLandingPagePageId(); ?>"></ff-campaign-landing-page>
+<?php } ?>
+

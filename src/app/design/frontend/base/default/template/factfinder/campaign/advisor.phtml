@@ -1,0 +1,15 @@
+<?php
+/** @var Omikron_Factfinder_Helper_Data $dataHelper */
+$dataHelper = Mage::helper('factfinder/data');
+?>
+
+<ff-campaign-advisor name="<?php echo $dataHelper->getAdvisorCampaignName(); ?>">
+    <ff-campaign-advisor-question>
+        <span><h1 data-question>{{text}}</h1></span>
+        <div class="answers">
+            <ff-campaign-advisor-answer>
+                {{{text}}}
+            </ff-campaign-advisor-answer>
+        </div>
+    </ff-campaign-advisor-question>
+</ff-campaign-advisor>

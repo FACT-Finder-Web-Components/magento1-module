@@ -1,0 +1,12 @@
+<?php
+/** @var Omikron_Factfinder_Helper_Data $dataHelper */
+$dataHelper = Mage::helper('factfinder/data');
+?>
+
+<?php if ($dataHelper->getFFPushedproductscampaign()) { ?>
+    <ff-campaign-feedbacktext unresolved label="<?php echo $dataHelper->getFeedbackCampaignLabel(); ?>">
+        <div>
+            {{{text}}}
+        </div>
+    </ff-campaign-feedbacktext>
+<?php } ?>

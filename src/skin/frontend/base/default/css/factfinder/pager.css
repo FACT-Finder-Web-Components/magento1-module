@@ -1,0 +1,29 @@
+.ff-current-link {
+    color: #636363;
+    border: 1px solid #cccccc;
+    width: 30px;
+    background-color: #FFFFFF;
+    cursor: default;
+    text-align: center;
+    height: 25px;
+}
+
+.ff-link {
+    display: inline-block;
+    border: 0;
+    font-size: 13px;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    white-space: nowrap;
+    line-height: 30px;
+    width: 25px;
+    height: 30px;
+    padding: 0;
+    color: #3399cc;
+    font-family: "Helvetica Neue", Verdana, Arial, sans-serif;
+}
+
+ff-paging {
+    float: right;
+}

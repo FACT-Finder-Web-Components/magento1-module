@@ -1,0 +1,34 @@
+<?php
+/** @var Omikron_Factfinder_Helper_Data $dataHelper */
+$dataHelper = Mage::helper('factfinder/data');
+
+if ($dataHelper->getFFSimilar()) {
+?>
+
+    <ff-similar-products max-results="<?php echo $dataHelper->getSimilarProductsMaxResults(); ?>" record-id="<?php echo $this->getProduct()->getSku(); ?>">
+        <span>
+            <?php echo $this->__('Similar Products'); ?>
+        </span>
+
+        <ff-record-list unresolved>
+            <ff-record>
+                <a data-anchor="{{record.ProductUrl}}" data-redirect="{{record.ProductUrl}}" data-redirect-target="_self" class="product-name result-product-name">
+                    <img data-image="{{record.ImageName}}" class="product-image">
+                    <h2 class="result-product-name">
+                        {{record.Name}}
+                    </h2>
+                </a>
+
+                <div class="priceContainer">
+                    <span class="brand">{{record.Manufacturer}}</span>
+                    <span class="price">{{record.Price}}</span>
+                </div>
+
+                <div class="actions">
+                    <a title="View Details" class="button" data-anchor="{{record.ProductUrl}}" data-redirect="{{record.ProductUrl}}" data-redirect-target="_self"><?php echo $this->__('View Details'); ?></a>
+                </div>
+            </ff-record>
+        </ff-record-list>
+    </ff-similar-products>
+<?php } ?>
+

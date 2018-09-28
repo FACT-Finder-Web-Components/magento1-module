@@ -1,0 +1,63 @@
+<?php
+/** @var Omikron_Factfinder_Helper_Data $dataHelper */
+$dataHelper = Mage::helper('factfinder/data');
+
+// It returns advisor and feedback campaign if enabled
+if ($dataHelper->getFFCampaign()) {
+    echo $this->getLayout()->createBlock('page/html')->setTemplate('factfinder/campaign/advisor.phtml')->toHtml();
+    echo $this->getLayout()->createBlock('page/html')->setTemplate('factfinder/campaign/feedback.phtml')->toHtml();
+}
+?>
+
+<?php if ($dataHelper->getFFBreadcrumb()) { ?>
+    <div class="page-title">
+        <h1><?php echo $this->__('Search results for'); ?> '<ff-breadcrumb-trail></ff-breadcrumb-trail>'</h1>
+    </div>
+<?php } ?>
+
+<p id="ff-nothing-found">
+    <?php echo $this->__('Your search returns no results.'); ?>
+</p>
+
+<div class="category-products">
+    <!-- It returns toolbar -->
+    <?php echo $this->getChildHtml('product_list_toolbar'); ?>
+
+    <ff-record-list unresolved>
+        <ff-record>
+            <a data-anchor="{{record.ProductUrl}}" data-redirect="{{record.ProductUrl}}" data-redirect-target="_self" class="product-name result-product-name">
+                <img data-image="{{record.ImageName}}" class="product-image">
+                <h2 class="result-product-name">
+                    {{record.Name}}
+                </h2>
+            </a>
+
+            <div class="priceContainer">
+                <span class="brand">{{record.Manufacturer}}</span>
+                <span class="price">{{record.Price}}</span>
+            </div>
+
+            <div class="actions">
+                <a title="View Details" class="button" data-anchor="{{record.ProductUrl}}" data-redirect="{{record.ProductUrl}}" data-redirect-target="_self"><?php echo $this->__('View Details'); ?></a>
+            </div>
+        </ff-record>
+    </ff-record-list>
+
+    <!-- It returns page -->
+    <?php echo $this->getLayout()->createBlock('page/html_pager')->setTemplate('factfinder/catalog/product/list/toolbar/pager.phtml')->toHtml(); ?>
+</div>
+
+<script>
+    document.addEventListener("WebComponentsReady", function () {
+        factfinder.communication.ResultDispatcher.subscribe("result", function (result) {
+            if (result.resultStatus === 'nothingFound') {
+                console.log(result.resultStatus);
+                document.querySelector(".category-products").style.display = 'none';
+                document.getElementById("ff-nothing-found").style.display = 'block';
+            } else {
+                document.querySelector(".category-products").style.display = 'block';
+                document.getElementById("ff-nothing-found").style.display = 'none';
+            }
+        });
+    });
+</script>

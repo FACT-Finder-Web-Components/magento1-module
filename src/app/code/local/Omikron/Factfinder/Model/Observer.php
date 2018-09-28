@@ -1,0 +1,25 @@
+<?php
+
+class Omikron_Factfinder_Model_Observer {
+
+    public function saveProductToSession($observer)
+    {
+        $event = $observer->getEvent();
+        $item = $event->getQuoteItem();
+        $product = $item->getProduct();
+
+
+        if ($item->getParentItem()) {
+            $item = $item->getParentItem();
+        }
+
+        $price = $item->getProduct()->getFinalPrice();
+
+        $session = Mage::getSingleton('core/session');
+
+        $session->setData('ff_add_to_cart_id', $product->getId());
+        $session->setData('ff_add_to_cart_sku', $product->getSku());
+        $session->setData('ff_add_to_cart_price', $price);
+        $session->setData('ff_add_to_cart_qty', $product->getQty());
+    }
+}

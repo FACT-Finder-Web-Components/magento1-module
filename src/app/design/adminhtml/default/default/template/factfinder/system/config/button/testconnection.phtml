@@ -1,0 +1,22 @@
+<script type="text/javascript">
+    function checkTestConnection() {
+        new Ajax.Request('<?php echo $this->getAjaxCheckUrl() ?>', {
+            method: 'get',
+            onSuccess: function (transport) {
+                var response = JSON.parse(transport.responseText);
+                setFFCommunicationInfoMessage(response.message);
+            },
+            onFailure: function (transport) {
+                setFFCommunicationInfoMessage("Couldn't send a notification.");
+            }
+        });
+    }
+
+    function setFFCommunicationInfoMessage(message) {
+        document.getElementById("ffCommunicationInfo").innerHTML = message;
+    }
+</script>
+
+<?php echo $this->getButtonHtml() ?>
+<p id="ffCommunicationInfo"></p>
+

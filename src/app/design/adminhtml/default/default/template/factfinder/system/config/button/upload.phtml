@@ -1,0 +1,22 @@
+<script type="text/javascript">
+    function uploadCsv() {
+        new Ajax.Request('<?php echo $this->getAjaxCheckUrl() ?>', {
+            method: 'get',
+            onSuccess: function (transport) {
+                var response = JSON.parse(transport.responseText);
+                setUploadCsvMessage(response.message.message);
+            },
+            onFailure: function (transport) {
+                setUploadCsvMessage("Couldn't send a notification.");
+            }
+        });
+    }
+
+    function setUploadCsvMessage(message) {
+        document.getElementById("ffUploadInfo").innerHTML = message;
+    }
+</script>
+
+<?php echo $this->getButtonHtml() ?>
+<p id="ffUploadInfo"></p>
+

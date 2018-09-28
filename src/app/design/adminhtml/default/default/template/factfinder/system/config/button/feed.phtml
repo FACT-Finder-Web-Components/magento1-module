@@ -1,0 +1,22 @@
+<script type="text/javascript">
+    function exportToCsv() {
+        new Ajax.Request('<?php echo $this->getAjaxCheckUrl() ?>', {
+            method: 'get',
+            onSuccess: function (transport) {
+                var response = JSON.parse(transport.responseText);
+                setExportToCsvMessage(response.message.message);
+            },
+            onFailure: function (transport) {
+                setExportToCsvMessage("Couldn't send a notification.");
+            }
+        });
+    }
+
+    function setExportToCsvMessage(message) {
+        document.getElementById("ffExportInfo").innerHTML = message;
+    }
+</script>
+
+<?php echo $this->getButtonHtml() ?>
+<p id="ffExportInfo"></p>
+

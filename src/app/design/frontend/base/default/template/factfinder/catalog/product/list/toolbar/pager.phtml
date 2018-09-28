@@ -1,0 +1,14 @@
+<?php
+/** @var Omikron_Factfinder_Helper_Data $dataHelper */
+$dataHelper = Mage::helper('factfinder/data');
+
+if ($dataHelper->getFFPaging()) {
+?>
+    <ff-paging>
+        <ff-paging-item type="currentLink -2" class="ff-link">{{caption}}</ff-paging-item>
+        <ff-paging-item type="currentLink -1" class="ff-link">{{caption}}</ff-paging-item>
+        <ff-paging-item type="currentLink" class="ff-current-link">{{caption}}</ff-paging-item>
+        <ff-paging-item type="currentLink +1" class="ff-link">{{caption}}</ff-paging-item>
+        <ff-paging-item type="currentLink +2" class="ff-link">{{caption}}</ff-paging-item>
+    </ff-paging>
+<?php } ?>

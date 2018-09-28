@@ -1,0 +1,46 @@
+<?php
+/** @var Omikron_Factfinder_Helper_Data $dataHelper */
+$dataHelper = Mage::helper('factfinder/data');
+
+if ($dataHelper->getFFPushedproductscampaign()) {
+
+    $cart = Mage::getModel('checkout/cart')->getQuote();
+    foreach ($cart->getAllVisibleItems() as $item) {
+        $productSkus .= $item->getProduct()->getSku() . ',';
+    }
+    $productSkus = trim($productSkus, ',');
+?>
+    <ff-campaign-shopping-cart record-id="<?php echo $productSkus; ?>"></ff-campaign-shopping-cart>
+
+    <ff-campaign-pushed-products is-shopping-cart-campaign name="<?php echo $dataHelper->getShoppingCartProductCampaignName(); ?>">
+        <span id="productCartCampaignCaption">
+            <ff-campaign-feedbacktext is-shopping-cart-campaign label="<?php echo $dataHelper->getShoppingCartFeedbackLabel(); ?>">{{{text}}}</ff-campaign-feedbacktext>
+        </span><div class="category-products"><ff-record-list unresolved>
+                <ff-record>
+                    <a data-anchor="{{record.ProductUrl}}"
+                       data-redirect="{{record.ProductUrl}}" data-redirect-target="_self" class="product-name result-product-name">
+                        <img data-image="{{record.ImageName}}" class="product-image">
+                        <h2 class="result-product-name">
+                            {{record.Name}}
+                        </h2>
+                    </a>
+
+                    <div class="priceContainer">
+                        <span class="brand">{{record.Manufacturer}}</span>
+                        <span class="price">{{record.Price}}</span>
+                    </div>
+
+                    <div class="actions">
+                        <a title="View Details" class="button" data-anchor="{{record.ProductUrl}}" data-redirect="{{record.ProductUrl}}" data-redirect-target="_self"><?php echo $this->__('View Details'); ?></a>
+                    </div>
+                </ff-record>
+            </ff-record-list>
+        </div>
+    </ff-campaign-pushed-products>
+<?php } ?>
+
+
+
+
+
+

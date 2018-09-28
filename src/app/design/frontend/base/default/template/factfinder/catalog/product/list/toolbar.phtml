@@ -1,0 +1,29 @@
+<?php
+/** @var Omikron_Factfinder_Helper_Data $dataHelper */
+$dataHelper = Mage::helper('factfinder/data');
+?>
+
+<div class="toolbar">
+    <?php if ($dataHelper->getFFSortbox()) { ?>
+        <div class="sorter">
+            <div class="sort-by">
+                    <label><?php echo $this->__('Sort By'); ?></label>
+                    <ff-sortbox></ff-sortbox>
+            </div>
+        </div>
+    <?php } ?>
+    <?php if ($dataHelper->getFFProductsPP()) { ?>
+    <div class="pager">
+        <div class="count-container">
+            <p class="amount">
+                <ff-template scope="result"><strong>{{ resultCount }} <?php echo $this->__('Item(s)'); ?></strong></ff-template>
+            </p>
+            <div class="limiter">
+                <label><?php echo $this->__('Show'); ?></label>
+                <ff-products-per-page-list></ff-products-per-page-list>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
+</div>
+

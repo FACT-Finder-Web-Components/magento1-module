@@ -1,0 +1,70 @@
+<?php
+/** @var Omikron_Factfinder_Helper_Data $dataHelper */
+$dataHelper = Mage::helper('factfinder/data');
+?>
+
+<div id="search_mini_form">
+    <div class="input-box">
+        <input is="ff-searchbox"
+               placeholder="<?php echo $this->__('Search...'); ?>"
+               suggest-onfocus="false"
+               use-suggest="true"
+               select-onclick="true"
+               class="input-text required-entry"
+               id="search"
+               type="search"
+               autocomplete="off"
+        />
+        <button is="ff-searchbutton" class="button search-button"><?php echo $this->__('Search'); ?></button>
+    </div>
+</div>
+
+<?php if ($dataHelper->getFFSuggest()) { ?>
+    <ff-suggest layout="list">
+        <section id="searchContainer" class="searchTermContainer">
+            <div data-container="searchTerm">
+                <p class="containerCaption"><?php echo $this->__('Search suggestions'); ?></p>
+                <ff-suggest-item type="searchTerm">
+                    <span>{{{name}}}</span>
+                </ff-suggest-item>
+            </div>
+
+            <div data-container="category">
+                <p class="containerCaption"><?php echo $this->__('Category suggestions'); ?></p>
+                <ff-suggest-item type="category">
+                    <span class="ff-suggest-parent-category">{{attributes.parentCategory}} ></span><span> {{{name}}}</span>
+                </ff-suggest-item>
+            </div>
+
+            <div data-container="brand">
+                <p class="containerCaption"><?php echo $this->__('Brands'); ?></p>
+                <ff-suggest-item type="brand">
+                    <span>{{{name}}}</span>
+                </ff-suggest-item>
+            </div>
+        </section>
+
+        <section id="productContainer" class="productsContainer">
+            <div data-container="productName">
+                <p class="containerCaption"><?php echo $this->__('Suggested products'); ?></p>
+                <div>
+                    <ff-suggest-item type="productName" onclick="changeSearchTerm(this)">
+                        <img data-image>
+                        <div class="product-center">
+                            <div class="product-name">{{{name}}}</div>
+                        </div>
+                    </ff-suggest-item>
+                </div>
+            </div>
+        </section>
+    </ff-suggest>
+
+    <style is="custom-style">
+        ff-suggest {
+            --suggest-container: {
+                max-width: 700px;
+                border: 1px solid #ddd;
+            };
+        }
+    </style>
+<?php } ?>

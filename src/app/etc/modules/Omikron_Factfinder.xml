@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Omikron_Factfinder>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Omikron_Factfinder>
+    </modules>
+</config>
