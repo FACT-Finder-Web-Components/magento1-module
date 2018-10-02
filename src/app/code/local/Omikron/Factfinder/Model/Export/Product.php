@@ -189,7 +189,7 @@ class Omikron_Factfinder_Model_Export_Product
     {
         return Mage::getModel('catalog/product')
             ->getCollection()
-            ->addWebsiteFilter()
+            ->addWebsiteFilter(Mage::getModel('core/store')->load($store->getId())->getWebsiteId())
             ->addAttributeToSelect('*')
             ->addAttributeToFilter('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)
             ->addAttributeToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED)
