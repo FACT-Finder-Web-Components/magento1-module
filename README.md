@@ -37,9 +37,32 @@ In this tab you can decide which webcomponents should be enabled.
 In Advanced Settings you can set parameters related to the `ff-communication`. You can also define campaign details.
 
 ### General Export Settings
+The SDK allows you to generate feed based on your database. In this tab you can specify what attributes you want to export. Please remember to save settings before doing export.
 
 ### Export to FTP
+In this tab you can specify parameters needed to connect with FTP and upload there generated feed. Please remember to save settings before doing export. When you are making changes and there was already generated feed, please do it one more time, since changes may be not applied in the feed.
 
 ### Export via Basic Auth
+In this tab you can specify the basic auth credentials that are needed to download feed from:
+http://example.com/factfinder/export/index
 
 # Webcomponents Integration
+You can activate and deactivate webcomponents as mentioned in `Activated Webcomponents` tab.
+
+You can find webcomponents templates in:
+```
+app/design/frontend/base/default/layout/factfinder.xml
+app/design/frontend/base/default/template/factfinder
+```
+
+You can find SDK CSS files in:
+```
+skin/frontend/base/default/css/factfinder
+```
+
+You can find SDK Javascript files in:
+```
+js/factfinder
+```
+
+# Process of Data Transfer between Shop and FACT-Finder
