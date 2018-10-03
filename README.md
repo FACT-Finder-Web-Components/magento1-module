@@ -19,6 +19,8 @@ You can find the module settings page under `Stores → Configuration → Catalo
 ### Main Settings
 In Main Settings you can setup connection to the FACT-Finder. You can also test the connection, but remember first to save the settings. If not, data will be lost.
 
+![Main Settings](documentation/main-settings.png "Main Settings")
+
 ### Activated Webcomponents
 In this tab you can decide which webcomponents should be enabled.
 
@@ -32,6 +34,8 @@ In this tab you can decide which webcomponents should be enabled.
  - **Pushed Products** displays your pushed products campaigns. 
  - **Recommendation** activates recommendation tab in product details page
  - **Similar** activates similar products tab in product detail page
+ 
+ ![Activated Webcomponents](documentation/activated-web-components.png "Activated Webcomponents")
 
 ### Advanced Settings
 In Advanced Settings you can set parameters related to the `ff-communication`. You can also define campaign details.
@@ -42,9 +46,13 @@ The SDK allows you to generate feed based on your database. In this tab you can 
 ### Export to FTP
 In this tab you can specify parameters needed to connect with FTP and upload there generated feed. Please remember to save settings before doing export. When you are making changes and there was already generated feed, please do it one more time, since changes may be not applied in the feed.
 
+![Export to FTP](documentation/export-to-ftp.png "Export to FTP")
+
 ### Export via Basic Auth
 In this tab you can specify the basic auth credentials that are needed to download feed from:
 http://example.com/factfinder/export/index
+
+![Export via Basic Auth](documentation/basic-auth.png "Export via Basic Auth")
 
 # Webcomponents Integration
 You can activate and deactivate webcomponents as mentioned in `Activated Webcomponents` tab.
@@ -66,4 +74,4 @@ js/factfinder
 ```
 
 # Process of Data Transfer between Shop and FACT-Finder
-!(documentation/communication-overview.png)
+![Process of Data Transfer between Shop and FACT-Finder](documentation/communication-overview.png "Process of Data Transfer between Shop and FACT-Finder")
