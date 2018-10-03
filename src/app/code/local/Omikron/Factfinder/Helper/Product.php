@@ -32,7 +32,6 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
             case "Short":
             case "ProductUrl":
             case "Price":
-            case "CategoryPath":
             case "Availability":
             case "MagentoEntityId":
                 $method = 'get' . $attribute;
@@ -41,6 +40,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
             case "Manufacturer":
             case "Attributes":
             case "EAN":
+            case "CategoryPath":
                 $method = 'get' . $attribute;
                 return call_user_func(array($this, $method), $product, $store);
             default:
@@ -157,9 +157,10 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      * Get the product category
      *
      * @param Mage_Catalog_Model_Product $product
+     * @param Mage_Core_Model_Store $store
      * @return string
      */
-    private function getCategoryPath($product)
+    private function getCategoryPath($product, $store)
     {
         $categoryIds = $product->getCategoryIds();
         $path = [];
@@ -169,7 +170,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
             /** @var Mage_Catalog_Model_Category $category */
             $category = Mage::getModel('catalog/category')->load($categoryId);
             if ($attrCount < self::ATTRIBUTE_LIMIT && $category->getIsActive()) {
-                $categoryPath = $this->getCategoryPathByCategory($category);
+                $categoryPath = $this->getCategoryPathByCategory($category, $store);
                 if (!empty($categoryPath)) {
                     $path[] = $categoryPath;
                     $attrCount++;
@@ -305,11 +306,12 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      * Returns category path as url encoded category names separated by slashes
      *
      * @param Mage_Catalog_Model_Category $category
+     * @param Mage_Core_Model_Store $store
      * @return string
      */
-    private function getCategoryPathByCategory($category)
+    private function getCategoryPathByCategory($category, $store)
     {
-        $rootCategoryId = Mage::app()->getStore()->getRootCategoryId();
+        $rootCategoryId = $store->getRootCategoryId();
         $treeRootId = Mage_Catalog_Model_Category::TREE_ROOT_ID;
 
         if (in_array($category->getId(), [$rootCategoryId, $treeRootId])) {
@@ -317,7 +319,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
         }
 
         $path = urlencode($category->getName());
-        $parentPath = $this->getCategoryPathByCategory(Mage::getModel('catalog/category')->load($category->getParentId()));
+        $parentPath = $this->getCategoryPathByCategory(Mage::getModel('catalog/category')->load($category->getParentId()), $store);
         $path = $parentPath === '' ? $path : $parentPath . '/' . $path;
 
         return $path;
