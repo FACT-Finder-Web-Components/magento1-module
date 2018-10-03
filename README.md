@@ -66,3 +66,4 @@ js/factfinder
 ```
 
 # Process of Data Transfer between Shop and FACT-Finder
+!(documentation/communication-overview.png)
