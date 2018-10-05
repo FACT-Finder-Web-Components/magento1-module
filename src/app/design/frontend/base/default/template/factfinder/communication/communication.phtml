@@ -11,12 +11,16 @@ $dataHelper = Mage::helper('factfinder/data');
             echo 'search-immediate';
         } ?>
         use-url-parameter="<?php echo $dataHelper->getUseUrlParameter() ? 'true' : 'false' ?>"
-        use-cache="<?php echo $dataHelper->getUseCache() ? 'true' : 'false' ?>"
+        <?php if($dataHelper->getUseCache()) {
+            echo 'use-cache';
+        } ?>
         disable-cache="<?php echo $dataHelper->getDisableCache() ? 'true' : 'false' ?>"
         default-query="<?php echo $dataHelper->getDefaultQuery(); ?>"
         add-params="<?php echo $dataHelper->getAddParams(); ?>"
         add-tracking-params="<?php echo $dataHelper->getAddTrackingParams(); ?>"
-        keep-filters="<?php echo $dataHelper->getKeepFilters() ? 'true' : 'false' ?>"
+        <?php if($dataHelper->getKeepFilters()) {
+            echo 'keep-filters';
+        } ?>
         keep-url-params="<?php echo $dataHelper->getKeepUrlParams(); ?>"
         use-asn="<?php echo $dataHelper->getUseAsn() ? 'true' : 'false' ?>"
         use-found-rows="<?php echo $dataHelper->getUseFoundWords() ? 'true' : 'false' ?>"
@@ -27,7 +31,9 @@ $dataHelper = Mage::helper('factfinder/data');
         use-browser-history="<?php echo $dataHelper->getUseBrowserHistory() ? 'true' : 'false' ?>"
         use-seo="<?php echo $dataHelper->getUseSeo() ? 'true' : 'false' ?>"
         seo-prefix="<?php echo $dataHelper->getSeoPrefix(); ?>"
-        only-search-params="<?php echo $dataHelper->getOnlySearchParams() ? 'true' : 'false' ?>"
+        <?php if($dataHelper->getOnlySearchParams()) {
+            echo 'only-search-params';
+        } ?>
         currency-code="<?php echo Mage::app()->getStore()->getCurrentCurrencyCode(); ?>"
         currency-country-code="<?php echo Mage::getStoreConfig('general/country/default'); ?>"
         <?php if(Mage::getSingleton('customer/session')->isLoggedIn()) {
