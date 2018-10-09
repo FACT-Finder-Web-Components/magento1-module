@@ -5,4 +5,4 @@ src/app/design/frontend/base/default/template/factfinder app/design/frontend/bas
 src/app/etc/modules/Omikron_Factfinder.xml app/etc/modules/Omikron_Factfinder.xml
 src/app/locale/en_US/Omikron_Factfinder.csv app/locale/en_US/Omikron_Factfinder.csv
 src/js/factfinder js/factfinder
-src/skin/base/default/css/factfinder skin/base/default/css/factfinder
+src/skin/frontend/base/default/css/factfinder skin/frontend/base/default/css/factfinder
