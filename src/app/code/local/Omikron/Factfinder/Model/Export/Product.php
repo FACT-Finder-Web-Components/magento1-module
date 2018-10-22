@@ -2,10 +2,11 @@
 
 class Omikron_Factfinder_Model_Export_Product
 {
-    const FEED_PATH = 'factfinder/';
-    const FEED_FILE = 'export.';
+    const FEED_PATH          = 'factfinder/';
+    const FEED_FILE          = 'export.';
     const FEED_FILE_FILETYPE = 'csv';
-    const PRODUCT_LIMIT = 50000;
+    const PRODUCT_LIMIT      = 50000;
+    const BATCH_SIZE         = 3000;
 
     /**
      * @var Omikron_Factfinder_Helper_Data
@@ -119,25 +120,25 @@ class Omikron_Factfinder_Model_Export_Product
      */
     private function buildFeed($store)
     {
-        $output = [];
-        $addHeaderCols = true;
-        $productCount = 0;
+        $output         = [];
+        $addHeaderCols  = true;
+        $productCount   = Mage::getModel('catalog/product')->getCollection()->getSize();
+        $currentOffset  = 0;
 
-        /** @var Mage_Catalog_Model_Resource_Product_Collection $products */
-        $products = $this->getProducts($store);
+        while ($currentOffset < $productCount && $currentOffset < self::PRODUCT_LIMIT) {
+            /** @var Mage_Catalog_Model_Resource_Product_Collection $products */
+            $products = $this->getProducts($store, $currentOffset);
 
-        foreach ($products as $product) {
-            if ($productCount < self::PRODUCT_LIMIT) {
+            foreach ($products as $product) {
                 $rowData = $this->buildFeedRow($product, $store);
                 if ($addHeaderCols) {
                     $addHeaderCols = false;
-                    $output[] = array_keys($rowData);
+                    $output[]      = array_keys($rowData);
                 }
                 $output[] = $this->writeLine($rowData);
-                $productCount++;
-            } else {
-                break;
             }
+
+            $currentOffset += self::BATCH_SIZE;
         }
 
         return $output;
@@ -182,18 +183,23 @@ class Omikron_Factfinder_Model_Export_Product
      * Get all products for a specific store
      *
      * @param Mage_Core_Model_Store $store
+     * @param int $currentOffset
      *
      * @return Mage_Catalog_Model_Resource_Product_Collection
      */
-    private function getProducts($store)
+    private function getProducts($store, $currentOffset)
     {
-        return Mage::getModel('catalog/product')
+        $collection = Mage::getModel('catalog/product')
             ->getCollection()
             ->addWebsiteFilter(Mage::getModel('core/store')->load($store->getId())->getWebsiteId())
             ->addAttributeToSelect('*')
             ->addAttributeToFilter('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)
             ->addAttributeToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED)
             ->setStore($store);
+
+        $collection->getSelect()->limit(self::BATCH_SIZE, $currentOffset);
+
+        return $collection;
     }
 
     /**
