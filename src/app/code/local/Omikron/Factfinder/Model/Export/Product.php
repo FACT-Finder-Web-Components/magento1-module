@@ -173,7 +173,7 @@ class Omikron_Factfinder_Model_Export_Product
         ];
 
         foreach ($attributes as $attribute) {
-            $row[$attribute] = $this->productHelper->get($attribute, $product, $store);
+            $row[$attribute] = call_user_func_array([$this->productHelper, "get$attribute"], [$product, $store]);
         }
 
         return $row;
