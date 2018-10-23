@@ -228,6 +228,25 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
     }
 
     /**
+     * @return array
+     */
+    public function getMandatoryAttributes()
+    {
+        return [
+            'name',
+            'description',
+            'short_description',
+            'url_key',
+            'small_image',
+            'thumbnail',
+            'image',
+            'price',
+            'manufacturer',
+            'availability'
+        ];
+    }
+
+    /**
      * Get the additional attribute fields for the store
      *
      * @param Mage_Core_Model_Store $store
