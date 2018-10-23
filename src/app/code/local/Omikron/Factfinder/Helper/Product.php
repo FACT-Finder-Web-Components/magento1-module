@@ -158,11 +158,12 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      * Get the product detail page url
      *
      * @param Mage_Catalog_Model_Product $product
+     * @param Mage_Core_Model_Store      $store
      * @return string
      */
-    private function getProductUrl($product)
+    private function getProductUrl($product, $store)
     {
-        return $product->getUrlInStore();
+        return $product->getUrlInStore(['_store' => $store->getCode()]);
     }
 
     /**
