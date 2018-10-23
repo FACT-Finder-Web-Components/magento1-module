@@ -15,6 +15,46 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
     const PATH_IMG_PLACEHOLDER = 'images/catalog/product/placeholder/image.jpg';
 
     /**
+     * Categories in memory
+     *
+     * @var array
+     */
+    protected $categories = [];
+
+    /**
+     * Attributes in memory
+     *
+     * @var array
+     */
+    protected $attributes = [];
+
+    /**
+     * Configurable products in memory
+     *
+     * @var array
+     */
+    protected $configurableProducts = [];
+
+    /**
+     * @var Mage_Catalog_Model_Product_Type_Configurable
+     */
+    protected $configurableProductModel;
+
+    /**
+     * @var Mage_Catalog_Helper_Image
+     */
+    protected $imageHelper;
+
+    /**
+     * Omikron_Factfinder_Helper_Product constructor.
+     */
+    public function __construct()
+    {
+        $this->configurableProductModel = Mage::getModel('catalog/product_type_configurable');
+        $this->imageHelper              = Mage::helper('catalog/image');
+    }
+
+    /**
      * Get the attribute value from magento product in corresponding store
      *
      * @param string $attribute
@@ -68,7 +108,12 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
     private function getMasterProductNumber($product)
     {
         if ($parentId = $this->getProductParentIdByProductId($product->getId())) {
-            $parentProduct = Mage::getModel('catalog/product')->load($parentId);
+            if (isset($this->configurableProducts[$parentId])) {
+                $parentProduct = $this->configurableProducts[$parentId];
+            } else {
+                $parentProduct = Mage::getModel('catalog/product')->load($parentId);
+                $this->configurableProducts[$parentId] = $parentProduct;
+            }
 
             return $parentProduct->getSku();
         } else {
@@ -167,8 +212,15 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
         $attrCount = 0;
 
         foreach ($categoryIds as $categoryId) {
-            /** @var Mage_Catalog_Model_Category $category */
-            $category = Mage::getModel('catalog/category')->load($categoryId);
+            if (isset($this->categories[$categoryId])) {
+                /** @var Mage_Catalog_Model_Category $category */
+                $category = $this->categories[$categoryId];
+            } else {
+                /** @var Mage_Catalog_Model_Category $category */
+                $category = Mage::getModel('catalog/category')->load($categoryId);
+                $this->categories[$categoryId] = $category;
+            }
+
             if ($attrCount < self::ATTRIBUTE_LIMIT && $category->getIsActive()) {
                 $categoryPath = $this->getCategoryPathByCategory($category, $store);
                 if (!empty($categoryPath)) {
@@ -228,6 +280,25 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
     }
 
     /**
+     * @return array
+     */
+    public function getMandatoryAttributes()
+    {
+        return [
+            'name',
+            'description',
+            'short_description',
+            'url_key',
+            'small_image',
+            'thumbnail',
+            'image',
+            'price',
+            'manufacturer',
+            'availability'
+        ];
+    }
+
+    /**
      * Get the additional attribute fields for the store
      *
      * @param Mage_Core_Model_Store $store
@@ -256,8 +327,16 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
             $attrCount = 0;
 
             foreach ($attributeCodes as $attributeCode) {
-                /** @var Mage_Eav_Model_Entity_Attribute $attribute */
-                $attribute = Mage::getModel('eav/entity_attribute')->loadByCode('catalog_product', $attributeCode);
+
+                if (isset($this->attributes[$attributeCode])) {
+                    /** @var Mage_Eav_Model_Entity_Attribute $attribute */
+                    $attribute = $this->attributes[$attributeCode];
+                } else {
+                    /** @var Mage_Eav_Model_Entity_Attribute $attribute */
+                    $attribute = Mage::getModel('eav/entity_attribute')->loadByCode('catalog_product', $attributeCode);
+                    $this->attributes[$attributeCode] = $attribute;
+                }
+
                 $attributeValue = $product->getData($attribute->getAttributeCode());
 
                 if (empty($attributeValue)) {
@@ -266,23 +345,25 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
 
                 $frontendInput = $attribute->getFrontendInput();
                 $values = [];
-
-                if (in_array($frontendInput, ['select', 'multiselect'])) {
-                    // value holds single or multiple options IDs
-                    foreach (explode(",", $attributeValue) as $optionId) {
-                        $optionLabel = $attribute->getSource()->getOptionText($optionId);
-                        $values[] = $optionLabel;
-                    }
-                } else if ($frontendInput == 'price') {
-                    $values[] = number_format(round(floatval($attributeValue), 2), 2);
-                } else if ($frontendInput == 'boolean') {
-                    $values[] = $attributeValue ? "Yes" : "No";
-                } else {
-                    $values[] = $attributeValue;
+                switch ($frontendInput) {
+                    case 'select':
+                        $values[] =  $product->getAttributeText($attributeCode);
+                        break;
+                    case 'multiselect':
+                        $values[] = implode(',',  $product->getAttributeText($attributeCode));
+                        break;
+                    case 'price':
+                        $values[] = number_format(round(floatval($attributeValue), 2), 2);
+                        break;
+                    case 'boolean':
+                        $values[] = $attributeValue ? __("Yes") : __("No");
+                        break;
+                    default:
+                        $values[] = $attributeValue;
+                        break;
                 }
 
-                $label = $product->getResource()->getAttribute($attribute->getAttributeCode())->getStoreLabel();
-
+                $label = $attribute->getStoreLabel($store->getId());
                 if (empty($label)) {
                     $label = $attribute->getAttributeCode();
                 }
@@ -318,9 +399,16 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
             return '';
         }
 
-        $path = urlencode($category->getName());
-        $parentPath = $this->getCategoryPathByCategory(Mage::getModel('catalog/category')->load($category->getParentId()), $store);
-        $path = $parentPath === '' ? $path : $parentPath . '/' . $path;
+        if (isset($this->categories[$category->getParentId()])) {
+            $parentCategory = $this->categories[$category->getParentId()];
+        } else {
+            $parentCategory = Mage::getModel('catalog/category')->load($category->getParentId());
+            $this->categories[$parentCategory->getId()] = $parentCategory;
+        }
+
+        $path       = urlencode($category->getName());
+        $parentPath = $this->getCategoryPathByCategory($parentCategory, $store);
+        $path       = $parentPath === '' ? $path : $parentPath . '/' . $path;
 
         return $path;
     }
@@ -333,8 +421,8 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      */
     private function getProductParentIdByProductId($id)
     {
-        $parentByChild = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($id);
-        $parentId = false;
+        $parentByChild = $this->configurableProductModel->getParentIdsByChild($id);
+        $parentId      = false;
 
         if (isset($parentByChild[0])) {
             $parentId = $parentByChild[0];
