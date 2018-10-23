@@ -266,23 +266,25 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
 
                 $frontendInput = $attribute->getFrontendInput();
                 $values = [];
-
-                if (in_array($frontendInput, ['select', 'multiselect'])) {
-                    // value holds single or multiple options IDs
-                    foreach (explode(",", $attributeValue) as $optionId) {
-                        $optionLabel = $attribute->getSource()->getOptionText($optionId);
-                        $values[] = $optionLabel;
-                    }
-                } else if ($frontendInput == 'price') {
-                    $values[] = number_format(round(floatval($attributeValue), 2), 2);
-                } else if ($frontendInput == 'boolean') {
-                    $values[] = $attributeValue ? "Yes" : "No";
-                } else {
-                    $values[] = $attributeValue;
+                switch ($frontendInput) {
+                    case 'select':
+                        $values[] =  $product->getAttributeText($attributeCode);
+                        break;
+                    case 'multiselect':
+                        $values[] = implode(',',  $product->getAttributeText($attributeCode));
+                        break;
+                    case 'price':
+                        $values[] = number_format(round(floatval($attributeValue), 2), 2);
+                        break;
+                    case 'boolean':
+                        $values[] = $attributeValue ? __("Yes") : __("No");
+                        break;
+                    default:
+                        $values[] = $attributeValue;
+                        break;
                 }
 
-                $label = $product->getResource()->getAttribute($attribute->getAttributeCode())->getStoreLabel();
-
+                $label = $attribute->getStoreLabel($store->getId());
                 if (empty($label)) {
                     $label = $attribute->getAttributeCode();
                 }
