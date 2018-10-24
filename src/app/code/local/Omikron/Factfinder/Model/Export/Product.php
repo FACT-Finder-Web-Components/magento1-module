@@ -2,7 +2,7 @@
 
 class Omikron_Factfinder_Model_Export_Product
 {
-    const FEED_PATH          = 'factfinder/';
+    const FEED_PATH          = 'factfinder';
     const FEED_FILE          = 'export.';
     const FEED_FILE_FILETYPE = 'csv';
     const PRODUCT_LIMIT      = 50000;
@@ -43,21 +43,24 @@ class Omikron_Factfinder_Model_Export_Product
      * Generate and export all products for a specific store
      *
      * @param Mage_Core_Model_Store $store
-     *
+     * @param string $filename
      * @return array
      */
-    public function exportProduct($store)
+    public function exportProduct($store, $filename = '')
     {
-        $filename = self::FEED_FILE . $this->dataHelper->getChannel($store->getId()) . '.' . self::FEED_FILE_FILETYPE;
+        if ($filename == "") {
+            $filename = $this->dataHelper->getChannel($store->getId());
+        }
 
-        $output = $this->buildFeed($store);
-        $result = $this->writeFeedToFile($filename, $output);
+        $fullname = self::FEED_FILE . $filename . '.' . self::FEED_FILE_FILETYPE;
+        $output   = $this->buildFeed($store);
+        $result   = $this->writeFeedToFile($fullname, $output);
 
         if (isset($result['has_errors']) && $result['has_errors']) {
             return $result;
         }
 
-        $result = $this->uploadFeed($filename);
+        $result = $this->uploadFeed($fullname);
 
         if (isset($result['has_errors']) && $result['has_errors']) {
             return $result;
@@ -74,6 +77,11 @@ class Omikron_Factfinder_Model_Export_Product
         return $result;
     }
 
+    /**
+     * @param Mage_Core_Model_Store $store
+     *
+     * @return array
+     */
     public function uploadProduct($store)
     {
         $result = [];
@@ -82,7 +90,7 @@ class Omikron_Factfinder_Model_Export_Product
 
         $io = new Varien_Io_File();
 
-        if (!$io->fileExists(self::FEED_PATH . $filename)) {
+        if (!$io->fileExists(self::FEED_PATH . DS . $filename)) {
             $result['has_errors'] = true;
             $result['message'] = $this->dataHelper->__('Error! There is no generated CSV file.');
         } else {
@@ -174,7 +182,7 @@ class Omikron_Factfinder_Model_Export_Product
         ];
 
         foreach ($attributes as $attribute) {
-            $row[$attribute] = $this->productHelper->get($attribute, $product, $store);
+            $row[$attribute] = call_user_func_array([$this->productHelper, "get$attribute"], [$product, $store]);
         }
 
         return $row;
@@ -239,7 +247,7 @@ class Omikron_Factfinder_Model_Export_Product
 
         try {
             $io = new Varien_Io_File();
-            $path = self::FEED_PATH;
+            $path = Mage::getBaseDir() . DS . self::FEED_PATH . DS;
             $io->setAllowCreateFolders(true);
             $io->open(array('path' => $path));
             $io->streamOpen($filename, 'w+');
@@ -268,7 +276,7 @@ class Omikron_Factfinder_Model_Export_Product
     {
         $result = [];
 
-        $uploadResult = $this->uploadHelper->upload(self::FEED_PATH . $filename, $filename);
+        $uploadResult = $this->uploadHelper->upload(Mage::getBaseDir(). DS . self::FEED_PATH . DS . $filename, $filename);
 
         if ($uploadResult['success']) {
             $result['has_errors'] = false;

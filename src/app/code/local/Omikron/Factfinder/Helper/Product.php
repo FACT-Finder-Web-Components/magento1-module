@@ -55,40 +55,6 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
     }
 
     /**
-     * Get the attribute value from magento product in corresponding store
-     *
-     * @param string $attribute
-     * @param Mage_Catalog_Model_Product $product
-     * @param Mage_Core_Model_Store $store
-     * @return mixed|null
-     */
-    public function get($attribute, $product, $store)
-    {
-        switch ((string)$attribute) {
-            case "ProductNumber":
-            case "MasterProductNumber":
-            case "Name":
-            case "Description":
-            case "Short":
-            case "ProductUrl":
-            case "Price":
-            case "Availability":
-            case "MagentoEntityId":
-                $method = 'get' . $attribute;
-                return call_user_func(array($this, $method), $product);
-            case "ImageUrl":
-            case "Manufacturer":
-            case "Attributes":
-            case "EAN":
-            case "CategoryPath":
-                $method = 'get' . $attribute;
-                return call_user_func(array($this, $method), $product, $store);
-            default:
-                return null;
-        }
-    }
-
-    /**
      * Get the product number
      *
      * @param Mage_Catalog_Model_Product $product
@@ -105,7 +71,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      * @param Mage_Catalog_Model_Product $product
      * @return string
      */
-    private function getMasterProductNumber($product)
+    public function getMasterProductNumber($product)
     {
         if ($parentId = $this->getProductParentIdByProductId($product->getId())) {
             if (isset($this->configurableProducts[$parentId])) {
@@ -127,7 +93,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      * @param Mage_Catalog_Model_Product $product
      * @return string
      */
-    private function getName($product)
+    public function getName($product)
     {
         return $product->getData('name');
     }
@@ -138,7 +104,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      * @param Mage_Catalog_Model_Product $product
      * @return string
      */
-    private function getDescription($product)
+    public function getDescription($product)
     {
         return $this->cleanValue($product->getData('description'));
     }
@@ -149,7 +115,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      * @param Mage_Catalog_Model_Product $product
      * @return string
      */
-    private function getShort($product)
+    public function getShort($product)
     {
         return $this->cleanValue($product->getData('short_description'));
     }
@@ -173,7 +139,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      * @param Mage_Core_Model_Store $store
      * @return string
      */
-    private function getImageUrl($product, $store)
+    public function getImageUrl($product, $store)
     {
         try {
             $imgSrc = (string) Mage::helper('catalog/image')->init($product, 'thumbnail')
@@ -194,7 +160,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      * @param Mage_Catalog_Model_Product $product
      * @return string
      */
-    private function getPrice($product)
+    public function getPrice($product)
     {
         return number_format($product->getData('price'), 2, '.', '');
     }
@@ -206,7 +172,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      * @param Mage_Core_Model_Store $store
      * @return string
      */
-    private function getCategoryPath($product, $store)
+    public function getCategoryPath($product, $store)
     {
         $categoryIds = $product->getCategoryIds();
         $path = [];
@@ -240,7 +206,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      * @param Mage_Catalog_Model_Product $product
      * @return int
      */
-    private function getAvailability($product)
+    public function getAvailability($product)
     {
         return (int) $product->isAvailable();
     }
@@ -251,7 +217,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      * @param Mage_Catalog_Model_Product $product
      * @return int
      */
-    private function getMagentoEntityId($product)
+    public function getMagentoEntityId($product)
     {
         return (int) $product->getId();
     }
@@ -263,7 +229,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      * @param Mage_Core_Model_Store $store
      * @return mixed
      */
-    private function getManufacturer($product, $store)
+    public function getManufacturer($product, $store)
     {
         return $product->getData(Mage::getStoreConfig(self::PATH_FF_MANUFACTURER, $store->getId()));
     }
@@ -275,7 +241,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      * @param Mage_Core_Model_Store $store
      * @return mixed
      */
-    private function getEAN($product, $store)
+    public function getEAN($product, $store)
     {
         return $product->getData(Mage::getStoreConfig(self::PATH_FF_EAN, $store->getId()));
     }
@@ -317,7 +283,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      * @param Mage_Core_Model_Store $store
      * @return string
      */
-    private function getAttributes($product, $store)
+    public function getAttributes($product, $store)
     {
         $data = [];
         $attributesString = '';
