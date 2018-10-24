@@ -27,7 +27,7 @@
             <catalogsearch>
                 <args>
                     <modules>
-                        <factfinder before="Mage_CatalogSearch">Omikron_Factfinder_CatalogSearch</factfinder>
+                        <Omikron_Factfinder before="Mage_CatalogSearch">Omikron_Factfinder_CatalogSearch</Omikron_Factfinder>
                     </modules>
                 </args>
             </catalogsearch>
