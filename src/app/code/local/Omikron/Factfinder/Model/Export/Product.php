@@ -138,6 +138,7 @@ class Omikron_Factfinder_Model_Export_Product
             $products = $this->getProducts($store, $currentOffset);
 
             foreach ($products as $product) {
+                $product->setStoreId($store->getId());
                 $rowData = $this->buildFeedRow($product, $store);
                 if ($addHeaderCols) {
                     $addHeaderCols = false;
