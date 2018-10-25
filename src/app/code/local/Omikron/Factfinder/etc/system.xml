@@ -10,7 +10,7 @@
             <show_in_website>1</show_in_website>
             <show_in_store>1</show_in_store>
             <groups>
-                <general>
+                <general translate="label comment">
                     <label>Main settings</label>
                     <comment><![CDATA[<div id="messages"><ul class="messages"><li class="notice-msg"><ul><li><span>Please always save the config in the upper right corner after making changes.</span></li></ul></li></ul></div>]]></comment>
                     <sort_order>1</sort_order>
@@ -79,7 +79,7 @@
                         </ff_build_connection>
                     </fields>
                 </general>
-                <components>
+                <components translate="label comment">
                     <label>Activated Web-Components</label>
                     <comment>Please always save the config in the upper right corner after making changes.</comment>
                     <sort_order>2</sort_order>
@@ -179,7 +179,7 @@
                         </ff_similar>
                     </fields>
                 </components>
-                <advanced>
+                <advanced translate="label comment">
                     <label>Advanced settings</label>
                     <comment>The advanced settings can change how the search works. Please edit them with caution and only if you know what they are doing.</comment>
                     <sort_order>3</sort_order>
@@ -187,7 +187,7 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <version translate="label">
+                        <version translate="label comment">
                             <label>API Version</label>
                             <comment>FACT-Finder version.</comment>
                             <frontend_type>select</frontend_type>
@@ -197,7 +197,7 @@
                             <show_in_store>1</show_in_store>
                             <source_model>Omikron_Factfinder_Model_Source_FFVersion</source_model>
                         </version>
-                        <use_url_parameter translate="label">
+                        <use_url_parameter translate="label comment">
                             <label>Use url parameter</label>
                             <comment>If set to true, the http parameters of the current search are pushed to the browser url.</comment>
                             <frontend_type>select</frontend_type>
@@ -207,7 +207,7 @@
                             <show_in_store>1</show_in_store>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </use_url_parameter>
-                        <use_cache translate="label">
+                        <use_cache translate="label comment">
                             <label>Use cache</label>
                             <comment>This value determines, if the browser should cache previous search requests or not. Some browsers support this feature and therefore speed up the search for repeated requests.</comment>
                             <frontend_type>select</frontend_type>
@@ -244,7 +244,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </add_tracking_params>
-                        <keep_filters translate="label">
+                        <keep_filters translate="label comment">
                             <label>Keep filters</label>
                             <comment>With this property you can determine if filters (which where set before the search, e.g. via ASN) should be kept or discarded.</comment>
                             <frontend_type>select</frontend_type>
@@ -263,7 +263,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </keep_url_params>
-                        <use_asn translate="label">
+                        <use_asn translate="label comment">
                             <label>Use ASN</label>
                             <comment>Determines if the the ASN is returned. Can be set to false to save performance, if the ASN is not required. Default is true.</comment>
                             <frontend_type>select</frontend_type>
@@ -273,7 +273,7 @@
                             <show_in_store>1</show_in_store>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </use_asn>
-                        <use_found_rows translate="label">
+                        <use_found_rows translate="label comment">
                             <label>Use found rows</label>
                             <comment>For found records, FACT-Finder is capable of returning the words which lead to the find. The determination of these words costs performance. It is therefore deactivated by default. If true, words are created. If false, words are not created.</comment>
                             <frontend_type>select</frontend_type>
@@ -283,7 +283,7 @@
                             <show_in_store>1</show_in_store>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </use_found_rows>
-                        <use_campaigns translate="label">
+                        <use_campaigns translate="label comment">
                             <label>Use campaigns</label>
                             <comment>Use this parameter if you want to prevent the campaign manager from checking if there is a campaign for this search request.If true, campaigns are analyzed and returned. If false, campaigns are ignored. Default is true.</comment>
                             <frontend_type>select</frontend_type>
@@ -293,7 +293,7 @@
                             <show_in_store>1</show_in_store>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </use_campaigns>
-                        <feedback_campaign_label translate="label">
+                        <feedback_campaign_label translate="label comment">
                             <label>Feedback campaign label</label>
                             <comment>Set the feedback campaign webcomponent label to appropriate value. This value has to match a configured label value inside the FACT-Finder backend. Default is empty.</comment>
                             <frontend_type>text</frontend_type>
@@ -302,7 +302,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </feedback_campaign_label>
-                        <advisor_campaign_name translate="label">
+                        <advisor_campaign_name translate="label comment">
                             <label>Advisor campaign name</label>
                             <comment>Set the advisor campaign webcomponent name to appropriate value. This value has to match a configured label value inside the FACT-Finder backend. Default is empty.</comment>
                             <frontend_type>text</frontend_type>
@@ -311,7 +311,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </advisor_campaign_name>
-                        <product_campaign_name translate="label">
+                        <product_campaign_name translate="label comment">
                             <label>Product campaign name</label>
                             <comment>Set the product campaign webcomponent name to appropriate value. This value has to match a configured label value inside the FACT-Finder backend. Default is empty.</comment>
                             <frontend_type>text</frontend_type>
@@ -320,7 +320,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </product_campaign_name>
-                        <product_feedback_campaign_name translate="label">
+                        <product_feedback_campaign_name translate="label comment">
                             <label>Product feedback campaign name</label>
                             <comment>Set the product feedback campaign webcomponent name to appropriate value. This value has to match a configured label value inside the FACT-Finder backend. Default is empty.</comment>
                             <frontend_type>text</frontend_type>
@@ -329,7 +329,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </product_feedback_campaign_name>
-                        <product_landing_page_campaign_name translate="label">
+                        <product_landing_page_campaign_name translate="label comment">
                             <label>Product landing page campaign name</label>
                             <comment>Set the product product campaign webcomponent name to appropriate value. This value has to match a configured label value inside the FACT-Finder backend. Default is empty.</comment>
                             <frontend_type>text</frontend_type>
@@ -338,7 +338,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </product_landing_page_campaign_name>
-                        <feedback_landing_page_label translate="label">
+                        <feedback_landing_page_label translate="label comment">
                             <label>Feedback landing page campaign name</label>
                             <comment>Set the product feedback campaign webcomponent name to appropriate value. This value has to match a configured label value inside the FACT-Finder backend. Default is empty.</comment>
                             <frontend_type>text</frontend_type>
@@ -347,7 +347,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </feedback_landing_page_label>
-                        <landing_page_page_id translate="label">
+                        <landing_page_page_id translate="label comment">
                             <label>Landing page page-id</label>
                             <comment>Set the landing page page-id to appropriate value. This value has to match a configured label value inside the FACT-Finder backend. Default is empty.</comment>
                             <frontend_type>text</frontend_type>
@@ -356,7 +356,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </landing_page_page_id>
-                        <shopping_cart_product_campaign_name translate="label">
+                        <shopping_cart_product_campaign_name translate="label comment">
                             <label>Shopping cart product campaign name</label>
                             <comment>Set the shopping cart product campaign name to appropriate value. This value has to match a configured label value inside the FACT-Finder backend. Default is empty.</comment>
                             <frontend_type>text</frontend_type>
@@ -365,7 +365,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </shopping_cart_product_campaign_name>
-                        <shopping_cart_feedback_label translate="label">
+                        <shopping_cart_feedback_label translate="label comment">
                             <label>Shopping cart feedback label</label>
                             <comment>Set the shopping cart feedback label to appropriate value. This value has to match a configured label value inside the FACT-Finder backend. Default is empty.</comment>
                             <frontend_type>text</frontend_type>
@@ -374,7 +374,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </shopping_cart_feedback_label>
-                        <generate_advisor_tree translate="label">
+                        <generate_advisor_tree translate="label comment">
                             <label>Generate advisor tree</label>
                             <comment>Is used with advisor campaigns. Please refer the campaign manager documentation. If true, the whole question-answer-tree is returned with the advisor campaign. If false, only the currently active questions and their answers are returned. Default is false.</comment>
                             <frontend_type>select</frontend_type>
@@ -384,7 +384,7 @@
                             <show_in_store>1</show_in_store>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </generate_advisor_tree>
-                        <disable_cache translate="label">
+                        <disable_cache translate="label comment">
                             <label>Disable cache</label>
                             <comment>Controls the usage of search result caches. If true, cache is ignored. If false, cache is used. Default is false.</comment>
                             <frontend_type>select</frontend_type>
@@ -394,7 +394,7 @@
                             <show_in_store>1</show_in_store>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </disable_cache>
-                        <use_personalization translate="label">
+                        <use_personalization translate="label comment">
                             <label>Use personalization</label>
                             <comment>Allows activating/deactivating of request personalization. If true, the search result is personalized if the personalization module is active and all other requirements are met. If false, the search result is not personalized. Default is true.</comment>
                             <frontend_type>select</frontend_type>
@@ -404,7 +404,7 @@
                             <show_in_store>1</show_in_store>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </use_personalization>
-                        <use_semantic_enhancer translate="label">
+                        <use_semantic_enhancer translate="label comment">
                             <label>Use semantic enhancer</label>
                             <comment>Allows activating/deactivating of the semantic enrichment of requests. If true, the search result is semantically enriched if the enhanced module is activated and all other requirements are met. If false, the search result is not semantically enriched. Default value is true.</comment>
                             <frontend_type>select</frontend_type>
@@ -414,7 +414,7 @@
                             <show_in_store>1</show_in_store>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </use_semantic_enhancer>
-                        <use_aso translate="label">
+                        <use_aso translate="label comment">
                             <label>Use ASO</label>
                             <comment>Allows activating/deactivating of automated search optimization. If true, the search result is automatically optimized. If false, the search result is not optimized. Default is true.</comment>
                             <frontend_type>select</frontend_type>
@@ -424,7 +424,7 @@
                             <show_in_store>1</show_in_store>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </use_aso>
-                        <use_browser_history translate="label">
+                        <use_browser_history translate="label comment">
                             <label>Use browser history</label>
                             <comment>If true, the search history is pushed to the browser history, even without using url parameter. Default is true.</comment>
                             <frontend_type>select</frontend_type>
@@ -434,7 +434,7 @@
                             <show_in_store>1</show_in_store>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </use_browser_history>
-                        <use_seo translate="label">
+                        <use_seo translate="label comment">
                             <label>Use SEO</label>
                             <comment>If true, web components will use the FACT-Finder SEO API. Set this only to true if the module is active in FACT-Finder.</comment>
                             <frontend_type>select</frontend_type>
@@ -474,7 +474,7 @@
                         </similar_products_max_results>
                     </fields>
                 </advanced>
-                <data_transfer>
+                <data_transfer translate="label comment">
                     <label>General export settings</label>
                     <comment><![CDATA[<div id="messages"><ul class="messages"><li class="notice-msg"><ul><li><span>Please always save the config in the upper right corner after making changes. Especially before using the export-button.</span></li></ul></li></ul></div>]]></comment>
                     <sort_order>4</sort_order>
@@ -483,7 +483,7 @@
                     <show_in_store>1</show_in_store>
                     <expanded>1</expanded>
                     <fields>
-                        <ff_manufacturer translate="label">
+                        <ff_manufacturer translate="label comment">
                             <label>Manufacturer</label>
                             <comment>Select the Attribute which stores the manufacturer of a product.</comment>
                             <frontend_type>select</frontend_type>
@@ -493,7 +493,7 @@
                             <show_in_store>1</show_in_store>
                             <source_model>Omikron_Factfinder_Model_Source_Attribute</source_model>
                         </ff_manufacturer>
-                        <ff_ean translate="label">
+                        <ff_ean translate="label comment">
                             <label>EAN/ISBN</label>
                             <comment>Select the Attribute which stores the ean or isbn of a product.</comment>
                             <frontend_type>select</frontend_type>
@@ -503,7 +503,7 @@
                             <show_in_store>1</show_in_store>
                             <source_model>Omikron_Factfinder_Model_Source_Attribute</source_model>
                         </ff_ean>
-                        <ff_additional_attributes translate="label">
+                        <ff_additional_attributes translate="label comment">
                             <label>Select Additional Attributes</label>
                             <comment>Select all attributes which should be exported to the product feed.</comment>
                             <frontend_type>multiselect</frontend_type>
@@ -515,7 +515,7 @@
                         </ff_additional_attributes>
                     </fields>
                 </data_transfer>
-                <ftp_data_transfer>
+                <ftp_data_transfer translate="label comment">
                     <label>Export to FTP</label>
                     <comment><![CDATA[<div id="messages"><ul class="messages"><li class="notice-msg"><ul><li><span>Please always save the config in the upper right corner after making changes. Especially before using the export-button.</span></li></ul></li></ul></div>]]></comment>
                     <sort_order>5</sort_order>
@@ -567,7 +567,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </ff_upload_password>
-                        <ff_create_feed>
+                        <ff_create_feed translate="label comment">
                             <label>Generate and upload export file</label>
                             <comment>On buttonclick CSV exports of all your products will be generated and uploaded to the specified FTP Server.</comment>
                             <frontend_type>button</frontend_type>
@@ -577,7 +577,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </ff_create_feed>
-                        <ff_upload_feed>
+                        <ff_upload_feed trasnlate="label comment">
                             <label>Upload export file</label>
                             <comment>On buttonclick CSV exports of all your products will be uploaded to the specified FTP Server (using previously generated CSV file).</comment>
                             <frontend_type>button</frontend_type>
@@ -589,7 +589,7 @@
                         </ff_upload_feed>
                     </fields>
                 </ftp_data_transfer>
-                <basic_auth_data_transfer>
+                <basic_auth_data_transfer translate="label comment">
                     <label>Export via Basic Auth</label>
                     <sort_order>6</sort_order>
                     <show_in_default>1</show_in_default>
