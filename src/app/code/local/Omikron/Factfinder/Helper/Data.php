@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class Omikron_Factfinder_Helper_Data
+ */
 class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
 {
     // General
@@ -65,7 +68,9 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getAddress()
     {
-        $url = Mage::getStoreConfig(self::PATH_ADDRESS);
+        $registeredAuthData = $this->getRegisteredAuthParams();
+        $url = $registeredAuthData['serverUrl'] ? $registeredAuthData['serverUrl'] : Mage::getStoreConfig(self::PATH_ADDRESS);
+
         if (substr(rtrim($url), -1) != "/") {
             $url .= "/";
         }
@@ -81,7 +86,9 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getChannel($storeId = null)
     {
-        return Mage::getStoreConfig(self::PATH_CHANNEL, $storeId);
+        $registeredAuthData = $this->getRegisteredAuthParams();
+
+        return $registeredAuthData['channel'] ? $registeredAuthData['channel'] : Mage::getStoreConfig(self::PATH_CHANNEL, $storeId);
     }
 
     /**
@@ -90,7 +97,9 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getUsername()
     {
-        return Mage::getStoreConfig(self::PATH_USERNAME);
+        $registeredAuthData = $this->getRegisteredAuthParams();
+
+        return  $registeredAuthData['username'] ? $registeredAuthData['username'] : Mage::getStoreConfig(self::PATH_USERNAME);
     }
 
     /**
@@ -473,17 +482,17 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getAuthArray()
     {
-        $authArray = [];
+        $authArray             = [];
         $authArray['username'] = $this->getUsername();
 
-        $time = round(microtime(true) * 1000);
+        $time     = round(microtime(true) * 1000);
         $password = $this->getPassword();
-        $prefix = $this->getAuthenticationPrefix();
-        $postfix = $this->getAuthenticationPostfix();
+        $prefix   = $this->getAuthenticationPrefix();
+        $postfix  = $this->getAuthenticationPostfix();
 
-        $hashPassword = md5($prefix . (string)$time . $password . $postfix);
+        $hashPassword = md5($prefix . (string) $time . $password . $postfix);
 
-        $authArray['password'] = $hashPassword;
+        $authArray['password']  = $hashPassword;
         $authArray['timestamp'] = $time;
 
         return $authArray;
@@ -516,7 +525,9 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     private function getPassword()
     {
-        return Mage::getStoreConfig(self::PATH_PASSWORD);
+        $registeredAuthData = $this->getRegisteredAuthParams();
+
+        return $registeredAuthData['password'] ? $registeredAuthData['password'] : Mage::getStoreConfig(self::PATH_PASSWORD);
     }
 
     /**
@@ -525,7 +536,9 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     private function getAuthenticationPrefix()
     {
-        return Mage::getStoreConfig(self::PATH_AUTHENTICATION_PREFIX);
+        $registeredAuthData = $this->getRegisteredAuthParams();
+
+        return $registeredAuthData['authenticationPrefix'] ? $registeredAuthData['authenticationPrefix'] : Mage::getStoreConfig(self::PATH_AUTHENTICATION_PREFIX);
     }
 
     /**
@@ -534,6 +547,16 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     private function getAuthenticationPostfix()
     {
-        return Mage::getStoreConfig(self::PATH_AUTHENTICATION_POSTFIX);
+        $registeredAuthData = $this->getRegisteredAuthParams();
+
+        return $registeredAuthData['authenticationPostfix'] ? $registeredAuthData['authenticationPostfix'] : Mage::getStoreConfig(self::PATH_AUTHENTICATION_POSTFIX);
+    }
+
+    /**
+     * @return null|array
+     */
+    private function getRegisteredAuthParams()
+    {
+        return Mage::registry('ff-auth');
     }
 }

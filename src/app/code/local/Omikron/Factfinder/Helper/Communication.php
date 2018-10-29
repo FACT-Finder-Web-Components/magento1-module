@@ -91,7 +91,7 @@ class Omikron_Factfinder_Helper_Communication extends Mage_Core_Helper_Abstract
      * @param Mage_Core_Model_Store $store
      * @return array
      */
-    private function checkConnection($store)
+    public function checkConnection($store)
     {
         $result = [];
         $result['success'] = true;
