@@ -231,7 +231,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      */
     public function getManufacturer($product, $store)
     {
-        return $product->getData(Mage::getStoreConfig(self::PATH_FF_MANUFACTURER, $store->getId()));
+        return $this->getConfiguredAttributeValue($product, $store, self::PATH_FF_MANUFACTURER);
     }
 
     /**
@@ -243,7 +243,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      */
     public function getEAN($product, $store)
     {
-        return $product->getData(Mage::getStoreConfig(self::PATH_FF_EAN, $store->getId()));
+        return $this->getConfiguredAttributeValue($product, $store, self::PATH_FF_EAN);
     }
 
     /**
@@ -294,16 +294,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
             $attrCount = 0;
 
             foreach ($attributeCodes as $attributeCode) {
-
-                if (isset($this->attributes[$attributeCode])) {
-                    /** @var Mage_Eav_Model_Entity_Attribute $attribute */
-                    $attribute = $this->attributes[$attributeCode];
-                } else {
-                    /** @var Mage_Eav_Model_Entity_Attribute $attribute */
-                    $attribute = Mage::getModel('eav/entity_attribute')->loadByCode('catalog_product', $attributeCode);
-                    $this->attributes[$attributeCode] = $attribute;
-                }
-
+                $attribute      = $this->getAttributeModel($attributeCode);
                 $attributeValue = $product->getData($attribute->getAttributeCode());
 
                 if (empty($attributeValue)) {
@@ -419,5 +410,39 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
         }
 
         return trim($value);
+    }
+
+    /**
+     *
+     * @param Mage_Catalog_Model_Product $product
+     * @param Mage_Core_Model_Store $store
+     * @param string $configPath
+     * @return mixed
+     */
+    private function getConfiguredAttributeValue($product, $store, $configPath)
+    {
+        $attributeCode = Mage::getStoreConfig($configPath, $store->getId());
+        $attribute = $this->getAttributeModel($attributeCode);
+        if (in_array($attribute->getFrontendInput(), ['select', 'multiselect'])) {
+            $value = $product->getAttributeText($attributeCode);
+        } else {
+            $value = $product->getData($attributeCode);
+        }
+
+        return $value;
+    }
+
+    /**
+     * @param string $attributeCode
+     *
+     * @return Mage_Eav_Model_Entity_Attribute
+     */
+    private function getAttributeModel($attributeCode)
+    {
+        if (isset($this->attributes[$attributeCode])) {
+            return $this->attributes[$attributeCode];
+        }
+
+        return Mage::getModel('eav/entity_attribute')->loadByCode('catalog_product', $attributeCode);
     }
 }
