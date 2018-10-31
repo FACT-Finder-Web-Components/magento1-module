@@ -60,7 +60,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      * @param Mage_Catalog_Model_Product $product
      * @return string
      */
-    private function getProductNumber($product)
+    public function getProductNumber($product)
     {
         return $product->getData('sku');
     }
