@@ -5,7 +5,6 @@ class Omikron_Factfinder_Model_Export_Product
     const FEED_PATH          = 'factfinder';
     const FEED_FILE          = 'export.';
     const FEED_FILE_FILETYPE = 'csv';
-    const PRODUCT_LIMIT      = 50000;
     const BATCH_SIZE         = 3000;
 
     /**
@@ -133,7 +132,7 @@ class Omikron_Factfinder_Model_Export_Product
         $productCount   = Mage::getModel('catalog/product')->getCollection()->getSize();
         $currentOffset  = 0;
 
-        while ($currentOffset < $productCount && $currentOffset < self::PRODUCT_LIMIT) {
+        while ($currentOffset < $productCount) {
             /** @var Mage_Catalog_Model_Resource_Product_Collection $products */
             $products = $this->getProducts($store, $currentOffset);
 
