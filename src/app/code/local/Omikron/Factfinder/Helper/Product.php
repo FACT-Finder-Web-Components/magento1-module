@@ -73,18 +73,29 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      */
     public function getMasterProductNumber($product)
     {
+        if ($product->getTypeId() == Mage_Catalog_Model_Product_Type_Configurable::TYPE_CODE) {
+            /**
+             * It unnecessary to check if configurable product has parent because it's impossible
+             */
+            return $product->getSku();
+        }
+
+        $masterProductNumber = null;
+
         if ($parentId = $this->getProductParentIdByProductId($product->getId())) {
             if (isset($this->configurableProducts[$parentId])) {
                 $parentProduct = $this->configurableProducts[$parentId];
             } else {
                 $parentProduct = Mage::getModel('catalog/product')->load($parentId);
-                $this->configurableProducts[$parentId] = $parentProduct;
             }
 
-            return $parentProduct->getSku();
-        } else {
-            return $product->getSku();
+            if ($parentProduct->getId()) {
+                $this->configurableProducts[$parentId] = $parentProduct;
+                $masterProductNumber = $parentProduct->getSku();
+            }
         }
+
+        return $masterProductNumber ? $masterProductNumber : $product->getSku();
     }
 
     /**
