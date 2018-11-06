@@ -513,6 +513,16 @@
                             <show_in_store>1</show_in_store>
                             <source_model>Omikron_Factfinder_Model_Source_Attribute</source_model>
                         </ff_additional_attributes>
+                        <ff_product_visibility translate="label comment">
+                            <label>Select Product Visibility</label>
+                            <comment>Visibility attribute values used in filtering prodcut collection.</comment>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>Omikron_Factfinder_Model_Source_Visibility</source_model>
+                        </ff_product_visibility>
                     </fields>
                 </data_transfer>
                 <ftp_data_transfer translate="label comment">

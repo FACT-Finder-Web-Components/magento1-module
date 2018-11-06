@@ -10,6 +10,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
     const PATH_FF_MANUFACTURER = "factfinder/data_transfer/ff_manufacturer";
     const PATH_FF_EAN = "factfinder/data_transfer/ff_ean";
     const PATH_FF_ADDITIONAL_ATTRIBUTES = "factfinder/data_transfer/ff_additional_attributes";
+    const PATH_FF_PRODUCT_VISIBILITY = "factfinder/data_transfer/ff_product_visibility";
 
     // image placeholder
     const PATH_IMG_PLACEHOLDER = 'images/catalog/product/placeholder/image.jpg';
@@ -242,7 +243,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      */
     public function getManufacturer($product, $store)
     {
-        return $this->getConfiguredAttributeValue($product, $store, self::PATH_FF_MANUFACTURER);
+        return $this->getConfiguredAttributeValue($product, $this->getManufacturerAttributeCode($store));
     }
 
     /**
@@ -254,9 +255,28 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      */
     public function getEAN($product, $store)
     {
-        return $this->getConfiguredAttributeValue($product, $store, self::PATH_FF_EAN);
+        return $this->getConfiguredAttributeValue($product, $this->getEANAttributeCode($store));
     }
 
+    /**
+     * @param $store
+     *
+     * @return string|null
+     */
+    public function getEANAttributeCode($store)
+    {
+        return Mage::getStoreConfig(self::PATH_FF_EAN, $store->getId());
+    }
+
+    /**
+     * @param $store
+     *
+     * @return string|null
+     */
+    public function getManufacturerAttributeCode($store)
+    {
+        return Mage::getStoreConfig(self::PATH_FF_MANUFACTURER, $store->getId());
+    }
     /**
      * @return array
      */
@@ -272,7 +292,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
             'image',
             'price',
             'manufacturer',
-            'availability'
+            'visibility'
         ];
     }
 
@@ -353,6 +373,15 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
     }
 
     /**
+     * @param $store
+     * @return array
+     */
+    public function getProductVisibility($store)
+    {
+        return explode(',', Mage::getStoreConfig(self::PATH_FF_PRODUCT_VISIBILITY, $store));
+    }
+
+    /**
      * Returns category path as url encoded category names separated by slashes
      *
      * @param Mage_Catalog_Model_Category $category
@@ -426,13 +455,11 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
     /**
      *
      * @param Mage_Catalog_Model_Product $product
-     * @param Mage_Core_Model_Store $store
-     * @param string $configPath
+     * @param string $attributeCode
      * @return mixed
      */
-    private function getConfiguredAttributeValue($product, $store, $configPath)
+    private function getConfiguredAttributeValue($product, $attributeCode)
     {
-        $attributeCode = Mage::getStoreConfig($configPath, $store->getId());
         $attribute = $this->getAttributeModel($attributeCode);
         if (in_array($attribute->getFrontendInput(), ['select', 'multiselect'])) {
             $value = $product->getAttributeText($attributeCode);

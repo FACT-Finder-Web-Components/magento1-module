@@ -118,6 +118,7 @@
             <data_transfer>
                 <ff_upload_port>21</ff_upload_port>
                 <ff_upload_path></ff_upload_path>
+                <ff_additional_attributes>3,4</ff_additional_attributes>Ź
             </data_transfer>
         </factfinder>
     </default>
