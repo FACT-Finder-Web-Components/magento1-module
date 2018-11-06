@@ -1,0 +1,6 @@
+- FACT-Finder-Web-Components Magento1-Module version (see composer.json): 
+- Magento edition and version: 
+- PHP version: 
+- Expected behavior: 
+- Actual behavior: 
+- Steps to reproduce: 
