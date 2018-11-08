@@ -133,4 +133,6 @@
 "Export via Basic Auth","Export via Basic Auth"
 "Basic Auth user","Basic Auth user"
 "Basic Auth password","Basic Auth password"
+"Select Product Visibility","Select Product Visibility"
+"Visibility attribute values used in filtering prodcut collection.","Visibility attribute values used in filtering prodcut collection."
 

@@ -129,13 +129,12 @@ class Omikron_Factfinder_Model_Export_Product
     {
         $output         = [];
         $addHeaderCols  = true;
-        $productCount   = Mage::getModel('catalog/product')->getCollection()->getSize();
+        $productCount = $this->getFilteredProductCollection($store)->getSize();
         $currentOffset  = 0;
 
         while ($currentOffset < $productCount) {
             /** @var Mage_Catalog_Model_Resource_Product_Collection $products */
             $products = $this->getProducts($store, $currentOffset);
-
             foreach ($products as $product) {
                 $product->setStoreId($store->getId());
                 $rowData = $this->buildFeedRow($product, $store);
@@ -146,7 +145,7 @@ class Omikron_Factfinder_Model_Export_Product
                 $output[] = $this->writeLine($rowData);
             }
 
-            $currentOffset += self::BATCH_SIZE;
+            $currentOffset += $products->count();
         }
 
         return $output;
@@ -199,20 +198,31 @@ class Omikron_Factfinder_Model_Export_Product
     {
         $attributesToSelect = array_merge(
             $this->productHelper->getMandatoryAttributes(),
-            explode(',', $this->productHelper->getAdditionalAttributes($store))
+            explode(',', $this->productHelper->getAdditionalAttributes($store)),
+            [$this->productHelper->getEANAttributeCode($store)],
+            [$this->productHelper->getManufacturerAttributeCode($store)]
         );
 
-        $collection = Mage::getModel('catalog/product')
-            ->getCollection()
-            ->addWebsiteFilter(Mage::getModel('core/store')->load($store->getId())->getWebsiteId())
-            ->addAttributeToSelect($attributesToSelect)
-            ->addAttributeToFilter('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)
-            ->addAttributeToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED)
-            ->setStore($store);
-
+        $collection = $this->getFilteredProductCollection($store)->addAttributeToSelect($attributesToSelect);
         $collection->getSelect()->limit(self::BATCH_SIZE, $currentOffset);
 
         return $collection;
+    }
+
+    /**
+     * @param $store
+     *
+     * @return Mage_Catalog_Model_Resource_Product_Collection
+     */
+    private function getFilteredProductCollection($store)
+    {
+        return Mage::getModel('catalog/product')
+            ->getCollection()
+            ->clear()
+            ->addAttributeToFilter('visibility', ['in' => $this->productHelper->getProductVisibility($store)])
+            ->addAttributeToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED)
+            ->addWebsiteFilter($store->getWebsiteId())
+            ->setStoreId($store->getId());
     }
 
     /**
