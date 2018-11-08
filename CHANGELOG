@@ -1,0 +1,12 @@
+# v0.9-beta.1
+## FIX
+- removed the product limit on feed export
+- returns simple product sku as master product number when it has a relation to nonexistent configurable product
+- do never provide master ID instead of tracking ID in recommendation click tracking
+
+## CHANGE
+- test connection functionality now uses data send from form with no need to save the configuration before checking the connection
+
+## ADD
+- allow user to choose which visibilities should be applied to collection filter
+- divide product collection into batches in order to prevent memory exhaustion on product collection load
