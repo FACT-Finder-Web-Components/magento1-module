@@ -8,7 +8,7 @@ $dataHelper = Mage::helper('factfinder/data');
         <div class="sorter">
             <div class="sort-by">
                     <label><?php echo $this->__('Sort By'); ?></label>
-                    <ff-sortbox></ff-sortbox>
+                    <ff-sortbox unresolved></ff-sortbox>
             </div>
         </div>
     <?php } ?>
@@ -16,11 +16,11 @@ $dataHelper = Mage::helper('factfinder/data');
     <div class="pager">
         <div class="count-container">
             <p class="amount">
-                <ff-template scope="result"><strong>{{ resultCount }} <?php echo $this->__('Item(s)'); ?></strong></ff-template>
+                <ff-template scope="result" unresolved><strong>{{ resultCount }} <?php echo $this->__('Item(s)'); ?></strong></ff-template>
             </p>
             <div class="limiter">
                 <label><?php echo $this->__('Show'); ?></label>
-                <ff-products-per-page-list></ff-products-per-page-list>
+                <ff-products-per-page-list unresolved></ff-products-per-page-list>
             </div>
         </div>
     </div>

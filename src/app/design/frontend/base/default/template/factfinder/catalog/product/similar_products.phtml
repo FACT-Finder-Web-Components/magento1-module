@@ -5,7 +5,7 @@ $dataHelper = Mage::helper('factfinder/data');
 if ($dataHelper->getFFSimilar()) {
 ?>
 
-    <ff-similar-products max-results="<?php echo $dataHelper->getSimilarProductsMaxResults(); ?>" record-id="<?php echo $this->getProduct()->getSku(); ?>">
+    <ff-similar-products unresolved max-results="<?php echo $dataHelper->getSimilarProductsMaxResults(); ?>" record-id="<?php echo $this->getProduct()->getSku(); ?>">
         <span>
             <?php echo $this->__('Similar Products'); ?>
         </span>
