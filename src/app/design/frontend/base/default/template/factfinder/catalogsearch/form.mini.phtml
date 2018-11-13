@@ -20,7 +20,7 @@ $dataHelper = Mage::helper('factfinder/data');
 </div>
 
 <?php if ($dataHelper->getFFSuggest()) { ?>
-    <ff-suggest layout="list">
+    <ff-suggest layout="list" unresolved>
         <section id="searchContainer" class="searchTermContainer">
             <div data-container="searchTerm">
                 <p class="containerCaption"><?php echo $this->__('Search suggestions'); ?></p>
