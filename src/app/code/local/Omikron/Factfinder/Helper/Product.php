@@ -11,6 +11,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
     const PATH_FF_EAN = "factfinder/data_transfer/ff_ean";
     const PATH_FF_ADDITIONAL_ATTRIBUTES = "factfinder/data_transfer/ff_additional_attributes";
     const PATH_FF_PRODUCT_VISIBILITY = "factfinder/data_transfer/ff_product_visibility";
+    const PATH_FF_PRICE_CUSTOMER_GROUPS = "factfinder/data_transfer/ff_price_customer_group";
 
     // image placeholder
     const PATH_IMG_PLACEHOLDER = 'images/catalog/product/placeholder/image.jpg';
@@ -47,12 +48,18 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
     protected $imageHelper;
 
     /**
+     * @var Omikron_Factfinder_Helper_Product_Price
+     */
+    protected $priceHelper;
+
+    /**
      * Omikron_Factfinder_Helper_Product constructor.
      */
     public function __construct()
     {
         $this->configurableProductModel = Mage::getModel('catalog/product_type_configurable');
         $this->imageHelper              = Mage::helper('catalog/image');
+        $this->priceHelper              = Mage::helper('factfinder/product_price');
     }
 
     /**
@@ -170,11 +177,28 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      * Get the product price
      *
      * @param Mage_Catalog_Model_Product $product
+     * @param Mage_Core_Model_Core $store
      * @return string
      */
-    public function getPrice($product)
+    public function getPrice($product, $store)
     {
-        return number_format($product->getData('price'), 2, '.', '');
+        $customerGroups = $this->getCustomerGroupsForPriceExport($store);
+        if (count($customerGroups) > 1) {
+            $callback = function ($product, $group) {
+                return $this->cleanValue($group,true ) . '=' . number_format($product->getFinalPrice(), 2, '.', '');
+            };
+            $prices = $this->priceHelper->collectPrices($product, $store, $customerGroups, $callback);
+
+            return self::ATTRIBUTE_DELIMITER . implode(self::ATTRIBUTE_DELIMITER, $prices) . self::ATTRIBUTE_DELIMITER;
+
+        } else {
+            $callback = function ($product) {
+                return number_format($product->getFinalPrice(), 2, '.', '');
+            };
+            $price = $this->priceHelper->collectPrices($product, $store, $customerGroups, $callback);
+
+            return reset($price);
+        }
     }
 
     /**
@@ -379,6 +403,16 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
     public function getProductVisibility($store)
     {
         return explode(',', Mage::getStoreConfig(self::PATH_FF_PRODUCT_VISIBILITY, $store));
+    }
+
+    /**
+     * @param $store
+     *
+     * @return array
+     */
+    public function getCustomerGroupsForPriceExport($store)
+    {
+        return explode(',', Mage::getStoreConfig(self::PATH_FF_PRICE_CUSTOMER_GROUPS, $store));
     }
 
     /**

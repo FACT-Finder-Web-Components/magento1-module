@@ -135,4 +135,4 @@
 "Basic Auth password","Basic Auth password"
 "Select Product Visibility","Select Product Visibility"
 "Visibility attribute values used in filtering prodcut collection.","Visibility attribute values used in filtering prodcut collection."
-
+"Price calculation callback is not callable","Price calculation callback is not callable"

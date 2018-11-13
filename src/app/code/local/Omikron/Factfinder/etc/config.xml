@@ -119,6 +119,7 @@
                 <ff_upload_port>21</ff_upload_port>
                 <ff_upload_path></ff_upload_path>
                 <ff_product_visibility>3,4</ff_product_visibility>
+                <ff_price_customer_group>0</ff_price_customer_group>
             </data_transfer>
         </factfinder>
     </default>
