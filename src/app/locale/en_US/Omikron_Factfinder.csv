@@ -136,3 +136,9 @@
 "Select Product Visibility","Select Product Visibility"
 "Visibility attribute values used in filtering prodcut collection.","Visibility attribute values used in filtering prodcut collection."
 "Price calculation callback is not callable","Price calculation callback is not callable"
+"Cron Schedule","Cron Schedule"
+"Generate Export Files(s) automatically","Generate Export Files(s) automatically",
+"Start Time","Start Time"
+"Frequency","Frequency"
+
+
