@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Class Omikron_Factfinder_Adminhtml_Testconnection_TestconnectionController
+ * Class Omikron_Factfinder_Adminhtml_Test_ConnectionController
  */
-class Omikron_Factfinder_Adminhtml_Testconnection_TestconnectionController extends Mage_Adminhtml_Controller_Action
+class Omikron_Factfinder_Adminhtml_Test_ConnectionController extends Mage_Adminhtml_Controller_Action
 {
     /**
      * @var Omikron_Factfinder_Helper_Communication
