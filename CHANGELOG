@@ -1,7 +1,6 @@
 # v0.9-beta.2
 
 ## CHANGE
-- test connection functionality now uses data send from form with no need to save the configuration before checking the connection
 - add `unresolved` attribute to all components html in order to prevent rendering it before transformation into functional web components
 
 ## ADD
