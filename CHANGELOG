@@ -1,3 +1,18 @@
+# v0.9-beta.2
+## FIX
+- removed the product limit on feed export
+- returns simple product sku as master product number when it has a relation to nonexistent configurable product
+
+## CHANGE
+- test connection functionality now uses data send from form with no need to save the configuration before checking the connection
+- add `unresolved` attribute to all components html in order to prevent rendering it before transformation into functional web components
+
+## ADD
+- Added possibility to choose which customer group prices have to be selected at product export. By default is `non logged`
+- allow user to choose which `visibility` attribute values should be applied as filter to exported product collection
+- divide product collection into batches in order to prevent memory exhaustion on product collection load
+
+
 # v0.9-beta.1
 ## FIX
 - removed the product limit on feed export
