@@ -22,6 +22,12 @@ ff-asn-group-slider {
 .ff-slider-control-right {
     right: 15px;
 }
+.ff-slider-control {
+    display: block;
+    opacity: 0;
+    transition: opacity 800ms;
+    padding: 10px 0 10px 0;
+}
 
 .sliderBtn {
     cursor: pointer;
@@ -36,13 +42,17 @@ ff-asn-group-slider {
 
 ff-slider {
     margin-top: 50px !important;
+    height: 5px;
+    background-color: #336;
+    margin: 5px auto;
+    display: block;
     width: 220px ;
     --slidebar-mixin: {
         background-color: #00bfa5;
     }
 }
 
-ff-asn-group-slider [data-container="groupCaption"] {
+ff-asn-group-slider [slot="groupCaption"] {
     cursor: pointer;
 }
 

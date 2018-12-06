@@ -43,6 +43,7 @@ ff-suggest[layout="list"] section.productsContainer {
 
 #ffSuggestContainer {
     width: 300px;
+    border: 1px solid #ddd;
 }
 
 .productsContainer {

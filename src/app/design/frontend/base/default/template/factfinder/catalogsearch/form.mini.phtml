@@ -2,20 +2,34 @@
 /** @var Omikron_Factfinder_Helper_Data $dataHelper */
 $dataHelper = Mage::helper('factfinder/data');
 ?>
-
+<custom-style>
+    <style>
+        ff-suggest {
+            --suggest-container-wrapper: {
+                width:  100%;
+            }
+            --suggest-container: {
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+</custom-style>
 <div id="search_mini_form">
     <div class="input-box">
-        <input is="ff-searchbox"
-               placeholder="<?php echo $this->__('Search...'); ?>"
-               suggest-onfocus="false"
-               use-suggest="true"
-               select-onclick="true"
-               class="input-text required-entry"
-               id="search"
-               type="search"
-               autocomplete="off"
-        />
-        <button is="ff-searchbutton" class="button search-button"><?php echo $this->__('Search'); ?></button>
+        <ff-searchbox class="ff-searchbox"
+                      suggest-onfocus="false"
+                      use-suggest="true"
+                      select-onclick="true"
+                      class="input-text required-entry"
+                      id="search"
+                      type="search"
+                      autocomplete="off">
+            <input id="search" placeholder="<?php echo __("Search..."); ?>" />
+        </ff-searchbox>
+
+        <ff-searchbutton>
+            <button class="button search-button"><?php echo __("Search"); ?></button>
+        </ff-searchbutton>
     </div>
 </div>
 
