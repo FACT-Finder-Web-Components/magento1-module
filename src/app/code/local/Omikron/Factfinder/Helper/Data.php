@@ -62,6 +62,9 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
     const PATH_FF_UPLOAD_URL_USER = 'factfinder/basic_auth_data_transfer/ff_upload_url_user';
     const PATH_FF_UPLOAD_URL_PASSWORD = 'factfinder/basic_auth_data_transfer/ff_upload_url_password';
 
+    // Cron
+    const PATH_FF_CRON_ENABLED   = 'factfinder/configurable_cron/enabled';
+
     /**
      * Returns URL     *
      * @return string
@@ -517,6 +520,14 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return Mage::getStoreConfig(self::PATH_FF_UPLOAD_URL_PASSWORD);
 
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCronEnabled()
+    {
+        return  boolval(Mage::getStoreConfig(self::PATH_FF_CRON_ENABLED));
     }
 
     /**

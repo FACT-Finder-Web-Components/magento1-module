@@ -2,6 +2,9 @@
 ## Change
 - Upgraded FACT-Finder WebComponents to version 1.2.14
 
+## ADD
+- Adds possibility to configure frequency of feed file generation by Cron
+
 # v0.9-beta.2
 ## CHANGE
 - add `unresolved` attribute to all components html in order to prevent rendering it before transformation into functional web components
