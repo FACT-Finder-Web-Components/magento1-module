@@ -315,6 +315,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
             'thumbnail',
             'image',
             'price',
+            'special_price',
             'manufacturer',
             'visibility'
         ];
