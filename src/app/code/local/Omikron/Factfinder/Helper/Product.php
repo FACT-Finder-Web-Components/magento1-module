@@ -473,6 +473,9 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
      */
     private function cleanValue($value, $isMultiAttributeValue = false)
     {
+        if (is_numeric($value)) {
+            return $value;
+        }
         $value = strip_tags(nl2br($value));
         $value = preg_replace("/\r|\n/", "", $value);
         $value = addcslashes($value, '\\');
