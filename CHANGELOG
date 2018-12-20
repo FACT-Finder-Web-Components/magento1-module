@@ -1,20 +1,21 @@
 # v0.9-beta.4
 ## FIX
-- Emulating `adminhtml` area in `factfinder_export.php` shell script in order to execute `processAdminFinalPrice` observer of event `catalog_product_get_final_price`
+- added `special_price` to selected products attribute collection by default
+- emulating `adminhtml` area in `factfinder_export.php` shell script in order to execute `processAdminFinalPrice` observer of event `catalog_product_get_final_price`
 
 # v0.9-beta.3
 ## Change
-- Upgraded FACT-Finder WebComponents to version 1.2.14
+- upgraded FACT-Finder WebComponents to version 1.2.14
 
 ## ADD
-- Adds possibility to configure frequency of feed file generation by Cron
+- added possibility to configure frequency of feed file generation by Cron
 
 # v0.9-beta.2
 ## CHANGE
-- add `unresolved` attribute to all components html in order to prevent rendering it before transformation into functional web components
+- added `unresolved` attribute to all components html in order to prevent rendering it before transformation into functional web components
 
 ## ADD
-- Added possibility to choose which customer group prices have to be selected at product export. By default is `non logged`
+- added possibility to choose which customer group prices have to be selected at product export. By default is `non logged`
 
 
 # v0.9-beta.1
