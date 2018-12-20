@@ -1,3 +1,7 @@
+# v0.9-beta.4
+## FIX
+- Emulating `adminhtml` area in `factfinder_export.php` shell script in order to execute `processAdminFinalPrice` observer of event `catalog_product_get_final_price`
+
 # v0.9-beta.3
 ## Change
 - Upgraded FACT-Finder WebComponents to version 1.2.14

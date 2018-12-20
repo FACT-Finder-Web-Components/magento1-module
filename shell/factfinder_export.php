@@ -50,10 +50,15 @@ USAGE;
      */
     private function exportStore($storeId, $filename)
     {
+        /** @var Mage_Core_Model_App_Emulation $appEmulation */
+        $appEmulation = Mage::getSingleton('core/app_emulation');
+        $initialEnvironmentInfo = $appEmulation->startEnvironmentEmulation($storeId, Mage_Core_Model_App_Area::AREA_ADMINHTML);
+        Mage::app()->addEventArea(Mage_Core_Model_App_Area::AREA_ADMINHTML);
         $store = Mage::getModel('core/store')->load($storeId);
         /** @var Omikron_Factfinder_Model_Export_Product $exporter */
         $exporter = Mage::getModel('Omikron_Factfinder_Model_Export_Product');
         $exporter->exportProduct($store, $filename);
+        $appEmulation->stopEnvironmentEmulation($initialEnvironmentInfo);
 
         printf("Successfully generated export to: %s\n", $filename);
     }
