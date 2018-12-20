@@ -1,3 +1,7 @@
+# v0.9-beta.5
+## FIX
+-  prevents decimal values in `Attributes` column to have their decimal separators removed
+
 # v0.9-beta.4
 ## FIX
 - added `special_price` to selected products attribute collection by default
