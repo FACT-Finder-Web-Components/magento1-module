@@ -101,7 +101,6 @@
                 <use_url_parameter>1</use_url_parameter>
                 <use_cache>0</use_cache>
                 <default_query>*</default_query>
-                <keep_filters>0</keep_filters>
                 <use_asn>1</use_asn>
                 <use_found_words>0</use_found_words>
                 <use_campaigns>1</use_campaigns>
