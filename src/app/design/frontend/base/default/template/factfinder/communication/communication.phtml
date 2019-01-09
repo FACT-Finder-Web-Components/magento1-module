@@ -18,9 +18,6 @@ $dataHelper = Mage::helper('factfinder/data');
         default-query="<?php echo $dataHelper->getDefaultQuery(); ?>"
         add-params="<?php echo $dataHelper->getAddParams(); ?>"
         add-tracking-params="<?php echo $dataHelper->getAddTrackingParams(); ?>"
-        <?php if($dataHelper->getKeepFilters()) {
-            echo 'keep-filters';
-        } ?>
         keep-url-params="<?php echo $dataHelper->getKeepUrlParams(); ?>"
         use-asn="<?php echo $dataHelper->getUseAsn() ? 'true' : 'false' ?>"
         use-found-rows="<?php echo $dataHelper->getUseFoundWords() ? 'true' : 'false' ?>"

@@ -244,16 +244,6 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </add_tracking_params>
-                        <keep_filters translate="label comment">
-                            <label>Keep filters</label>
-                            <comment>With this property you can determine if filters (which where set before the search, e.g. via ASN) should be kept or discarded.</comment>
-                            <frontend_type>select</frontend_type>
-                            <sort_order>7</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                        </keep_filters>
                         <keep_url_params translate="label comment">
                             <label>Keep url params</label>
                             <comment>Determines if parameters which are written into the URL should be kept.</comment>
