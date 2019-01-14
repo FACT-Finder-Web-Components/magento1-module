@@ -1,6 +1,8 @@
 # v0.9-beta.5
 ## FIX
 -  prevents decimal values in `Attributes` column to have their decimal separators removed
+## CHANGE
+- Remove 'keep-filters' parameter from module configuration
 
 # v0.9-beta.4
 ## FIX
