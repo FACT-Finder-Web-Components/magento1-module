@@ -6,6 +6,13 @@
             <version>0.1.0</version>
         </Omikron_Factfinder>
     </modules>
+    <global>
+        <models>
+        <factfinder>
+            <class>Omikron_Factfinder_Model</class>
+        </factfinder>
+        </models>
+    </global>
     <frontend>
         <layout>
             <updates>
@@ -122,4 +129,13 @@
             </data_transfer>
         </factfinder>
     </default>
+    <crontab>
+        <jobs>
+            <factfinder_feed_export>
+                <run>
+                    <model>factfinder/cron::exportFeed</model>
+                </run>
+            </factfinder_feed_export>
+        </jobs>
+    </crontab>
 </config>
