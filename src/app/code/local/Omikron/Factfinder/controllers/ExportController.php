@@ -14,7 +14,7 @@ class Omikron_Factfinder_ExportController extends Mage_Core_Controller_Front_Act
 
         $hasSuppliedCredentials = !(empty($_SERVER['PHP_AUTH_USER']) && empty($_SERVER['PHP_AUTH_PW']));
 
-        $validated = ($hasSuppliedCredentials && in_array($_SERVER['PHP_AUTH_USER'], $validUsers)) && (md5($_SERVER['PHP_AUTH_PW']) == $validPasswords[$_SERVER['PHP_AUTH_USER']]);
+        $validated = ($hasSuppliedCredentials && in_array($_SERVER['PHP_AUTH_USER'], $validUsers)) && (Mage::helper('core')->encrypt($_SERVER['PHP_AUTH_PW']) == $validPasswords[$_SERVER['PHP_AUTH_USER']]);
 
         if (!$validated) {
             header('WWW-Authenticate: Basic realm="' . self::REALM . '"');
