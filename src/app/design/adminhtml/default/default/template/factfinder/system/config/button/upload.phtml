@@ -7,7 +7,7 @@
                 setUploadCsvMessage(response.message.message);
             },
             onFailure: function (transport) {
-                setUploadCsvMessage("<?php echo(__("There were an error during feed upload. Please check the server log and contact the technical support.")) ?>");
+                setUploadCsvMessage('<?php echo $this->jsQuoteEscape($this->__('There were an error during feed upload. Please check the server log and contact the technical support.')) ?>');
             }
         });
     }

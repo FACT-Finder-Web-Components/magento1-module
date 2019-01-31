@@ -130,6 +130,9 @@
             <ftp_data_transfer>
                 <ff_upload_password backend_model="adminhtml/system_config_backend_encrypted"/>
             </ftp_data_transfer>
+            <basic_auth_data_transfer>
+                <ff_upload_url_password backend_model ="adminhtml/system_config_backend_encrypted"/>
+            </basic_auth_data_transfer>
         </factfinder>
     </default>
     <crontab>
