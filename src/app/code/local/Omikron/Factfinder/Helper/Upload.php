@@ -33,13 +33,13 @@ class Omikron_Factfinder_Helper_Upload extends Mage_Core_Helper_Abstract
                 $ftp = new Varien_Io_Ftp();
                 $ftp->open(
                     [
-                        'host' => $this->getConfig(self::PATH_FF_UPLOAD_HOST),
-                        'user' => $this->getConfig(self::PATH_FF_UPLOAD_USER),
+                        'host'     => $this->getConfig(self::PATH_FF_UPLOAD_HOST),
+                        'user'     => $this->getConfig(self::PATH_FF_UPLOAD_USER),
                         'password' => $this->getConfig(self::PATH_FF_UPLOAD_PASSWORD),
-                        'ssl' => true,
-                        'passive' => true,
-                        'port' => $this->getConfig(self::PATH_FF_UPLOAD_PORT),
-                        'path' => $this->getConfig(self::PATH_FF_UPLOAD_PATH)
+                        'ssl'      => true,
+                        'passive'  => true,
+                        'port'     => $this->getConfig(self::PATH_FF_UPLOAD_PORT),
+                        'path'     => $this->getConfig(self::PATH_FF_UPLOAD_PATH)
                     ]
                 );
                 $ftp->write($destinationPath, $content);
