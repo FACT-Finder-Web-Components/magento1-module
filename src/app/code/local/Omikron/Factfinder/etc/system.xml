@@ -576,6 +576,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
                         </ff_upload_password>
                         <ff_create_feed translate="label comment">
                             <label>Generate and upload export file</label>

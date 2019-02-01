@@ -1,3 +1,11 @@
+# v0.9-beta.6
+## FIX
+-  Fixed password validation in external url feed export available at /factfinder/export
+-  Fixed upload feed file functionality in module confiuration
+
+##CHANGE
+- Set ftp user password backend model to adminhtml/system_config_backend_encrypted. IMPORTANT! Re-entering the ftp password in the module configuration is required
+
 # v0.9-beta.5
 ## FIX
 -  prevents decimal values in `Attributes` column to have their decimal separators removed

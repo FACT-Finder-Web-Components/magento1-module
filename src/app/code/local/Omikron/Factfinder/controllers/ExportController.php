@@ -7,14 +7,13 @@ class Omikron_Factfinder_ExportController extends Mage_Core_Controller_Front_Act
     public function indexAction()
     {
         /** @var Omikron_Factfinder_Helper_Data $helper */
-        $helper = Mage::helper('factfinder/data');
-
-        $validPasswords = array($helper->getUploadUrlUser() => $helper->getUploadUrlPassword());
-        $validUsers = array_keys($validPasswords);
-
+        $helper                 = Mage::helper('factfinder/data');
+        $validPasswords         = array($helper->getUploadUrlUser() => $helper->getUploadUrlPassword());
+        $validUsers             = array_keys($validPasswords);
         $hasSuppliedCredentials = !(empty($_SERVER['PHP_AUTH_USER']) && empty($_SERVER['PHP_AUTH_PW']));
 
-        $validated = ($hasSuppliedCredentials && in_array($_SERVER['PHP_AUTH_USER'], $validUsers)) && (md5($_SERVER['PHP_AUTH_PW']) == $validPasswords[$_SERVER['PHP_AUTH_USER']]);
+        $validated = ($hasSuppliedCredentials && in_array($_SERVER['PHP_AUTH_USER'], $validUsers)) &&
+            strcmp($_SERVER['PHP_AUTH_PW'], $validPasswords[$_SERVER['PHP_AUTH_USER']]) === 0;
 
         if (!$validated) {
             header('WWW-Authenticate: Basic realm="' . self::REALM . '"');
