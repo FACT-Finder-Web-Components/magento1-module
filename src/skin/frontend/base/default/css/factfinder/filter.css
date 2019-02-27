@@ -22,6 +22,7 @@ ff-asn-group-slider {
 .ff-slider-control-right {
     right: 15px;
 }
+
 .ff-slider-control {
     display: block;
     opacity: 0;
@@ -46,7 +47,7 @@ ff-slider {
     background-color: #336;
     margin: 5px auto;
     display: block;
-    width: 220px ;
+    width: 220px;
     --slidebar-mixin: {
         background-color: #00bfa5;
     }

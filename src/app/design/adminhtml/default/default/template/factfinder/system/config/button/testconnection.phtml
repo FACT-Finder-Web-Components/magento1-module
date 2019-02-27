@@ -15,7 +15,7 @@
                 setFFCommunicationInfoMessage(response.message);
             },
             onFailure: function (transport) {
-                setFFCommunicationInfoMessage('<?php echo(__("There were an error during test connection. Please check if You provide all required authorization data")) ?>');
+                setFFCommunicationInfoMessage('<?php echo $this->__('There were an error during test connection. Please check if You provide all required authorization data') ?>');
             }
         });
     }

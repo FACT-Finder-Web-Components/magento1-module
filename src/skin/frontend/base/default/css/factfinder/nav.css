@@ -6,16 +6,17 @@
 }
 
 .ffw-nav-item {
-     cursor: pointer;
- }
-
+    cursor: pointer;
+}
 
 .ffw-nav-item:hover {
     color: #3399cc;
 }
+
 .ff-header-navigation a {
     color: black;
 }
+
 .ffw-body {
     cursor: pointer;
 }

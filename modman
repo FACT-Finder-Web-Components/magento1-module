@@ -1,8 +1,8 @@
-src/app/code/local/Omikron app/code/local/Omikron
-src/app/design/adminhtml/default/default/template/factfinder app/design/adminhtml/default/default/template/factfinder
-src/app/design/frontend/base/default/layout/factfinder.xml app/design/frontend/base/default/layout/factfinder.xml
-src/app/design/frontend/base/default/template/factfinder app/design/frontend/base/default/template/factfinder
-src/app/etc/modules/Omikron_Factfinder.xml app/etc/modules/Omikron_Factfinder.xml
-src/app/locale/en_US/Omikron_Factfinder.csv app/locale/en_US/Omikron_Factfinder.csv
-src/js/factfinder js/factfinder
-src/skin/frontend/base/default/css/factfinder skin/frontend/base/default/css/factfinder
+src/app/code/local/Omikron                                      app/code/local/Omikron
+src/app/design/adminhtml/default/default/template/factfinder    app/design/adminhtml/default/default/template/factfinder
+src/app/design/frontend/base/default/layout/factfinder.xml      app/design/frontend/base/default/layout/factfinder.xml
+src/app/design/frontend/base/default/template/factfinder        app/design/frontend/base/default/template/factfinder
+src/app/etc/modules/Omikron_Factfinder.xml                      app/etc/modules/Omikron_Factfinder.xml
+src/app/locale/en_US/Omikron_Factfinder.csv                     app/locale/en_US/Omikron_Factfinder.csv
+src/js/factfinder                                               js/factfinder
+src/skin/frontend/base/default/css/factfinder                   skin/frontend/base/default/css/factfinder
