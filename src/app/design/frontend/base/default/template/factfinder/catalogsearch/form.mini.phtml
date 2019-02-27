@@ -2,18 +2,7 @@
 /** @var Omikron_Factfinder_Helper_Data $dataHelper */
 $dataHelper = Mage::helper('factfinder/data');
 ?>
-<custom-style>
-    <style>
-        ff-suggest {
-            --suggest-container-wrapper: {
-                width:  100%;
-            }
-            --suggest-container: {
-                border: 1px solid #ddd;
-            }
-        }
-    </style>
-</custom-style>
+
 <div id="search_mini_form">
     <div class="input-box">
         <ff-searchbox class="ff-searchbox"
@@ -73,12 +62,5 @@ $dataHelper = Mage::helper('factfinder/data');
         </section>
     </ff-suggest>
 
-    <style is="custom-style">
-        ff-suggest {
-            --suggest-container: {
-                max-width: 700px;
-                border: 1px solid #ddd;
-            };
-        }
-    </style>
+
 <?php } ?>

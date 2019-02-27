@@ -1,11 +1,10 @@
 document.addEventListener("WebComponentsReady", function () {
     factfinder.communication.FFCommunicationEventAggregator.addBeforeDispatchingCallback(function (event) {
-        if (event.type === "search" && window.location.href.match(/catalogsearch\/result/) === null) {
-            delete event.type;
-            delete event.version;
-            var params = factfinder.common.dictToParameterString(event);
-            window.location.href = "/catalogsearch/result/" + params;
-            delete event.type;
+        if ((['search','navigation-search'].indexOf(event.type) !== -1) && window.location.href.match(/catalogsearch\/result/) === null) {
+            let params = Object.assign({}, event);
+            delete params.type;
+            delete params.version;
+            window.location.href = "/catalogsearch/result/" + factfinder.common.dictToParameterString(params);
         }
     });
 });

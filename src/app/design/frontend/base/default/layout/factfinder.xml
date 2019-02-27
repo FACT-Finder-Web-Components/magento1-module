@@ -100,9 +100,6 @@
                 <script>factfinder/top.js</script>
             </action>
             <action method="addJs">
-                <script>factfinder/webcomponentsjs/webcomponents-lite.min.js</script>
-            </action>
-            <action method="addJs">
                 <script>factfinder/search-redirect.js</script>
             </action>
             <action method="addCss">
