@@ -17,4 +17,12 @@ class Omikron_Factfinder_Helper_CatalogSearch_Data extends Mage_CatalogSearch_He
         return self::QUERY_VAR_NAME;
     }
 
+    public function getQueryText()
+    {
+        if ($this->_queryText == null) {
+            $this->_queryText = ' ';
+        }
+
+        return parent::getQueryText();
+    }
 }
