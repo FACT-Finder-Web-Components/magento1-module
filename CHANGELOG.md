@@ -1,8 +1,9 @@
 # Changelog
-
-## [Unreleased]
+## v0.9-beta.6
 ### Changed
 - Upgrade FACT-Finder WebComponents version to 3.0
+### Fixed
+- Fixed header navigation works on Home page
 
 ## v0.9-beta.6
 ### Fixed
