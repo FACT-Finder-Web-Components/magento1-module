@@ -1,11 +1,12 @@
 <?php
 
-class Omikron_Factfinder_Model_Observer {
+use Varien_Event_Observer as Event;
 
-    public function saveProductToSession($observer)
+class Omikron_Factfinder_Model_Observer
+{
+    public function saveProductToSession(Event $event)
     {
-        $event = $observer->getEvent();
-        $item = $event->getQuoteItem();
+        $item    = $event->getQuoteItem();
         $product = $item->getProduct();
 
 
@@ -16,7 +17,6 @@ class Omikron_Factfinder_Model_Observer {
         $price = $item->getProduct()->getFinalPrice();
 
         $session = Mage::getSingleton('core/session');
-
         $session->setData('ff_add_to_cart_id', $product->getId());
         $session->setData('ff_add_to_cart_sku', $product->getSku());
         $session->setData('ff_add_to_cart_price', $price);

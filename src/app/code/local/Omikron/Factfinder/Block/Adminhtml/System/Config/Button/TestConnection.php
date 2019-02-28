@@ -29,7 +29,7 @@ class Omikron_Factfinder_Block_Adminhtml_System_Config_Button_TestConnection ext
      */
     public function getAjaxCheckUrl()
     {
-        return Mage::helper('adminhtml')->getUrl('factfinder/adminhtml_test_connection/index');
+        return Mage::helper('adminhtml')->getUrl('*/factfinder_connection/test');
     }
 
     /**

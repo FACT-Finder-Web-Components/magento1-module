@@ -29,7 +29,7 @@ class Omikron_Factfinder_Block_Adminhtml_System_Config_Button_Upload extends Mag
      */
     public function getAjaxCheckUrl()
     {
-        return Mage::helper('adminhtml')->getUrl('factfinder/adminhtml_export_feed/upload');
+        return Mage::helper('adminhtml')->getUrl('*/factfinder_feed/upload');
     }
 
     /**
