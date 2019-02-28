@@ -48,10 +48,17 @@
             <catalogsearch>
                 <args>
                     <modules>
-                        <Omikron_Factfinder before="Mage_CatalogSearch">Omikron_Factfinder_CatalogSearch</Omikron_Factfinder>
+                        <factfinder before="Mage_CatalogSearch">Omikron_Factfinder_CatalogSearch</factfinder>
                     </modules>
                 </args>
             </catalogsearch>
+            <factfinder>
+                <use>standard</use>
+                <args>
+                    <module>Omikron_Factfinder</module>
+                    <frontName>factfinder</frontName>
+                </args>
+            </factfinder>
         </routers>
     </frontend>
     <admin>
