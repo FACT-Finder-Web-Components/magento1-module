@@ -42,7 +42,7 @@ $dataHelper = Mage::helper('factfinder/data');
 <?php
 // It returns redirect campaign if enabled
 if ($dataHelper->getFFCampaign()) {
-    echo $this->getLayout()->createBlock('page/html')->setTemplate('factfinder/campaign/redirect.phtml')->toHtml();
+    echo $this->getLayout()->createBlock('core/template')->setTemplate('factfinder/campaign/redirect.phtml')->toHtml();
 }
 ?>
 

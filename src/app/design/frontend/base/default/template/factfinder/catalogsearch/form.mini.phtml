@@ -5,17 +5,20 @@ $dataHelper = Mage::helper('factfinder/data');
 
 <div id="search_mini_form">
     <div class="input-box">
-        <input is="ff-searchbox"
-               placeholder="<?php echo $this->__('Search...'); ?>"
-               suggest-onfocus="false"
-               use-suggest="true"
-               select-onclick="true"
-               class="input-text required-entry"
-               id="search"
-               type="search"
-               autocomplete="off"
-        />
-        <button is="ff-searchbutton" class="button search-button"><?php echo $this->__('Search'); ?></button>
+        <ff-searchbox class="ff-searchbox"
+                      suggest-onfocus="false"
+                      use-suggest="true"
+                      select-onclick="true"
+                      class="input-text required-entry"
+                      id="search"
+                      type="search"
+                      autocomplete="off">
+            <input id="search" placeholder="<?php echo $this->__('Search...'); ?>" />
+        </ff-searchbox>
+
+        <ff-searchbutton>
+            <button class="button search-button"><?php echo $this->__('Search'); ?></button>
+        </ff-searchbutton>
     </div>
 </div>
 
@@ -59,12 +62,5 @@ $dataHelper = Mage::helper('factfinder/data');
         </section>
     </ff-suggest>
 
-    <style is="custom-style">
-        ff-suggest {
-            --suggest-container: {
-                max-width: 700px;
-                border: 1px solid #ddd;
-            };
-        }
-    </style>
+
 <?php } ?>

@@ -364,13 +364,13 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
                         $values[] =  $product->getAttributeText($attributeCode);
                         break;
                     case 'multiselect':
-                        $values[] = implode(',',  $product->getAttributeText($attributeCode));
+                        $values[] = implode(',', (array) $product->getAttributeText($attributeCode));
                         break;
                     case 'price':
                         $values[] = number_format(round(floatval($attributeValue), 2), 2);
                         break;
                     case 'boolean':
-                        $values[] = $attributeValue ? __("Yes") : __("No");
+                        $values[] = $attributeValue ? $this->__('Yes') : $this->__('No');
                         break;
                     default:
                         $values[] = $attributeValue;

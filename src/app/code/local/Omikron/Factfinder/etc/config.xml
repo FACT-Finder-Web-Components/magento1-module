@@ -1,19 +1,33 @@
-<?xml version="1.0"?>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <config>
-    <modules>
-        <Omikron_Factfinder>
-            <version>0.1.0</version>
-        </Omikron_Factfinder>
-    </modules>
     <global>
+        <helpers>
+            <factfinder>
+                <class>Omikron_Factfinder_Helper</class>
+            </factfinder>
+            <catalogsearch>
+                <rewrite>
+                    <data>Omikron_Factfinder_Helper_CatalogSearch_Data</data>
+                </rewrite>
+            </catalogsearch>
+        </helpers>
         <models>
-        <factfinder>
-            <class>Omikron_Factfinder_Model</class>
-        </factfinder>
+            <factfinder>
+                <class>Omikron_Factfinder_Model</class>
+            </factfinder>
         </models>
     </global>
     <frontend>
+        <events>
+            <checkout_cart_product_add_after>
+                <observers>
+                    <omikron_factfinder_model_observer>
+                        <class>factfinder/observer</class>
+                        <method>saveProductToSession</method>
+                    </omikron_factfinder_model_observer>
+                </observers>
+            </checkout_cart_product_add_after>
+        </events>
         <layout>
             <updates>
                 <factfinder>
@@ -42,13 +56,13 @@
     </frontend>
     <admin>
         <routers>
-            <factfinder>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>Omikron_Factfinder</module>
-                    <frontName>factfinder</frontName>
+                    <modules>
+                        <factfinder before="Mage_Adminhtml">Omikron_Factfinder_Adminhtml</factfinder>
+                    </modules>
                 </args>
-            </factfinder>
+            </adminhtml>
         </routers>
     </admin>
     <adminhtml>
@@ -62,28 +76,6 @@
             </modules>
         </translate>
     </adminhtml>
-    <global>
-        <helpers>
-            <factfinder>
-                <class>Omikron_Factfinder_Helper</class>
-            </factfinder>
-            <catalogsearch>
-                <rewrite>
-                    <data>Omikron_Factfinder_Helper_CatalogSearch_Data</data>
-                </rewrite>
-            </catalogsearch>
-        </helpers>
-        <events>
-            <checkout_cart_product_add_after>
-                <observers>
-                    <omikron_factfinder_model_observer>
-                        <class>Omikron_Factfinder_Model_Observer</class>
-                        <method>saveProductToSession</method>
-                    </omikron_factfinder_model_observer>
-                </observers>
-            </checkout_cart_product_add_after>
-        </events>
-    </global>
     <default>
         <factfinder>
             <general>
@@ -128,10 +120,10 @@
                 <ff_price_customer_group>0</ff_price_customer_group>
             </data_transfer>
             <ftp_data_transfer>
-                <ff_upload_password backend_model="adminhtml/system_config_backend_encrypted"/>
+                <ff_upload_password backend_model="adminhtml/system_config_backend_encrypted" />
             </ftp_data_transfer>
             <basic_auth_data_transfer>
-                <ff_upload_url_password backend_model ="adminhtml/system_config_backend_encrypted"/>
+                <ff_upload_url_password backend_model="adminhtml/system_config_backend_encrypted" />
             </basic_auth_data_transfer>
         </factfinder>
     </default>
