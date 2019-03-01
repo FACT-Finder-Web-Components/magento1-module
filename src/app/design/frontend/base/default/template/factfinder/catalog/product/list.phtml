@@ -11,7 +11,20 @@ if ($dataHelper->getFFCampaign()) {
 
 <?php if ($dataHelper->getFFBreadcrumb()) { ?>
     <div class="page-title">
-        <h1><?php echo $this->__('Search results for'); ?> '<ff-breadcrumb-trail unresolved></ff-breadcrumb-trail>'</h1>
+        <h1><?php echo $this->__('Search results for'); ?> '
+            <ff-breadcrumb-trail unresolved>
+                <ff-breadcrumb-trail-item type="search">
+                    <span>{{text}}</span>
+                </ff-breadcrumb-trail-item>
+                <ff-breadcrumb-trail-item type="filter">
+                    <span>{{text}}</span>
+                </ff-breadcrumb-trail-item>
+                <ff-breadcrumb-trail-item type="advisor">
+                    <span>{{text}}</span>
+                </ff-breadcrumb-trail-item>
+            </ff-breadcrumb-trail>
+            '
+        </h1>
     </div>
 <?php } ?>
 

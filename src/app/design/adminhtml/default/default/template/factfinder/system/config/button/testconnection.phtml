@@ -4,7 +4,7 @@
             method: 'post',
             parameters: {
                 serverUrl: document.getElementById('factfinder_general_address').value,
-                channel:  document.getElementById('factfinder_general_channel').value,
+                channel: document.getElementById('factfinder_general_channel').value,
                 username: document.getElementById('factfinder_general_username').value,
                 password: document.getElementById('factfinder_general_password').value,
                 authenticationPrefix: document.getElementById('factfinder_general_authentication_prefix').value,
@@ -15,7 +15,7 @@
                 setFFCommunicationInfoMessage(response.message);
             },
             onFailure: function (transport) {
-                setFFCommunicationInfoMessage('<?php echo(__("There were an error during test connection. Please check if You provide all required authorization data")) ?>');
+                setFFCommunicationInfoMessage('<?php echo $this->jsQuoteEscape($this->__('There were an error during test connection. Please check if You provide all required authorization data')) ?>');
             }
         });
     }
@@ -27,4 +27,3 @@
 
 <?php echo $this->getButtonHtml() ?>
 <p id="ffCommunicationInfo"></p>
-

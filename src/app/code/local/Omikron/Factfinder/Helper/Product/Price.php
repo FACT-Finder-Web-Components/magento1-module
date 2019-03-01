@@ -3,7 +3,7 @@
 /**
  * Class Omikron_Factfinder_Helper_Product_Price
  */
-class Omikron_Factfinder_Helper_Product_Price
+class Omikron_Factfinder_Helper_Product_Price extends Mage_Core_Helper_Abstract
 {
     /**
      * @param Mage_Catalog_Model_Product $product
@@ -14,14 +14,9 @@ class Omikron_Factfinder_Helper_Product_Price
      *
      * @throws Mage_Core_Exception
      */
-    public function collectPrices($product, $store, $customerGroups, $callback)
+    public function collectPrices($product, $store, $customerGroups, callable $callback)
     {
-        $prices =[];
-
-        if (!is_callable($callback)) {
-            throw new \http\Exception\InvalidArgumentException(__('Price calculation callback is not callable'));
-        }
-
+        $prices = [];
         foreach ($customerGroups as $group) {
             $this->prepareStateForCatalogRuleProcessing($product);
             $this->registerCatalogRuleData($group, $store);

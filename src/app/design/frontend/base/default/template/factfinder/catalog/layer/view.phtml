@@ -7,7 +7,7 @@ if ($dataHelper->getFFAsn()) {
    <ff-asn align="vertical" unresolved>
         <ff-asn-group for-group="all" class="cursor">
             <ff-asn-group-element>
-                <div data-selected>
+                <div slot="selected">
                     <input type="checkbox" checked>
                     <span class="filterName">{{element.name}} <span>({{element.recordCount}})</span></span>
                 </div>
@@ -16,7 +16,7 @@ if ($dataHelper->getFFAsn()) {
                     <span class="filterName">{{element.name}} <span>({{element.recordCount}})</span></span>
                 </div>
             </ff-asn-group-element>
-            <div data-container="groupCaption" class="groupCaption">{{group.name}}</div>
+            <div slot="groupCaption" class="groupCaption">{{group.name}}</div>
             <div opened data-container="detailedLinks">
                 <div data-content="detailedLinks"></div>
 
@@ -37,29 +37,29 @@ if ($dataHelper->getFFAsn()) {
         </ff-asn-group>
         <ff-asn-group filter-style="TREE" opened class="cursor">
             <ff-asn-group-element>
-                <div data-selected>
+                <div slot="selected">
                     &nbsp;&nbsp;<span class="filterName"><b>{{element.name}} <span>({{element.recordCount}})</span></b></span>
                 </div>
-                <div data-unselected>
+                <div slot="unselected">
                     <span class="filterName">{{element.name}} <span>({{element.recordCount}})</span></span>
                 </div>
             </ff-asn-group-element>
-            <div data-container="groupCaption" class="groupCaption">{{group.name}}</div>
+            <div slot="groupCaption" class="groupCaption">{{group.name}}</div>
             <div opened data-container="detailedLinks">
                 <div data-content="detailedLinks"></div>
                 <div class="marginBottom"></div>
             </div>
         </ff-asn-group>
-        <ff-asn-group-slider>
-           <div data-container="groupCaption" class="groupCaption">
+        <ff-asn-group-slider class="ff-asn-group-slider">
+           <div slot="groupCaption" class="groupCaption">
                {{group.name}}<span class="filterArrowDown">&nbsp;</span>
            </div>
-           <ff-slider-control submit-on-input="true">
+           <ff-slider-control class="ff-slider-control" submit-on-input="true">
                <input data-control='1' class="ff-slider-control-left ff-slider-control-common">
                <input data-control='2' class="ff-slider-control-right ff-slider-control-common">
                <ff-slider current-min-value="0">
-                   <div data-slider="1" class="sliderBtn"></div>
-                   <div data-slider="2" class="sliderBtn"></div>
+                   <div slot="slider1" id="slider1" class="sliderBtn"></div>
+                   <div slot="slider2" id="slider2" class="sliderBtn"></div>
                </ff-slider>
            </ff-slider-control>
             <div data-container="removeFilter">Remove Filter</div>
