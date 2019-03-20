@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<ruleset name="FACT-Finder">
+    <description>FACT-Finder Coding Standard</description>
+
+    <arg value="pw" />
+    <arg name="extensions" value="php,phtml" />
+    <arg name="ignore" value="*/vendor/*" />
+
+    <config name="ignore_warnings_on_exit" value="1" />
+
+    <rule ref="vendor/magento-ecg/coding-standard/Ecg">
+        <exclude name="Ecg.PHP.PrivateClassMember" />
+    </rule>
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax" />
+    <rule ref="Generic.Files.ByteOrderMark" />
+    <rule ref="Generic.Files.LineLength">
+        <exclude-pattern>*.phtml</exclude-pattern>
+        <properties>
+            <property name="lineLimit" value="120" />
+            <property name="absoluteLineLimit" value="0" />
+        </properties>
+    </rule>
+    <rule ref="Generic.Formatting.SpaceAfterCast" />
+    <rule ref="Generic.PHP.LowerCaseConstant" />
+    <rule ref="Generic.PHP.LowerCaseKeyword" />
+    <rule ref="PSR2.Classes.PropertyDeclaration.Underscore" />
+    <rule ref="PSR2.Files.EndFileNewline" />
+    <rule ref="Squiz.Functions.GlobalFunction" />
+    <rule ref="Squiz.Strings.DoubleQuoteUsage.NotRequired" />
+    <rule ref="Zend.Files.ClosingTag" />
+</ruleset>

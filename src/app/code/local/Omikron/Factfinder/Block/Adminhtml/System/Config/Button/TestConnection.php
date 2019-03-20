@@ -40,11 +40,11 @@ class Omikron_Factfinder_Block_Adminhtml_System_Config_Button_TestConnection ext
     public function getButtonHtml()
     {
         $button = $this->getLayout()->createBlock('adminhtml/widget_button')
-            ->setData(array(
+            ->setData([
                 'id' => 'omikron_factfinder_test_connection_button',
                 'label' => $this->helper('adminhtml')->__('Test connection now'),
                 'onclick' => 'javascript:checkTestConnection(); return false;'
-            ));
+            ]);
 
         return $button->toHtml();
     }
