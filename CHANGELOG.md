@@ -1,10 +1,11 @@
 # Changelog
-## [v0.9-beta.7] - 2019-03-20
+## [v0.9.0] - 2019-03-20
 ### Changed
 - Upgrade FACT-Finder WebComponents version to 3.1
 
-### Changed
-- Upgrade FACT-Finder WebComponents version to 3.0
+### Added
+- Add `composer` information for the project
+- Manage coding standard using PHPCS
 
 ## [v0.9-beta.7] - 2019-03-01
 ### Fixed
@@ -65,6 +66,7 @@
 - Allow user to choose which visibilities should be applied to collection filter
 - Divide product collection into batches in order to prevent memory exhaustion on product collection load
 
+[v0.9.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9-beta.7...v0.9.0
 [v0.9-beta.7]: https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9-beta.6...v0.9-beta.7
 [v0.9-beta.6]: https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9-beta.5...v0.9-beta.6
 [v0.9-beta.5]: https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9-beta.4...v0.9-beta.5

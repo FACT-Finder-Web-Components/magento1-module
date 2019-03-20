@@ -40,11 +40,11 @@ class Omikron_Factfinder_Block_Adminhtml_System_Config_Button_Feed extends Mage_
     public function getButtonHtml()
     {
         $button = $this->getLayout()->createBlock('adminhtml/widget_button')
-            ->setData(array(
+            ->setData([
                 'id' => 'omikron_factfinder_feed_button',
                 'label' => $this->helper('adminhtml')->__('Generate export files(s) now'),
                 'onclick' => 'javascript:exportToCsv(); return false;'
-            ));
+            ]);
 
         return $button->toHtml();
     }

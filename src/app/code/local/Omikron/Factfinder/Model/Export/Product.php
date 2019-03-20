@@ -47,7 +47,7 @@ class Omikron_Factfinder_Model_Export_Product
      */
     public function exportProduct($store, $filename = '')
     {
-        if ($filename == "") {
+        if ($filename == '') {
             $filename = $this->dataHelper->getChannel($store->getId());
         }
 
@@ -112,10 +112,10 @@ class Omikron_Factfinder_Model_Export_Product
         $filename = self::FEED_FILE . $this->dataHelper->getChannel($store->getId()) . '.' . self::FEED_FILE_FILETYPE;
         $output = $this->buildFeed($store);
 
-        return array(
+        return [
             'filename' => $filename,
             'data' => $output
-        );
+        ];
     }
 
     /**
@@ -180,7 +180,7 @@ class Omikron_Factfinder_Model_Export_Product
         ];
 
         foreach ($attributes as $attribute) {
-            $row[$attribute] = trim(str_replace(array("\r\n", "\r", "\n", '  '), ' ', call_user_func_array([$this->productHelper, "get$attribute"], [$product, $store])));
+            $row[$attribute] = trim(str_replace(["\r\n", "\r", "\n", '  '], ' ', call_user_func_array([$this->productHelper, "get$attribute"], [$product, $store])));
         }
 
         return $row;
@@ -258,7 +258,7 @@ class Omikron_Factfinder_Model_Export_Product
             $io = new Varien_Io_File();
             $path = Mage::getBaseDir() . DS . self::FEED_PATH . DS;
             $io->setAllowCreateFolders(true);
-            $io->open(array('path' => $path));
+            $io->open(['path' => $path]);
             $io->streamOpen($filename, 'w+');
             $io->streamLock(true);
             foreach ($output as $item) {

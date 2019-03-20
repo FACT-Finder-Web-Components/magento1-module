@@ -1,0 +1,17 @@
+{
+  "name": "omikron/magento-factfinder",
+  "description": "FACT-Finder® Web Components for Magento",
+  "homepage": "https://web-components.fact-finder.de/",
+  "type": "magento-module",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Omikron Data Quality GmbH",
+      "homepage": "https://web-components.fact-finder.de"
+    }
+  ],
+  "require-dev": {
+    "magento-ecg/coding-standard": "^3.1",
+    "squizlabs/php_codesniffer": "^3.4"
+  }
+}
