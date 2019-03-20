@@ -16,14 +16,4 @@ class Omikron_Factfinder_Model_Authentication_Password extends Mage_Core_Model_C
 
         $this->setValue($value);
     }
-
-    /**
-     * Get & decrypt old value from configuration
-     *
-     * @return string
-     */
-    public function getOldValue()
-    {
-        return parent::getOldValue();
-    }
 }
