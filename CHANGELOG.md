@@ -1,5 +1,5 @@
 # Changelog
-## [v0.9-beta.7] - 2019-03-22
+## [v0.9-beta.7] - 2019-03-20
 ### Changed
 - Upgrade FACT-Finder WebComponents version to 3.1
 
