@@ -1,11 +1,11 @@
 {
   "name": "ff-web-components",
-  "version": "3.0.0",
+  "version": "3.1.1",
   "authors": [
     "tobias.armbruster <tobias.armbruster@omikron.net>"
   ],
   "description": "Web Components made to easily integrate FACT-Finder in onlineshops",
-  "main": "./dist/element.build_with_dependencies.html",
+  "main": "./dist/bundle.js",
   "keywords": [
     "FACT-Finder"
   ],

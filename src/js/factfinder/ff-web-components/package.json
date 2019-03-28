@@ -1,6 +1,6 @@
 {
   "name": "ff-web-components",
-  "version": "3.0.0",
+  "version": "3.1.1",
   "authors": [
     "tobias.armbruster <tobias.armbruster@omikron.net>"
   ],
@@ -9,7 +9,7 @@
     "type": "git",
     "url": "https://github.com/FACT-Finder-Web-Components/ff-web-components"
   },
-  "main": "./dist/element.build_with_dependencies.html",
+  "main": "./dist/bundle.js",
   "keywords": [
     "FACT-Finder"
   ],

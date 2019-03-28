@@ -1,3 +1,49 @@
+# 3.1.1
+With this release all known issues from the `3.0.0` release have been resolved.
+
+## FIX
+- `ff-asn`
+    - default templates for `ff-asn-group` and `ff-asn-group-slider`
+- `ff-header-navigation`
+    - attribute `group-count` is no longer ignored when used together with `hide-empty-groups`
+
+## CHANGE
+- `ff-asn-group`
+    - removed redundant `<div>` (default detailed links container)
+- `ff-asn-remove-all-filter`
+    - migrated to Lit-Element
+- `ff-compare`
+    - migrated to Lit-Element
+- cleaned up internal browser history handling of `search-immediate` flag
+
+
+# 3.1.0
+## ADD
+- new element `ff-product-teaser-campaign-processor` which can be added within `ff-middleware`
+
+## FIX
+- `ff-record-list`
+    - paging request during infinite scrolling sometimes overwrites current records instead of appending to them
+
+## CHANGE
+- `ff-navigation`
+    - migrated to Lit-Element
+    - no more need to specify `slot="item"` attribute in `ff-navigation-item` HTML template
+
+
+# 3.0.1
+## FIX
+- `ff-slider`
+    - fixed issue involving changes not being pushed to browser history when previous search was triggered by `search-immediate` attribute on `ff-communication`
+- `ff-asn-group`
+    - fixed bug making "show more" and "show less" buttons appear at the same time
+    - fixed implementation of native select box
+- `ff-asn-group-slider`
+    - "removeFilter" container template is now being picked properly when placed outside of `ff-slider-control`
+- `ff-asn`
+    - fixed removing filter, where `groupName` and `associatedFieldName` have spaces
+
+
 # 3.0.0
 ## New Boilerplate
 ```html
@@ -33,7 +79,10 @@ We already migrated our demos project in the release/3.0 branch: https://github.
     - extending built-in HTML elements is not supported anymore. Hence use `<ff-searchbutton>` tag with mandatory `<button />` tag inside instead of `<button is="ff-searchutton" />`
     - if you don't want to use the first `button` tag within `<ff-searchbutton>`, you can use `SearchButton.resetInput(selector)` to set the button
 - `ff-asn-group`
+    - deprecated attribute `laszy-load` was replaced by `lazy-load`
     - use `<div slot="groupCaption" ...>` instead of `<div data-container="groupCaption" ...>`
+    - `ff-asn-group-element`s no longer replace `<div data-content="detailedLinks">`, but instead get nested inside now
+    - `ff-asn-group-element`s no longer replace `<div data-content="hiddenLinks">`, but instead get nested inside now
 - `ff-asn-group-element`
     - use `<div slot="selected" ...>` instead of `<div data-selected ...>`
     - use `<div slot="unselected" ...>` instead of `<div data-unselected ...>`
@@ -42,13 +91,6 @@ We already migrated our demos project in the release/3.0 branch: https://github.
 - `ff-slider`
     - use `<div slot="slider1" id="slider1" ...></div>` instead of `<div data-slider="1" ...></div>`
     - use `<div slot="slider2" id="slider2" ...></div>` instead of `<div data-slider="2" ...></div>`
-- `ff-carousel`
-    - removed `getCurrentSlide` method, use `currentSlide` property directly instead
-    - removed `getMaxSlides` method, use `maxSlides` property directly instead
-- `ff-asn-group`
-    - deprecated attribute `laszy-load` was replaced by `lazy-load`
-    - `ff-asn-group-element` no longer replace `<div data-content="detailedLinks">`, but instead get nested inside now
-    - `ff-asn-group-element` no longer replace `<div data-content="hiddenLinks">`, but instead get nested inside now
 - `ff-products-per-page-item`
     - removed `clone` method
 - `ff-sortbox`
