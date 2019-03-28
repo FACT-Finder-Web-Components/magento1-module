@@ -13,8 +13,11 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
     const PATH_FF_PRODUCT_VISIBILITY = "factfinder/data_transfer/ff_product_visibility";
     const PATH_FF_PRICE_CUSTOMER_GROUPS = "factfinder/data_transfer/ff_price_customer_group";
 
-    // image placeholder
-    const PATH_IMG_PLACEHOLDER = 'images/catalog/product/placeholder/image.jpg';
+    // images
+    const PATH_IMG_PLACEHOLDER        = 'images/catalog/product/placeholder/image.jpg';
+    const PATH_FF_IMAGE_RESIZE_WIDTH  = "factfinder/data_transfer/ff_image_resize_width";
+    const PATH_FF_IMAGE_RESIZE_HEIGHT = "factfinder/data_transfer/ff_image_resize_height";
+
 
     /**
      * Categories in memory
@@ -161,11 +164,11 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
     public function getImageUrl($product, $store)
     {
         try {
-            $imgSrc = (string) Mage::helper('catalog/image')->init($product, 'thumbnail')
+            $imgSrc = (string) Mage::helper('catalog/image')->init($product, 'image')
                 ->constrainOnly(true)
                 ->keepAspectRatio(true)
                 ->keepTransparency(true)
-                ->resize(200, 200);
+                ->resize( Mage::getStoreConfig(self::PATH_FF_IMAGE_RESIZE_WIDTH, $store->getId()), Mage::getStoreConfig(self::PATH_FF_IMAGE_RESIZE_HEIGHT, $store->getId()));
         } catch(Exception $e) {
             $imgSrc = Mage::getDesign()->getSkinUrl(self::PATH_IMG_PLACEHOLDER, array('_area'=>'frontend'));
         }

@@ -472,11 +472,42 @@
                     <show_in_store>1</show_in_store>
                     <expanded>1</expanded>
                     <fields>
+                        <ff_image_resize_width translate="label comment">
+                            <label>Image width (px)</label>
+                            <comment>Select the resized image height.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>Omikron_Factfinder_Model_Source_Images</source_model>
+                            <options>
+                                <option label="thumbnail">Thumbnail</option>
+                                <option label="small_image">Small image</option>
+                                <option label="image">Normal size image</option>
+                            </options>
+                        </ff_image_resize_width>
+                        <ff_image_resize_height translate="label comment">
+                            <label>Image height (px)</label>
+                            <comment>Select the resized image height.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>Omikron_Factfinder_Model_Source_Images</source_model>
+                            <options>
+                                <option label="thumbnail">Thumbnail</option>
+                                <option label="small_image">Small image</option>
+                                <option label="image">Normal size image</option>
+                            </options>
+                        </ff_image_resize_height>
+
                         <ff_manufacturer translate="label comment">
                             <label>Manufacturer</label>
                             <comment>Select the Attribute which stores the manufacturer of a product.</comment>
                             <frontend_type>select</frontend_type>
-                            <sort_order>1</sort_order>
+                            <sort_order>4</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -486,7 +517,7 @@
                             <label>EAN/ISBN</label>
                             <comment>Select the Attribute which stores the ean or isbn of a product.</comment>
                             <frontend_type>select</frontend_type>
-                            <sort_order>2</sort_order>
+                            <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -496,7 +527,7 @@
                             <label>Select Additional Attributes</label>
                             <comment>Select all attributes which should be exported to the product feed.</comment>
                             <frontend_type>multiselect</frontend_type>
-                            <sort_order>3</sort_order>
+                            <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -506,7 +537,7 @@
                             <label>Select Product Visibility</label>
                             <comment>Visibility attribute values used in filtering prodcut collection.</comment>
                             <frontend_type>multiselect</frontend_type>
-                            <sort_order>3</sort_order>
+                            <sort_order>7</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -516,7 +547,7 @@
                             <label>Select Customer groups for price export</label>
                             <comment>Diffrent prices for selected customer groups will be exported. To have specific prices displayed for proper customer groups You need also to have MultiPricesSearchCallback defined at Fact Finder</comment>
                             <frontend_type>multiselect</frontend_type>
-                            <sort_order>3</sort_order>
+                            <sort_order>8</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
