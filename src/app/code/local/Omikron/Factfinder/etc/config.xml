@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <global>
+        <blocks>
+            <factfinder>
+                <class>Omikron_Factfinder_Block</class>
+            </factfinder>
+        </blocks>
         <helpers>
             <factfinder>
                 <class>Omikron_Factfinder_Helper</class>

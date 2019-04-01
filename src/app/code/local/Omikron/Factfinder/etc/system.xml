@@ -70,7 +70,7 @@
                         <ff_build_connection>
                             <label>Test connection</label>
                             <frontend_type>button</frontend_type>
-                            <frontend_model>Omikron_Factfinder_Block_Adminhtml_System_Config_Button_TestConnection</frontend_model>
+                            <frontend_model>factfinder/adminhtml_system_config_button_testConnection</frontend_model>
                             <sort_order>7</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -194,7 +194,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <source_model>Omikron_Factfinder_Model_Source_FFVersion</source_model>
+                            <source_model>factfinder/source_fFVersion</source_model>
                         </version>
                         <use_url_parameter translate="label comment">
                             <label>Use url parameter</label>
@@ -499,7 +499,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <source_model>Omikron_Factfinder_Model_Source_Attribute</source_model>
+                            <source_model>factfinder/source_attribute</source_model>
                         </ff_manufacturer>
                         <ff_ean translate="label comment">
                             <label>EAN/ISBN</label>
@@ -509,7 +509,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <source_model>Omikron_Factfinder_Model_Source_Attribute</source_model>
+                            <source_model>factfinder/source_attribute</source_model>
                         </ff_ean>
                         <ff_additional_attributes translate="label comment">
                             <label>Select Additional Attributes</label>
@@ -519,7 +519,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <source_model>Omikron_Factfinder_Model_Source_Attribute</source_model>
+                            <source_model>factfinder/source_attribute</source_model>
                         </ff_additional_attributes>
                         <ff_product_visibility translate="label comment">
                             <label>Select Product Visibility</label>
@@ -529,7 +529,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <source_model>Omikron_Factfinder_Model_Source_Visibility</source_model>
+                            <source_model>factfinder/source_visibility</source_model>
                         </ff_product_visibility>
                         <ff_price_customer_group translate="label comment">
                             <label>Select Customer groups for price export</label>
@@ -539,7 +539,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <source_model>Omikron_Factfinder_Model_Source_CustomerGroup</source_model>
+                            <source_model>factfinder/source_customerGroup</source_model>
                         </ff_price_customer_group>
                     </fields>
                 </data_transfer>
@@ -600,7 +600,7 @@
                             <label>Generate and upload export file</label>
                             <comment>On buttonclick CSV exports of all your products will be generated and uploaded to the specified FTP Server.</comment>
                             <frontend_type>button</frontend_type>
-                            <frontend_model>Omikron_Factfinder_Block_Adminhtml_System_Config_Button_Feed</frontend_model>
+                            <frontend_model>factfinder/adminhtml_system_config_button_feed</frontend_model>
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -610,7 +610,7 @@
                             <label>Upload export file</label>
                             <comment>On buttonclick CSV exports of all your products will be uploaded to the specified FTP Server (using previously generated CSV file).</comment>
                             <frontend_type>button</frontend_type>
-                            <frontend_model>Omikron_Factfinder_Block_Adminhtml_System_Config_Button_Upload</frontend_model>
+                            <frontend_model>factfinder/adminhtml_system_config_button_upload</frontend_model>
                             <sort_order>7</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -673,7 +673,7 @@
                             <label>Frequency</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_cron_frequency</source_model>
-                            <backend_model>Omikron_Factfinder_Model_Adminhtml_System_Config_Backend_Feed_Cron</backend_model>
+                            <backend_model>factfinder/adminhtml_system_config_backend_feed_cron</backend_model>
                             <sort_order>20</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>

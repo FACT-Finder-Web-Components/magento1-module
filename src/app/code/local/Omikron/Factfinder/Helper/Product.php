@@ -15,8 +15,8 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
 
     // images
     const PATH_IMG_PLACEHOLDER        = 'images/catalog/product/placeholder/image.jpg';
-    const PATH_FF_IMAGE_RESIZE_WIDTH  = "factfinder/data_transfer/ff_image_resize_width";
-    const PATH_FF_IMAGE_RESIZE_HEIGHT = "factfinder/data_transfer/ff_image_resize_height";
+    const PATH_FF_IMAGE_RESIZE_WIDTH  = 'factfinder/data_transfer/ff_image_resize_width';
+    const PATH_FF_IMAGE_RESIZE_HEIGHT = 'factfinder/data_transfer/ff_image_resize_height';
 
 
     /**
