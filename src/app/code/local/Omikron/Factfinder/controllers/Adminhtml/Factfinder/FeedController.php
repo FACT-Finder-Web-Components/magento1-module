@@ -6,10 +6,9 @@ class Omikron_Factfinder_Adminhtml_Factfinder_FeedController extends Mage_Adminh
 {
     public function exportAction()
     {
-        preg_match('@/store/([a-z]+)/@', $this->_getRefererUrl(), $match);
-        $storeId = $match[1] ? $match[1] : Mage::app()->getDefaultStoreView()->getId();
-        $export  = Mage::getSingleton('factfinder/export_product');
-        $this->jsonResponse($export->exportProduct(Mage::app()->getStore($storeId)), $this->getResponse());
+        $store  = $this->getRequest()->getParam('store', Mage::app()->getDefaultStoreView()->getId());
+        $export = Mage::getSingleton('factfinder/export_product');
+        $this->jsonResponse($export->exportProduct(Mage::app()->getStore($store)), $this->getResponse());
     }
 
     public function uploadAction()
