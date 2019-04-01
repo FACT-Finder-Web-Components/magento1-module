@@ -1,5 +1,7 @@
 <?php
 
+use Mage_Core_Model_App_Area as Area;
+
 class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
 {
     // attributes properties
@@ -13,8 +15,10 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
     const PATH_FF_PRODUCT_VISIBILITY = 'factfinder/data_transfer/ff_product_visibility';
     const PATH_FF_PRICE_CUSTOMER_GROUPS = 'factfinder/data_transfer/ff_price_customer_group';
 
-    // image placeholder
-    const PATH_IMG_PLACEHOLDER = 'images/catalog/product/placeholder/image.jpg';
+    // images
+    const PATH_FF_IMAGE_RESIZE_WIDTH  = 'factfinder/data_transfer/ff_image_resize_width';
+    const PATH_FF_IMAGE_RESIZE_HEIGHT = 'factfinder/data_transfer/ff_image_resize_height';
+
 
     /**
      * Categories in memory
@@ -152,22 +156,30 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
     }
 
     /**
-     * Retrieve product thumbnail url
+     * Retrieve product thumbnail URL
      *
      * @param Mage_Catalog_Model_Product $product
-     * @param Mage_Core_Model_Store $store
+     * @param Mage_Core_Model_Store      $store
+     * @param string                     $attributeName
+     *
      * @return string
      */
-    public function getImageUrl($product, $store)
+    public function getImageUrl($product, $store, $attributeName = 'image')
     {
+        $width  = (int) Mage::getStoreConfig(self::PATH_FF_IMAGE_RESIZE_WIDTH, $store->getId());
+        $height = (int) Mage::getStoreConfig(self::PATH_FF_IMAGE_RESIZE_HEIGHT, $store->getId());
+
         try {
-            $imgSrc = (string) Mage::helper('catalog/image')->init($product, 'thumbnail')
+            $imgSrc = (string) Mage::helper('catalog/image')->init($product, $attributeName)
                 ->constrainOnly(true)
                 ->keepAspectRatio(true)
                 ->keepTransparency(true)
-                ->resize(200, 200);
-        } catch(Exception $e) {
-            $imgSrc = Mage::getDesign()->getSkinUrl(self::PATH_IMG_PLACEHOLDER, ['_area'=>'frontend']);
+                ->resize($width, $height);
+        } catch (Exception $e) {
+            $imgSrc = Mage::getDesign()->getSkinUrl(Mage::helper('catalog/image')->getPlaceholder(), [
+                '_area'  => Area::AREA_FRONTEND,
+                '_store' => $store,
+            ]);
         }
 
         return $imgSrc;

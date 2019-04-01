@@ -36,7 +36,8 @@ class Omikron_Factfinder_ExportController extends Mage_Core_Controller_Front_Act
      */
     private function generateCsvFile()
     {
-        $store = Mage::app()->getStore();
+        $storeId = $this->getRequest()->getParam('store', Mage::app()->getDefaultStoreView());
+        $store   = Mage::app()->getStore($storeId);
 
         /** @var Omikron_Factfinder_Model_Export_Product $product */
         $product = Mage::getModel('Omikron_Factfinder_Model_Export_Product');
