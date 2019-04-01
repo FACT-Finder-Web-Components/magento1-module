@@ -19,13 +19,13 @@ class Omikron_Factfinder_Model_Adminhtml_System_Config_Backend_Feed_Cron extends
         $frequencyWeekly = Mage_Adminhtml_Model_System_Config_Source_Cron_Frequency::CRON_WEEKLY;
         $frequencyMonthly = Mage_Adminhtml_Model_System_Config_Source_Cron_Frequency::CRON_MONTHLY;
 
-        $cronExprArray = array(
+        $cronExprArray = [
             intval($time[1]),
             intval($time[0]),
             ($frequency == $frequencyMonthly) ? '1' : '*',
             '*',
             ($frequency == $frequencyWeekly) ? '1' : '*',
-        );
+        ];
         $cronExprString = join(' ', $cronExprArray);
 
         try {
