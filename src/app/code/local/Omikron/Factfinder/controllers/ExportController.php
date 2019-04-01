@@ -8,7 +8,7 @@ class Omikron_Factfinder_ExportController extends Mage_Core_Controller_Front_Act
     {
         /** @var Omikron_Factfinder_Helper_Data $helper */
         $helper                 = Mage::helper('factfinder/data');
-        $validPasswords         = array($helper->getUploadUrlUser() => $helper->getUploadUrlPassword());
+        $validPasswords         = [$helper->getUploadUrlUser() => $helper->getUploadUrlPassword()];
         $validUsers             = array_keys($validPasswords);
         $hasSuppliedCredentials = !(empty($_SERVER['PHP_AUTH_USER']) && empty($_SERVER['PHP_AUTH_PW']));
 

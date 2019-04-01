@@ -7,11 +7,11 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
     const ATTRIBUTE_DELIMITER = '|';
 
     // data transfer
-    const PATH_FF_MANUFACTURER = "factfinder/data_transfer/ff_manufacturer";
-    const PATH_FF_EAN = "factfinder/data_transfer/ff_ean";
-    const PATH_FF_ADDITIONAL_ATTRIBUTES = "factfinder/data_transfer/ff_additional_attributes";
-    const PATH_FF_PRODUCT_VISIBILITY = "factfinder/data_transfer/ff_product_visibility";
-    const PATH_FF_PRICE_CUSTOMER_GROUPS = "factfinder/data_transfer/ff_price_customer_group";
+    const PATH_FF_MANUFACTURER = 'factfinder/data_transfer/ff_manufacturer';
+    const PATH_FF_EAN = 'factfinder/data_transfer/ff_ean';
+    const PATH_FF_ADDITIONAL_ATTRIBUTES = 'factfinder/data_transfer/ff_additional_attributes';
+    const PATH_FF_PRODUCT_VISIBILITY = 'factfinder/data_transfer/ff_product_visibility';
+    const PATH_FF_PRICE_CUSTOMER_GROUPS = 'factfinder/data_transfer/ff_price_customer_group';
 
     // images
     const PATH_IMG_PLACEHOLDER        = 'images/catalog/product/placeholder/image.jpg';
@@ -170,7 +170,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
                 ->keepTransparency(true)
                 ->resize( Mage::getStoreConfig(self::PATH_FF_IMAGE_RESIZE_WIDTH, $store->getId()), Mage::getStoreConfig(self::PATH_FF_IMAGE_RESIZE_HEIGHT, $store->getId()));
         } catch(Exception $e) {
-            $imgSrc = Mage::getDesign()->getSkinUrl(self::PATH_IMG_PLACEHOLDER, array('_area'=>'frontend'));
+            $imgSrc = Mage::getDesign()->getSkinUrl(self::PATH_IMG_PLACEHOLDER, ['_area'=>'frontend']);
         }
 
         return $imgSrc;
@@ -480,7 +480,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
             return $value;
         }
         $value = strip_tags(nl2br($value));
-        $value = preg_replace("/\r|\n/", "", $value);
+        $value = preg_replace("/\r|\n/", '', $value);
         $value = addcslashes($value, '\\');
 
         if ($isMultiAttributeValue) {

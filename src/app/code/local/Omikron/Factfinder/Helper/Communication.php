@@ -47,7 +47,7 @@ class Omikron_Factfinder_Helper_Communication extends Mage_Core_Helper_Abstract
         $authentication = $this->dataHelper->getAuthArray();
         $address = $this->dataHelper->getAddress();
 
-        $url = $address . $apiName . "?format=json&" . http_build_query($authentication) . "&";
+        $url = $address . $apiName . '?format=json&' . http_build_query($authentication) . '&';
 
         if (is_array($params)) {
             $url .= http_build_query($params);
@@ -95,8 +95,8 @@ class Omikron_Factfinder_Helper_Communication extends Mage_Core_Helper_Abstract
     {
         $result = [];
         $result['success'] = true;
-        $result['ff_error_response'] = "";
-        $result['ff_error_stacktrace'] = "";
+        $result['ff_error_response'] = '';
+        $result['ff_error_stacktrace'] = '';
         $result['ff_response_decoded'] = json_decode($this->sendToFF(self::API_NAME, ['query' =>  self::API_QUERY, 'channel' => $this->dataHelper->getChannel($store->getId()), 'verbose' => 'true']), true);
 
         if (!is_array($result['ff_response_decoded'])) {

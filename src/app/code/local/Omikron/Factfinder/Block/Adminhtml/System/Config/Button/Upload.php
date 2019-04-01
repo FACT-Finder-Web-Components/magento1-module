@@ -40,11 +40,11 @@ class Omikron_Factfinder_Block_Adminhtml_System_Config_Button_Upload extends Mag
     public function getButtonHtml()
     {
         $button = $this->getLayout()->createBlock('adminhtml/widget_button')
-            ->setData(array(
+            ->setData([
                 'id' => 'omikron_factfinder_feed_upload_button',
                 'label' => $this->helper('adminhtml')->__('Upload export files(s) now'),
                 'onclick' => 'javascript:uploadCsv(); return false;'
-            ));
+            ]);
 
         return $button->toHtml();
     }

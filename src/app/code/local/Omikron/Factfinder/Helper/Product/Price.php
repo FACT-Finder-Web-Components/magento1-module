@@ -33,11 +33,11 @@ class Omikron_Factfinder_Helper_Product_Price extends Mage_Core_Helper_Abstract
      */
     private function registerCatalogRuleData($customerGroup, $store)
     {
-        Mage::register('rule_data', new Varien_Object(array(
+        Mage::register('rule_data', new Varien_Object([
             'store_id'  => $store->getId(),
             'website_id'  => $store->getWebsiteId(),
             'customer_group_id' => $customerGroup,
-        )),true);
+        ]),true);
     }
 
     /**
