@@ -476,6 +476,7 @@
                             <label>Image width (px)</label>
                             <comment>Select the resized image height.</comment>
                             <frontend_type>text</frontend_type>
+                            <validate>validate-greater-than-zero</validate>
                             <sort_order>2</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -485,6 +486,7 @@
                             <label>Image height (px)</label>
                             <comment>Select the resized image height.</comment>
                             <frontend_type>text</frontend_type>
+                            <validate>validate-greater-than-zero</validate>
                             <sort_order>3</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>

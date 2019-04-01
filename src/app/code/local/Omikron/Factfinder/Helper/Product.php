@@ -164,13 +164,16 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
     public function getImageUrl($product, $store)
     {
         try {
+            $width  = (int) Mage::getStoreConfig(self::PATH_FF_IMAGE_RESIZE_WIDTH, $store->getId());
+            $height = (int) Mage::getStoreConfig(self::PATH_FF_IMAGE_RESIZE_HEIGHT, $store->getId());
+
             $imgSrc = (string) Mage::helper('catalog/image')->init($product, 'image')
                 ->constrainOnly(true)
                 ->keepAspectRatio(true)
                 ->keepTransparency(true)
-                ->resize( Mage::getStoreConfig(self::PATH_FF_IMAGE_RESIZE_WIDTH, $store->getId()), Mage::getStoreConfig(self::PATH_FF_IMAGE_RESIZE_HEIGHT, $store->getId()));
-        } catch(Exception $e) {
-            $imgSrc = Mage::getDesign()->getSkinUrl(self::PATH_IMG_PLACEHOLDER, ['_area'=>'frontend']);
+                ->resize($width, $height);
+        } catch (Exception $e) {
+            $imgSrc = Mage::getDesign()->getSkinUrl(self::PATH_IMG_PLACEHOLDER, ['_area' => 'frontend']);
         }
 
         return $imgSrc;
