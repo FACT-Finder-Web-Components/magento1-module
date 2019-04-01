@@ -480,12 +480,6 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <source_model>Omikron_Factfinder_Model_Source_Images</source_model>
-                            <options>
-                                <option label="thumbnail">Thumbnail</option>
-                                <option label="small_image">Small image</option>
-                                <option label="image">Normal size image</option>
-                            </options>
                         </ff_image_resize_width>
                         <ff_image_resize_height translate="label comment">
                             <label>Image height (px)</label>
@@ -495,12 +489,6 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <source_model>Omikron_Factfinder_Model_Source_Images</source_model>
-                            <options>
-                                <option label="thumbnail">Thumbnail</option>
-                                <option label="small_image">Small image</option>
-                                <option label="image">Normal size image</option>
-                            </options>
                         </ff_image_resize_height>
 
                         <ff_manufacturer translate="label comment">
