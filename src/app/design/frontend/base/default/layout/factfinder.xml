@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layout>
     <!-- Search Result Page with Toolbar and Campaigns -->
-    <catalogsearch_result_index translate="label">
+    <catalogsearch_result_index>
         <block type="core/template" name="ff.paging" template="factfinder/catalog/product/list/paging.phtml" />
         <block type="core/template" name="ff.sortbox" template="factfinder/catalog/product/list/sortbox.phtml" />
         <block type="core/template" name="ff.ppp_list" template="factfinder/catalog/product/list/ppp_list.phtml" />

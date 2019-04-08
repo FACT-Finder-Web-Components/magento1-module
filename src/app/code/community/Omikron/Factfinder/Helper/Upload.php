@@ -2,12 +2,7 @@
 
 class Omikron_Factfinder_Helper_Upload extends Mage_Core_Helper_Abstract
 {
-    // Data transfer
-    const PATH_FF_UPLOAD_HOST = 'factfinder/ftp_data_transfer/ff_upload_host';
-    const PATH_FF_UPLOAD_PORT = 'factfinder/ftp_data_transfer/ff_upload_port';
-    const PATH_FF_UPLOAD_PATH = 'factfinder/ftp_data_transfer/ff_upload_path';
-    const PATH_FF_UPLOAD_USER = 'factfinder/ftp_data_transfer/ff_upload_user';
-    const PATH_FF_UPLOAD_PASSWORD = 'factfinder/ftp_data_transfer/ff_upload_password';
+    const CONFIG_PATH = 'factfinder/ftp_data_transfer/ff_upload_';
 
     /**
      * Do file upload to destination host
@@ -21,7 +16,7 @@ class Omikron_Factfinder_Helper_Upload extends Mage_Core_Helper_Abstract
     {
         $result = [];
 
-        if (empty($this->getConfig(self::PATH_FF_UPLOAD_HOST)) || empty($this->getConfig(self::PATH_FF_UPLOAD_USER)) || empty($this->getConfig(self::PATH_FF_UPLOAD_PASSWORD))) {
+        if (!$this->getConfig('host') || !$this->getConfig('user') || !$this->getConfig('password')) {
             $result['success'] = false;
             $result['message'] = $this->__('Missing FTP data!');
         } else {
@@ -31,24 +26,22 @@ class Omikron_Factfinder_Helper_Upload extends Mage_Core_Helper_Abstract
             }
             try {
                 $ftp = new Varien_Io_Ftp();
-                $ftp->open(
-                    [
-                        'host'     => $this->getConfig(self::PATH_FF_UPLOAD_HOST),
-                        'user'     => $this->getConfig(self::PATH_FF_UPLOAD_USER),
-                        'password' => $this->getConfig(self::PATH_FF_UPLOAD_PASSWORD),
-                        'ssl'      => true,
-                        'passive'  => true,
-                        'port'     => $this->getConfig(self::PATH_FF_UPLOAD_PORT),
-                        'path'     => $this->getConfig(self::PATH_FF_UPLOAD_PATH)
-                    ]
-                );
+                $ftp->open([
+                    'host'     => $this->getConfig('host'),
+                    'user'     => $this->getConfig('user'),
+                    'password' => $this->getConfig('password'),
+                    'ssl'      => true,
+                    'passive'  => true,
+                    'port'     => $this->getConfig('port'),
+                    'path'     => $this->getConfig('path'),
+                ]);
                 $ftp->write($destinationPath, $content);
                 $ftp->close();
                 $result['success'] = true;
                 $result['message'] = '';
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $result['success'] = false;
-                $result['message'] = $this->__('Can\'t connect to FTP!') . ' - ' . $e->getMessage();
+                $result['message'] = $this->__("Can't connect to FTP! - %s", $e->getMessage());
             }
         }
 
@@ -57,12 +50,13 @@ class Omikron_Factfinder_Helper_Upload extends Mage_Core_Helper_Abstract
 
     /**
      * Get the ff config data
+     *
      * @param string $key
      *
-     * @return mixed
+     * @return string
      */
     private function getConfig($key)
     {
-        return Mage::getStoreConfig($key);
+        return (string) Mage::getStoreConfig(self::CONFIG_PATH . $key);
     }
 }
