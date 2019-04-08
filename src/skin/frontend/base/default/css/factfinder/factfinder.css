@@ -453,51 +453,45 @@ ff-sortbox-item {
     margin: 0;
     border-width: 1px;
     border-style: solid;
-    border-color: #cccccc;
+    border-color: #ccc;
     background-color: #fff;
     width: 200px;
 }
 
 ff-products-per-page-item {
-    padding: 1px 5px 0 9px;
     margin-right: 3px;
     border-width: 1px;
     border-style: solid;
-    border-color: #cccccc;
+    border-color: #ccc;
     background-color: #fff;
     width: 30px;
+    text-align: center;
 }
 
 .toolbar {
     height: 44px !important;
 }
 
-.ff-current-link {
-    color: #636363;
-    border: 1px solid #cccccc;
-    width: 30px;
-    background-color: #FFFFFF;
-    cursor: default;
-    text-align: center;
-    height: 25px;
+ff-paging {
+    text-align: right;
+    display: block;
 }
 
-.ff-link {
+.ffw-page-item-container {
     display: inline-block;
-    border: 0;
-    font-size: 13px;
+    border: solid 1px transparent;
+    font-size: .875rem;
     text-align: center;
     text-transform: uppercase;
-    vertical-align: middle;
     white-space: nowrap;
     line-height: 30px;
-    width: 25px;
-    height: 30px;
-    padding: 0;
-    color: #3399cc;
-    font-family: "Helvetica Neue", Verdana, Arial, sans-serif;
+    padding: 0 12px;
+    color: #39c;
+    font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
+    cursor: pointer;
 }
 
-ff-paging {
-    float: right;
+.ff-current-link .ffw-page-item-container {
+    color: #636363;
+    border-color: #ccc;
 }
