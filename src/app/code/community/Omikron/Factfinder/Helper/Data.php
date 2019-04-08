@@ -17,10 +17,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
     // Components
     const PATH_FF_SUGGEST = 'factfinder/components/ff_suggest';
     const PATH_FF_ASN = 'factfinder/components/ff_asn';
-    const PATH_FF_PAGING = 'factfinder/components/ff_paging';
-    const PATH_FF_SORTBOX = 'factfinder/components/ff_sortbox';
     const PATH_FF_BREADCRUMB = 'factfinder/components/ff_breadcrumb';
-    const PATH_FF_PRODUCTSPP = 'factfinder/components/ff_productspp';
     const PATH_FF_RECOMMENDATION = 'factfinder/components/ff_recommendation';
     const PATH_FF_CAMPAIGN = 'factfinder/components/ff_campaign';
     const PATH_FF_PUSHEDPRODUCTSCAMPAIGN = 'factfinder/components/ff_pushedproductscampaign';
@@ -134,39 +131,12 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
     /**
-     * Defines if FF Paging is enabled
-     * @return bool
-     */
-    public function getFFPaging()
-    {
-        return boolval(Mage::getStoreConfig(self::PATH_FF_PAGING));
-    }
-
-    /**
-     * Defines if FF Sortbox is enabled
-     * @return bool
-     */
-    public function getFFSortbox()
-    {
-        return boolval(Mage::getStoreConfig(self::PATH_FF_SORTBOX));
-    }
-
-    /**
      * Defines if FF Breadcrumb is enabled
      * @return bool
      */
     public function getFFBreadcrumb()
     {
         return boolval(Mage::getStoreConfig(self::PATH_FF_BREADCRUMB));
-    }
-
-    /**
-     * Defines if FF Products PP is enabled
-     * @return bool
-     */
-    public function getFFProductsPP()
-    {
-        return boolval(Mage::getStoreConfig(self::PATH_FF_PRODUCTSPP));
     }
 
     /**

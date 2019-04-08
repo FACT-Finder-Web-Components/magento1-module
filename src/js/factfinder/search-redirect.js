@@ -1,10 +1,11 @@
-document.addEventListener("WebComponentsReady", function () {
+document.addEventListener('ffReady', function () {
+    var redirectPath = '/catalogsearch/result';
     factfinder.communication.FFCommunicationEventAggregator.addBeforeDispatchingCallback(function (event) {
-        if (event.type === "search" && window.location.href.match(/catalogsearch\/result/) === null) {
-            let params = Object.assign({}, event);
+        if (event.type === 'search' && window.location.href.indexOf(redirectPath) < 0) {
+            var params = Object.assign({}, event);
             delete params.type;
             delete params.version;
-            window.location.href = "/catalogsearch/result/" + factfinder.common.dictToParameterString(params);
+            window.location.href = redirectPath + factfinder.common.dictToParameterString(params);
         }
     });
 });
@@ -20,7 +21,7 @@ document.addEventListener("dom-updated", function () {
     });
 });
 
-document.addEventListener(`ffReady`, () => {
+document.addEventListener('ffReady', function () {
     factfinder.communication.ResultDispatcher.subscribe(`navigation`, (navData, e) => {
         if (window.location.href.match(/catalogsearch\/result/) === null) {
             navData.forEach(navSection => navSection.forEach(navEl => {
