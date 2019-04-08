@@ -45,7 +45,7 @@
     <!-- Checkout Tracking -->
     <checkout_onepage_success>
         <reference name="content">
-            <block type="checkout/onepage_success" name="factfinder_checkout_success" template="factfinder/checkout/success.phtml"/>
+            <block type="core/template" name="factfinder_checkout_success" template="factfinder/checkout/success.phtml" after="-" />
         </reference>
     </checkout_onepage_success>
 
@@ -53,36 +53,27 @@
     <default>
         <reference name="head">
             <action method="addJs">
-                <script>factfinder/top.js</script>
-            </action>
-            <action method="addJs">
                 <script>factfinder/search-redirect.js</script>
             </action>
             <action method="addCss">
                 <stylesheet>css/factfinder/factfinder.css</stylesheet>
             </action>
+            <block type="core/template" name="ff.communication.elements" template="factfinder/communication/elements.phtml" />
         </reference>
 
         <!-- Search Box and Suggest -->
-        <action method="setTemplate" block="top.search">
+        <action method="setTemplate" block="top.search" ifconfig="factfinder/components/ff_suggest">
             <template>factfinder/catalogsearch/form.mini.phtml</template>
         </action>
 
         <!-- Header Navigation -->
-        <reference name="page/html_header">
-            <block type="core/text_list" name="top.menu" as="topMenu" translate="label">
-                <block type="page/html_topmenu" name="catalog.topnav">
-                    <action method="setTemplate">
-                        <template>factfinder/page/html/topmenu.phtml</template>
-                    </action>
-                </block>
-            </block>
-        </reference>
+        <action method="setTemplate" block="catalog.topnav" ifconfig="factfinder/components/ff_navigation">
+            <template>factfinder/page/html/topmenu.phtml</template>
+        </action>
 
         <!-- Communication -->
         <reference name="after_body_start">
             <block type="core/template" name="ff.communication" template="factfinder/communication/communication.phtml" />
-            <block type="core/template" name="ff.communication.elements" template="factfinder/communication/elements.phtml" />
         </reference>
     </default>
 </layout>
