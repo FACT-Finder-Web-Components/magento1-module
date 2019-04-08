@@ -342,7 +342,9 @@ ff-asn-group {
     box-shadow: none;
     background-color: #f6f6f6;
     height: auto;
-    min-width: 290px !important;
+    display:block;
+    min-width: auto;
+    max-width: 100%;
 }
 
 ff-asn-group-element {

@@ -12,37 +12,36 @@
         <action method="setTemplate" block="catalogsearch.leftnav">
             <template>factfinder/catalog/layer/view.phtml</template>
         </action>
+        <action method="setData" block="ff.communication">
+            <key>search_immediate</key>
+            <value>1</value>
+        </action>
 
-        <reference name="search.result">
-            <action method="setTemplate">
-                <template>factfinder/catalogsearch/result.phtml</template>
-            </action>
-
-            <block type="catalog/product_list" name="search_result_list" template="factfinder/catalog/product/list.phtml">
-                <action method="setToolbarBlockName">
-                    <name>ff.toolbar</name>
+        <block type="core/template" name="ff.result.list" template="factfinder/catalog/product/list.phtml">
+            <block type="core/text_list" name="ff.toolbar" as="toolbar">
+                <action method="setFrameTags">
+                    <before><![CDATA[div class="toolbar"]]></before>
+                    <after><![CDATA[/div]]></after>
                 </action>
-
-                <block type="core/text_list" name="ff.toolbar" as="toolbar">
-                    <action method="setFrameTags">
-                        <before><![CDATA[div class="toolbar"]]></before>
-                        <after><![CDATA[/div]]></after>
-                    </action>
-                    <action method="append" ifconfig="factfinder/components/ff_sortbox">
-                        <name>ff.sortbox</name>
-                        <as>sortbox</as>
-                    </action>
-                    <action method="append" ifconfig="factfinder/components/ff_productspp">
-                        <name>ff.ppp_list</name>
-                        <as>ppp_list</as>
-                    </action>
-                </block>
-
-                <action method="append" ifconfig="factfinder/components/ff_paging">
-                    <name>ff.paging</name>
-                    <as>paging</as>
+                <action method="append" ifconfig="factfinder/components/ff_sortbox">
+                    <name>ff.sortbox</name>
+                    <as>sortbox</as>
+                </action>
+                <action method="append" ifconfig="factfinder/components/ff_productspp">
+                    <name>ff.ppp_list</name>
+                    <as>ppp_list</as>
                 </action>
             </block>
+
+            <action method="append" ifconfig="factfinder/components/ff_paging">
+                <name>ff.paging</name>
+                <as>paging</as>
+            </action>
+        </block>
+
+        <reference name="content">
+            <action method="unsetChild"><child>search.result</child></action>
+            <action method="append"><name>ff.result.list</name></action>
         </reference>
     </catalogsearch_result_index>
 
