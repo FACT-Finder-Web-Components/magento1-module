@@ -23,7 +23,7 @@ class Omikron_Factfinder_ExportController extends Mage_Core_Controller_Front_Act
 
         try {
             $this->generateCsvFile();
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             die($this->__('Error: ') . $e->getMessage());
         }
     }
@@ -31,8 +31,8 @@ class Omikron_Factfinder_ExportController extends Mage_Core_Controller_Front_Act
     /**
      * Generate downloadable CSV file
      *
-     * @throws Mage_Core_Model_Store_Exception
      * @return void
+     * @throws Mage_Core_Model_Store_Exception
      */
     private function generateCsvFile()
     {

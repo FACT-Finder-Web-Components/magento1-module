@@ -77,8 +77,15 @@ class Omikron_Factfinder_Helper_Communication extends Mage_Core_Helper_Abstract
      */
     public function pushImport($channelName)
     {
-        $response_json = json_decode($this->sendToFF('Import.ff', ['channel' => $channelName, 'type' => 'suggest', 'format' => 'json' , 'quiet' => 'true', 'download' => 'true']), true);
-        if(is_array($response_json) && isset($response_json['errors']) && is_array($response_json['errors']) && count($response_json['errors'])) {
+        $response_json = json_decode($this->sendToFF('Import.ff', [
+            'channel'  => $channelName,
+            'type'     => 'suggest',
+            'format'   => 'json',
+            'quiet'    => 'true',
+            'download' => 'true',
+        ]), JSON_OBJECT_AS_ARRAY);
+
+        if (is_array($response_json) && isset($response_json['errors']) && is_array($response_json['errors']) && count($response_json['errors'])) {
             return false;
         } else {
             return true;
@@ -93,11 +100,17 @@ class Omikron_Factfinder_Helper_Communication extends Mage_Core_Helper_Abstract
      */
     public function checkConnection($store)
     {
+        $response = $this->sendToFF(self::API_NAME, [
+            'query'   => self::API_QUERY,
+            'channel' => $this->dataHelper->getChannel($store->getId()),
+            'verbose' => 'true',
+        ]);
+
         $result = [];
         $result['success'] = true;
         $result['ff_error_response'] = '';
         $result['ff_error_stacktrace'] = '';
-        $result['ff_response_decoded'] = json_decode($this->sendToFF(self::API_NAME, ['query' =>  self::API_QUERY, 'channel' => $this->dataHelper->getChannel($store->getId()), 'verbose' => 'true']), true);
+        $result['ff_response_decoded'] = json_decode($response, JSON_OBJECT_AS_ARRAY);
 
         if (!is_array($result['ff_response_decoded'])) {
             $result['ff_response_decoded'] = [];

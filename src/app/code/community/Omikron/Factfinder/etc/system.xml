@@ -640,6 +640,7 @@
                         <ff_upload_url_user translate="label comment">
                             <label>Basic Auth user</label>
                             <frontend_type>text</frontend_type>
+                            <frontend_class>required-entry</frontend_class>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -648,6 +649,7 @@
                         <ff_upload_url_password translate="label comment">
                             <label>Basic Auth password</label>
                             <frontend_type>password</frontend_type>
+                            <frontend_class>required-entry</frontend_class>
                             <sort_order>2</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
