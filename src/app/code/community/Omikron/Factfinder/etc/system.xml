@@ -89,7 +89,7 @@
                         <ff_suggest translate="label">
                             <label>Suggestions</label>
                             <frontend_type>select</frontend_type>
-                            <sort_order>1</sort_order>
+                            <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -98,7 +98,7 @@
                         <ff_asn translate="label">
                             <label>Filter / ASN</label>
                             <frontend_type>select</frontend_type>
-                            <sort_order>2</sort_order>
+                            <sort_order>20</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -107,7 +107,7 @@
                         <ff_paging translate="label">
                             <label>Paging</label>
                             <frontend_type>select</frontend_type>
-                            <sort_order>3</sort_order>
+                            <sort_order>30</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -116,7 +116,7 @@
                         <ff_sortbox translate="label">
                             <label>Sorting</label>
                             <frontend_type>select</frontend_type>
-                            <sort_order>4</sort_order>
+                            <sort_order>40</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -125,7 +125,7 @@
                         <ff_breadcrumb translate="label">
                             <label>Breadcrumb</label>
                             <frontend_type>select</frontend_type>
-                            <sort_order>5</sort_order>
+                            <sort_order>50</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -134,7 +134,7 @@
                         <ff_productspp translate="label">
                             <label>Products per page</label>
                             <frontend_type>select</frontend_type>
-                            <sort_order>6</sort_order>
+                            <sort_order>60</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -143,7 +143,7 @@
                         <ff_campaign translate="label">
                             <label>Campaigns</label>
                             <frontend_type>select</frontend_type>
-                            <sort_order>7</sort_order>
+                            <sort_order>70</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -152,7 +152,7 @@
                         <ff_pushedproductscampaign translate="label">
                             <label>Pushed Products</label>
                             <frontend_type>select</frontend_type>
-                            <sort_order>8</sort_order>
+                            <sort_order>80</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -161,7 +161,7 @@
                         <ff_recommendation translate="label">
                             <label>Recommendation</label>
                             <frontend_type>select</frontend_type>
-                            <sort_order>9</sort_order>
+                            <sort_order>90</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -170,12 +170,21 @@
                         <ff_similar translate="label">
                             <label>Similar</label>
                             <frontend_type>select</frontend_type>
-                            <sort_order>10</sort_order>
+                            <sort_order>100</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </ff_similar>
+                        <ff_navigation translate="label">
+                            <label>Header Navigation</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </ff_navigation>
                     </fields>
                 </components>
                 <advanced translate="label comment">
@@ -631,6 +640,7 @@
                         <ff_upload_url_user translate="label comment">
                             <label>Basic Auth user</label>
                             <frontend_type>text</frontend_type>
+                            <frontend_class>required-entry</frontend_class>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -639,6 +649,7 @@
                         <ff_upload_url_password translate="label comment">
                             <label>Basic Auth password</label>
                             <frontend_type>password</frontend_type>
+                            <frontend_class>required-entry</frontend_class>
                             <sort_order>2</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>

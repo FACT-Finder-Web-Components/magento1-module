@@ -7,9 +7,7 @@ $dataHelper = Mage::helper('factfinder/data');
         url="<?php echo $dataHelper->getAddress(); ?>"
         version="<?php echo $dataHelper->getVersion(); ?>"
         channel="<?php echo $dataHelper->getChannel(); ?>"
-        <?php if (Mage::registry('current_category') || (Mage::app()->getFrontController()->getAction()->getFullActionName() === 'catalogsearch_result_index')) {
-            echo 'search-immediate';
-        } ?>
+        search-immediate="<?php echo $this->getData('search_immediate') ? 'true' : 'false' ?>"
         use-url-parameter="<?php echo $dataHelper->getUseUrlParameter() ? 'true' : 'false' ?>"
         <?php if($dataHelper->getUseCache()) {
             echo 'use-cache';

@@ -1,0 +1,13 @@
+<?php /** @var $this Mage_Core_Block_Template */ ?>
+<div class="sorter">
+    <div class="sort-by">
+        <label><?php echo $this->escapeHtml($this->__('Sort By')) ?></label>
+        <ff-sortbox collapse-onblur="true" unresolved>
+            <ff-sortbox-item key="null.desc"><?php echo $this->escapeHtml($this->__('Relevance')) ?></ff-sortbox-item>
+            <ff-sortbox-item key="Name.asc"><?php echo $this->escapeHtml($this->__('Name (Ascending)')) ?></ff-sortbox-item>
+            <ff-sortbox-item key="Name.desc"><?php echo $this->escapeHtml($this->__('Name (Descending)')) ?></ff-sortbox-item>
+            <ff-sortbox-item key="Price.asc"><?php echo $this->escapeHtml($this->__('Price (Ascending)')) ?></ff-sortbox-item>
+            <ff-sortbox-item key="Price.desc"><?php echo $this->escapeHtml($this->__('Price (Descending)')) ?></ff-sortbox-item>
+        </ff-sortbox>
+    </div>
+</div>

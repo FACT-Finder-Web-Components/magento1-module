@@ -1,12 +1,13 @@
-<ff-checkout-tracking>
 <?php
-
-$order = Mage::getModel('sales/order')->loadByIncrementId($this->getOrderId());
-$items = $order->getAllVisibleItems();
-
-foreach ($items as $item) {
-    echo '<ff-checkout-tracking-item record-id="' . $item->getProduct()->getSku() . '" count="' . (int) $item->getQtyOrdered() . '"></ff-checkout-tracking-item>';
-}
+/** @var Mage_Core_Block_Template $this */
+/** @var Mage_Sales_Model_Order $order */
+/** @var Mage_Sales_Model_Order_Item $item */
+$order = Mage::getSingleton('checkout/session')->getLastRealOrder();
 ?>
+<ff-checkout-tracking>
+<?php foreach ($order->getAllVisibleItems() as $item): ?>
+    <ff-checkout-tracking-item record-id="<?php echo $this->escapeHtml($item->getProduct()->getData('sku')) ?>"
+                               count="<?php echo (int) $item->getQtyOrdered() ?>"></ff-checkout-tracking-item>
+<?php endforeach; ?>
 </ff-checkout-tracking>
 
