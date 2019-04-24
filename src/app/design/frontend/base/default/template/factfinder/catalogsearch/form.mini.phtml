@@ -1,5 +1,6 @@
 <?php
 /** @var Omikron_Factfinder_Helper_Data $dataHelper */
+/** @var Mage_Core_Block_Template $this */
 $dataHelper = Mage::helper('factfinder/data');
 ?>
 
@@ -10,37 +11,36 @@ $dataHelper = Mage::helper('factfinder/data');
                       use-suggest="true"
                       select-onclick="true"
                       class="input-text required-entry"
-                      id="search"
                       type="search"
                       autocomplete="off">
-            <input id="search" placeholder="<?php echo $this->__('Search...'); ?>" />
+            <input id="search" placeholder="<?php echo $this->escapeHtml($this->__('Search...')) ?>" />
         </ff-searchbox>
 
         <ff-searchbutton>
-            <button class="button search-button"><?php echo $this->__('Search'); ?></button>
+            <button class="button search-button"><?php echo $this->escapeHtml($this->__('Search')) ?></button>
         </ff-searchbutton>
     </div>
 </div>
 
-<?php if ($dataHelper->getFFSuggest()) { ?>
+<?php if ($dataHelper->getFFSuggest()): ?>
     <ff-suggest layout="list" unresolved>
         <section id="searchContainer" class="searchTermContainer">
             <div data-container="searchTerm">
-                <p class="containerCaption"><?php echo $this->__('Search suggestions'); ?></p>
+                <p class="containerCaption"><?php echo $this->escapeHtml($this->__('Search suggestions')) ?></p>
                 <ff-suggest-item type="searchTerm">
                     <span>{{{name}}}</span>
                 </ff-suggest-item>
             </div>
 
             <div data-container="category">
-                <p class="containerCaption"><?php echo $this->__('Category suggestions'); ?></p>
+                <p class="containerCaption"><?php echo $this->escapeHtml($this->__('Category suggestions')) ?></p>
                 <ff-suggest-item type="category">
                     <span class="ff-suggest-parent-category">{{attributes.parentCategory}} ></span><span> {{{name}}}</span>
                 </ff-suggest-item>
             </div>
 
             <div data-container="brand">
-                <p class="containerCaption"><?php echo $this->__('Brands'); ?></p>
+                <p class="containerCaption"><?php echo $this->escapeHtml($this->__('Brands')) ?></p>
                 <ff-suggest-item type="brand">
                     <span>{{{name}}}</span>
                 </ff-suggest-item>
@@ -49,7 +49,7 @@ $dataHelper = Mage::helper('factfinder/data');
 
         <section id="productContainer" class="productsContainer">
             <div data-container="productName">
-                <p class="containerCaption"><?php echo $this->__('Suggested products'); ?></p>
+                <p class="containerCaption"><?php echo $this->escapeHtml($this->__('Suggested products')) ?></p>
                 <div>
                     <ff-suggest-item type="productName" onclick="changeSearchTerm(this)">
                         <img data-image>
@@ -61,6 +61,4 @@ $dataHelper = Mage::helper('factfinder/data');
             </div>
         </section>
     </ff-suggest>
-
-
-<?php } ?>
+<?php endif; ?>

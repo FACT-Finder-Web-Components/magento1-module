@@ -1,17 +1,17 @@
 <?php
 /** @var Omikron_Factfinder_Helper_Data $dataHelper */
+/** @var Mage_Core_Block_Template $this */
 $dataHelper = Mage::helper('factfinder/data');
-
-if ($dataHelper->getFFAsn()) {
 ?>
+<?php if ($dataHelper->getFFAsn()): ?>
    <ff-asn align="vertical" unresolved>
-        <ff-asn-group for-group="all" class="cursor">
+        <ff-asn-group for-group="all">
             <ff-asn-group-element>
                 <div slot="selected">
                     <input type="checkbox" checked>
-                    <span class="filterName">{{element.name}} <span>({{element.recordCount}})</span></span>
+                    <span class="filterName">{{element.name}}</span>
                 </div>
-                <div data-unselected>
+                <div slot="unselected">
                     <input type="checkbox">
                     <span class="filterName">{{element.name}} <span>({{element.recordCount}})</span></span>
                 </div>
@@ -19,26 +19,23 @@ if ($dataHelper->getFFAsn()) {
             <div slot="groupCaption" class="groupCaption">{{group.name}}</div>
             <div opened data-container="detailedLinks">
                 <div data-content="detailedLinks"></div>
-
-                <div data-container="showMore">
-                    <span class="text"><?php echo $this->__('Show More'); ?></span>
-                </div>
-
-                <div class="marginBottom"></div>
             </div>
             <div data-container="hiddenLinks">
                 <div data-content="hiddenLinks"></div>
+            </div>
 
-                <div data-container="showLess">
-                    <span class="text"><?php echo $this->__('Show Less'); ?></span>
-                </div>
-                <div class="marginBottom"></div>
+            <div data-container="showMore">
+                <span class="text"><?php echo $this->escapeHtml($this->__('Show More')) ?></span>
+            </div>
+            <div data-container="showLess">
+                <span class="text"><?php echo $this->escapeHtml($this->__('Show Less')) ?></span>
             </div>
         </ff-asn-group>
-        <ff-asn-group filter-style="TREE" opened class="cursor">
+
+        <ff-asn-group filter-style="TREE" opened>
             <ff-asn-group-element>
                 <div slot="selected">
-                    &nbsp;&nbsp;<span class="filterName"><b>{{element.name}} <span>({{element.recordCount}})</span></b></span>
+                    <span class="filterName filterName--selected">{{element.name}}</span>
                 </div>
                 <div slot="unselected">
                     <span class="filterName">{{element.name}} <span>({{element.recordCount}})</span></span>
@@ -47,9 +44,9 @@ if ($dataHelper->getFFAsn()) {
             <div slot="groupCaption" class="groupCaption">{{group.name}}</div>
             <div opened data-container="detailedLinks">
                 <div data-content="detailedLinks"></div>
-                <div class="marginBottom"></div>
             </div>
         </ff-asn-group>
+
         <ff-asn-group-slider class="ff-asn-group-slider">
            <div slot="groupCaption" class="groupCaption">
                {{group.name}}<span class="filterArrowDown">&nbsp;</span>
@@ -65,4 +62,4 @@ if ($dataHelper->getFFAsn()) {
             <div data-container="removeFilter">Remove Filter</div>
        </ff-asn-group-slider>
     </ff-asn>
-<?php } ?>
+<?php endif; ?>
