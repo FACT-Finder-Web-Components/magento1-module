@@ -1,4 +1,12 @@
 # Changelog
+## [v0.9.1] - 2019-04-26
+### Changed
+- Upgrade FACT-Finder WebComponents version to 3.2.0
+- Codebase is moved to community pool
+
+### Added
+- Added possibility to set the exported images width and height
+
 ## [v0.9.0] - 2019-03-20
 ### Changed
 - Upgrade FACT-Finder WebComponents version to 3.1
