@@ -1,4 +1,12 @@
 # Changelog
+## [v0.10.0] - 2019-04-26
+### Changed
+- Upgrade FACT-Finder WebComponents version to 3.2.0
+- Codebase is moved to community pool
+
+### Added
+- Added possibility to set the exported images width and height
+
 ## [v0.9.0] - 2019-03-20
 ### Changed
 - Upgrade FACT-Finder WebComponents version to 3.1
@@ -66,6 +74,7 @@
 - Allow user to choose which visibilities should be applied to collection filter
 - Divide product collection into batches in order to prevent memory exhaustion on product collection load
 
+[v0.10.0]:     https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9.0...v0.10.0
 [v0.9.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9-beta.7...v0.9.0
 [v0.9-beta.7]: https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9-beta.6...v0.9-beta.7
 [v0.9-beta.6]: https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9-beta.5...v0.9-beta.6
