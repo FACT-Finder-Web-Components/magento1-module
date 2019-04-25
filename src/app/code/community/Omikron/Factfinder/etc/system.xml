@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <sections>
+        <factfinder>
+            <label>FACT-Finder</label>
+            <tab>catalog</tab>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label comment">
+                    <label>Main settings</label>
+                    <comment><![CDATA[<div id="messages"><ul class="messages"><li class="notice-msg"><ul><li><span>Please always save the config in the upper right corner after making changes.</span></li></ul></li></ul></div>]]></comment>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <fields>
+                        <address translate="label comment">
+                            <label>Server URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </address>
+                        <channel translate="label comment">
+                            <label>Channel</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </channel>
+                        <username translate="label comment">
+                            <label>Username</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </username>
+                        <password translate="label comment">
+                            <label>Password</label>
+                            <frontend_type>password</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                        </password>
+                        <authentication_prefix translate="label comment">
+                            <label>Authentication Prefix</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </authentication_prefix>
+                        <authentication_postfix translate="label comment">
+                            <label>Authentication Postfix</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </authentication_postfix>
+                        <ff_build_connection>
+                            <label>Test connection</label>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>factfinder/adminhtml_system_config_button_testConnection</frontend_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ff_build_connection>
+                    </fields>
+                </general>
+                <components translate="label comment">
+                    <label>Activated Web-Components</label>
+                    <comment>Please always save the config in the upper right corner after making changes.</comment>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <ff_suggest translate="label">
+                            <label>Suggestions</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </ff_suggest>
+                        <ff_asn translate="label">
+                            <label>Filter / ASN</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </ff_asn>
+                        <ff_paging translate="label">
+                            <label>Paging</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </ff_paging>
+                        <ff_sortbox translate="label">
+                            <label>Sorting</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </ff_sortbox>
+                        <ff_breadcrumb translate="label">
+                            <label>Breadcrumb</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </ff_breadcrumb>
+                        <ff_productspp translate="label">
+                            <label>Products per page</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </ff_productspp>
+                        <ff_campaign translate="label">
+                            <label>Campaigns</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </ff_campaign>
+                        <ff_pushedproductscampaign translate="label">
+                            <label>Pushed Products</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </ff_pushedproductscampaign>
+                        <ff_recommendation translate="label">
+                            <label>Recommendation</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </ff_recommendation>
+                        <ff_similar translate="label">
+                            <label>Similar</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </ff_similar>
+                        <ff_navigation translate="label">
+                            <label>Header Navigation</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </ff_navigation>
+                    </fields>
+                </components>
+                <advanced translate="label comment">
+                    <label>Advanced settings</label>
+                    <comment>The advanced settings can change how the search works. Please edit them with caution and only if you know what they are doing.</comment>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <version translate="label comment">
+                            <label>API Version</label>
+                            <comment>FACT-Finder version.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>factfinder/source_fFVersion</source_model>
+                        </version>
+                        <use_url_parameter translate="label comment">
+                            <label>Use url parameter</label>
+                            <comment>If set to true, the http parameters of the current search are pushed to the browser url.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </use_url_parameter>
+                        <use_cache translate="label comment">
+                            <label>Use cache</label>
+                            <comment>This value determines, if the browser should cache previous search requests or not. Some browsers support this feature and therefore speed up the search for repeated requests.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </use_cache>
+                        <default_query translate="label comment">
+                            <label>Default query</label>
+                            <comment>Determines which search term should be used by default. Default is '*'</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </default_query>
+                        <add_params translate="label comment">
+                            <label>Add params</label>
+                            <comment>With this property you can deliver standard parameters which will then be attached to the search request. Example: param1=abc,param2=xyz.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </add_params>
+                        <add_tracking_params translate="label comment">
+                            <label>Add tracking params</label>
+                            <comment>With this property you can deliver standard parameters which are attached to every tracking request. Example: param1=abc,param2=xyz.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </add_tracking_params>
+                        <keep_url_params translate="label comment">
+                            <label>Keep url params</label>
+                            <comment>Determines if parameters which are written into the URL should be kept.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </keep_url_params>
+                        <use_asn translate="label comment">
+                            <label>Use ASN</label>
+                            <comment>Determines if the the ASN is returned. Can be set to false to save performance, if the ASN is not required. Default is true.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </use_asn>
+                        <use_found_rows translate="label comment">
+                            <label>Use found rows</label>
+                            <comment>For found records, FACT-Finder is capable of returning the words which lead to the find. The determination of these words costs performance. It is therefore deactivated by default. If true, words are created. If false, words are not created.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </use_found_rows>
+                        <use_campaigns translate="label comment">
+                            <label>Use campaigns</label>
+                            <comment>Use this parameter if you want to prevent the campaign manager from checking if there is a campaign for this search request.If true, campaigns are analyzed and returned. If false, campaigns are ignored. Default is true.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </use_campaigns>
+                        <feedback_campaign_label translate="label comment">
+                            <label>Feedback campaign label</label>
+                            <comment>Set the feedback campaign webcomponent label to appropriate value. This value has to match a configured label value inside the FACT-Finder backend. Default is empty.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </feedback_campaign_label>
+                        <advisor_campaign_name translate="label comment">
+                            <label>Advisor campaign name</label>
+                            <comment>Set the advisor campaign webcomponent name to appropriate value. This value has to match a configured label value inside the FACT-Finder backend. Default is empty.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </advisor_campaign_name>
+                        <product_campaign_name translate="label comment">
+                            <label>Product campaign name</label>
+                            <comment>Set the product campaign webcomponent name to appropriate value. This value has to match a configured label value inside the FACT-Finder backend. Default is empty.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_campaign_name>
+                        <product_feedback_campaign_name translate="label comment">
+                            <label>Product feedback campaign name</label>
+                            <comment>Set the product feedback campaign webcomponent name to appropriate value. This value has to match a configured label value inside the FACT-Finder backend. Default is empty.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_feedback_campaign_name>
+                        <product_landing_page_campaign_name translate="label comment">
+                            <label>Product landing page campaign name</label>
+                            <comment>Set the product product campaign webcomponent name to appropriate value. This value has to match a configured label value inside the FACT-Finder backend. Default is empty.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>16</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_landing_page_campaign_name>
+                        <feedback_landing_page_label translate="label comment">
+                            <label>Feedback landing page campaign name</label>
+                            <comment>Set the product feedback campaign webcomponent name to appropriate value. This value has to match a configured label value inside the FACT-Finder backend. Default is empty.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>17</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </feedback_landing_page_label>
+                        <landing_page_page_id translate="label comment">
+                            <label>Landing page page-id</label>
+                            <comment>Set the landing page page-id to appropriate value. This value has to match a configured label value inside the FACT-Finder backend. Default is empty.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>18</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </landing_page_page_id>
+                        <shopping_cart_product_campaign_name translate="label comment">
+                            <label>Shopping cart product campaign name</label>
+                            <comment>Set the shopping cart product campaign name to appropriate value. This value has to match a configured label value inside the FACT-Finder backend. Default is empty.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>19</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </shopping_cart_product_campaign_name>
+                        <shopping_cart_feedback_label translate="label comment">
+                            <label>Shopping cart feedback label</label>
+                            <comment>Set the shopping cart feedback label to appropriate value. This value has to match a configured label value inside the FACT-Finder backend. Default is empty.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </shopping_cart_feedback_label>
+                        <generate_advisor_tree translate="label comment">
+                            <label>Generate advisor tree</label>
+                            <comment>Is used with advisor campaigns. Please refer the campaign manager documentation. If true, the whole question-answer-tree is returned with the advisor campaign. If false, only the currently active questions and their answers are returned. Default is false.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>21</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </generate_advisor_tree>
+                        <disable_cache translate="label comment">
+                            <label>Disable cache</label>
+                            <comment>Controls the usage of search result caches. If true, cache is ignored. If false, cache is used. Default is false.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>22</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </disable_cache>
+                        <use_personalization translate="label comment">
+                            <label>Use personalization</label>
+                            <comment>Allows activating/deactivating of request personalization. If true, the search result is personalized if the personalization module is active and all other requirements are met. If false, the search result is not personalized. Default is true.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>23</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </use_personalization>
+                        <use_semantic_enhancer translate="label comment">
+                            <label>Use semantic enhancer</label>
+                            <comment>Allows activating/deactivating of the semantic enrichment of requests. If true, the search result is semantically enriched if the enhanced module is activated and all other requirements are met. If false, the search result is not semantically enriched. Default value is true.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>24</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </use_semantic_enhancer>
+                        <use_aso translate="label comment">
+                            <label>Use ASO</label>
+                            <comment>Allows activating/deactivating of automated search optimization. If true, the search result is automatically optimized. If false, the search result is not optimized. Default is true.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </use_aso>
+                        <use_browser_history translate="label comment">
+                            <label>Use browser history</label>
+                            <comment>If true, the search history is pushed to the browser history, even without using url parameter. Default is true.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>26</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </use_browser_history>
+                        <use_seo translate="label comment">
+                            <label>Use SEO</label>
+                            <comment>If true, web components will use the FACT-Finder SEO API. Set this only to true if the module is active in FACT-Finder.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>27</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </use_seo>
+                        <seo_prefix translate="label comment">
+                            <label>SEO prefix</label>
+                            <comment>The seo-prefix is used to show a piece of path between your domain the actual seo-path. E.g. domain.com/prefix/seoPath</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>28</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </seo_prefix>
+                        <only_search_params translate="label comment">
+                            <label>Only search params</label>
+                            <comment>If present, parameters like 'channel' and 'sid' are omitted in the url. Can be used in conjunction with 'parameter-whitelist'</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>28</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </only_search_params>
+                        <similar_products_max_results translate="label comment">
+                            <label>Similar products - max results</label>
+                            <comment>The maximum results in similar products. Default 4.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </similar_products_max_results>
+                    </fields>
+                </advanced>
+                <data_transfer translate="label comment">
+                    <label>General export settings</label>
+                    <comment><![CDATA[<div id="messages"><ul class="messages"><li class="notice-msg"><ul><li><span>Please always save the config in the upper right corner after making changes. Especially before using the export-button.</span></li></ul></li></ul></div>]]></comment>
+                    <sort_order>4</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <fields>
+                        <ff_image_resize_width translate="label comment">
+                            <label>Image width (px)</label>
+                            <comment>Select the resized image height.</comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-greater-than-zero</validate>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ff_image_resize_width>
+                        <ff_image_resize_height translate="label comment">
+                            <label>Image height (px)</label>
+                            <comment>Select the resized image height.</comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-greater-than-zero</validate>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ff_image_resize_height>
+
+                        <ff_manufacturer translate="label comment">
+                            <label>Manufacturer</label>
+                            <comment>Select the Attribute which stores the manufacturer of a product.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>factfinder/source_attribute</source_model>
+                        </ff_manufacturer>
+                        <ff_ean translate="label comment">
+                            <label>EAN/ISBN</label>
+                            <comment>Select the Attribute which stores the ean or isbn of a product.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>factfinder/source_attribute</source_model>
+                        </ff_ean>
+                        <ff_additional_attributes translate="label comment">
+                            <label>Select Additional Attributes</label>
+                            <comment>Select all attributes which should be exported to the product feed.</comment>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>factfinder/source_attribute</source_model>
+                        </ff_additional_attributes>
+                        <ff_product_visibility translate="label comment">
+                            <label>Select Product Visibility</label>
+                            <comment>Visibility attribute values used in filtering prodcut collection.</comment>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>factfinder/source_visibility</source_model>
+                        </ff_product_visibility>
+                        <ff_price_customer_group translate="label comment">
+                            <label>Select Customer groups for price export</label>
+                            <comment>Diffrent prices for selected customer groups will be exported. To have specific prices displayed for proper customer groups You need also to have MultiPricesSearchCallback defined at Fact Finder</comment>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>factfinder/source_customerGroup</source_model>
+                        </ff_price_customer_group>
+                    </fields>
+                </data_transfer>
+                <ftp_data_transfer translate="label comment">
+                    <label>Export to FTP</label>
+                    <comment><![CDATA[<div id="messages"><ul class="messages"><li class="notice-msg"><ul><li><span>Please always save the config in the upper right corner after making changes. Especially before using the export-button.</span></li></ul></li></ul></div>]]></comment>
+                    <sort_order>5</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <fields>
+                        <ff_upload_host translate="label comment">
+                            <label>FTP host</label>
+                            <comment>Please specify the FTP server address, where the export file(s) should be uploaded. For example shopname.fact-finder.de. This parameter shouldn't have any trailing slashes and shouldn't be prefixed with ftp://.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ff_upload_host>
+                        <ff_upload_port translate="label comment">
+                            <label>FTP port</label>
+                            <comment>Please specify the FTP server port. For example 21.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ff_upload_port>
+                        <ff_upload_path translate="label comment">
+                            <label>Path</label>
+                            <comment>Please specify the FTP server path. It should describe, where CSV file should be uploaded. Leave empty if you want to use root directory.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ff_upload_path>
+                        <ff_upload_user translate="label comment">
+                            <label>FTP user</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ff_upload_user>
+                        <ff_upload_password translate="label comment">
+                            <label>FTP password</label>
+                            <frontend_type>password</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                        </ff_upload_password>
+                        <ff_create_feed translate="label comment">
+                            <label>Generate and upload export file</label>
+                            <comment>On buttonclick CSV exports of all your products will be generated and uploaded to the specified FTP Server.</comment>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>factfinder/adminhtml_system_config_button_feed</frontend_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ff_create_feed>
+                        <ff_upload_feed trasnlate="label comment">
+                            <label>Upload export file</label>
+                            <comment>On buttonclick CSV exports of all your products will be uploaded to the specified FTP Server (using previously generated CSV file).</comment>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>factfinder/adminhtml_system_config_button_upload</frontend_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ff_upload_feed>
+                    </fields>
+                </ftp_data_transfer>
+                <basic_auth_data_transfer translate="label comment">
+                    <label>Export via Basic Auth</label>
+                    <sort_order>6</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <fields>
+                        <ff_upload_url_user translate="label comment">
+                            <label>Basic Auth user</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_class>required-entry</frontend_class>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ff_upload_url_user>
+                        <ff_upload_url_password translate="label comment">
+                            <label>Basic Auth password</label>
+                            <frontend_type>password</frontend_type>
+                            <frontend_class>required-entry</frontend_class>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                        </ff_upload_url_password>
+                    </fields>
+                </basic_auth_data_transfer>
+                <configurable_cron translate="label">
+                    <label>Cron Schedule</label>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Generate Export Files(s) automatically</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </enabled>
+                        <time translate="label">
+                            <label>Start Time</label>
+                            <frontend_type>time</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </time>
+                        <frequency translate="label">
+                            <label>Frequency</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_cron_frequency</source_model>
+                            <backend_model>factfinder/adminhtml_system_config_backend_feed_cron</backend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </frequency>
+                    </fields>
+                </configurable_cron>
+            </groups>
+        </factfinder>
+    </sections>
+</config>

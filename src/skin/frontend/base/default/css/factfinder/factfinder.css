@@ -1,12 +1,15 @@
 .containerCaption {
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
-    background-color: #F2F2F2;
+    background: #F2F2F2;
     font-weight: bold;
     font-size: 14px;
     color: #000;
     padding: 6px 5px 7px 13px;
+}
 
+.ff-searchbox #search {
+    text-indent: 10px;
 }
 
 #ffSuggestContainer {
@@ -205,17 +208,12 @@ ff-recommendation > ff-record-list, ff-similar-products > ff-record-list {
 }
 
 ff-campaign-advisor, ff-campaign-feedbacktext > div {
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 20px auto;
     width: 760px;
-    background-color: #fff;
+    background: #fff;
     display: flex;
     flex-flow: column;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #cccccc;
-    margin-bottom: 20px;
+    border: 1px solid #ccc;
 }
 
 #productCartCampaignCaption > ff-campaign-feedbacktext > div {
@@ -223,18 +221,13 @@ ff-campaign-advisor, ff-campaign-feedbacktext > div {
 }
 
 #landingPageCampaignCaption > ff-campaign-feedbacktext {
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 20px auto;
     padding: 20px;
     width: 100%;
-    background-color: #fff;
+    background: #fff;
     display: flex;
     flex-flow: column;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #cccccc;
-    margin-bottom: 20px;
+    border: 1px solid #ccc;
 }
 
 ff-campaign-advisor-question {
@@ -313,10 +306,9 @@ ff-asn-group-slider {
 }
 
 ff-slider {
-    margin-top: 50px !important;
     height: 5px;
     background-color: #336;
-    margin: 5px auto;
+    margin: 50px auto 5px;
     display: block;
     width: 220px;
     --slidebar-mixin: {
@@ -324,122 +316,80 @@ ff-slider {
     }
 }
 
-ff-asn-group-slider [slot="groupCaption"] {
-    cursor: pointer;
-}
-
 ff-asn-group-slider[opened] > .ff-asn-group-container {
-    border-width: 0 1px 1px;
-    border-style: solid;
-    border-color: #cccccc;
+    border: 1px solid #ccc;
+    border-top: 0;
 }
 
 ff-asn-group {
-    border-radius: 5px;
+    display: block;
+    overflow: hidden;
+    border: 1px solid #ccc;
     margin-bottom: 6px;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    background-color: #f6f6f6;
-    height: auto;
-    min-width: 290px !important;
-}
-
-ff-asn-group-element {
-    padding: 10px;
-    margin: 0;
-    border-width: 0 1px 0px;
-    border-style: solid;
-    border-color: #cccccc;
-    background-color: #fff;
-}
-
-[data-container^="show"] span.text {
-    display: inline-block;
-    color: #5c5c5c;
-    padding: 8px 0 8px 15px;
-}
-
-[data-container="showMore"] {
-    transition: 400ms;
-    border-width: 0 1px;
-    border-style: solid;
-    border-color: #cccccc;
-}
-
-[data-container="showLess"] {
-    transition: 400ms;
-    border-width: 0 1px;
-    border-style: solid;
-    border-color: #cccccc;
-}
-
-[data-container="hiddenLinks"] {
-    transition: 400ms;
-    border-width: 0 0 1px;
-    border-style: solid;
-    border-color: #cccccc;
-}
-
-[data-container="removeFilter"] {
-    color: #3399cc;
-    padding: 7px 0 0 15px;
-    cursor: pointer;
-}
-
-[data-container="removeFilter"]:hover {
-    text-decoration: underline;
-}
-
-[data-container="detailedLinks"] {
+    background: #f6f6f6;
 }
 
 .groupCaption {
-    margin: 0;
-    color: #636363;
-    font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    line-height: 1.4;
+    font: normal 14px/1.4 "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
     text-rendering: optimizeSpeed;
     text-transform: uppercase;
     -moz-user-select: none;
     -ms-user-select: none;
     -webkit-user-select: none;
     user-select: none;
-    font-weight: normal;
-    margin-bottom: 0px;
-    padding: 7px 10px 7px 24px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #cccccc;
-    position: relative;
-    background-color: #f4f4f4;
-    display: block;
+    margin: 0;
+    padding: 7px 10px;
+    cursor: pointer;
 }
 
-.cursor {
+[opened] .groupCaption {
+    border-bottom: 1px solid #ccc;
+}
+
+.ffw-asn-group-container {
+    background: #fff;
+}
+
+ff-asn-group-element {
+    display:block;
+    padding: 10px;
+}
+
+[data-container="hiddenLinks"] {
+    transition: 400ms;
+}
+
+[data-container="showMore"] span.text, [data-container="showLess"] span.text, [data-container="removeFilter"] {
+    display: block;
+    color: #5c5c5c;
+    background: #fcfcfc;
+    padding: 8px 0 8px 15px;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+}
+
+[data-container="hiddenLinks"] {
+    border-bottom: 1px solid #ccc;
+}
+
+[data-container="removeFilter"] {
+    border-top: 1px solid #ccc;
 }
 
 .clusterLevel1 .filterName {
-    padding-left: 15px;
+    padding-left: 10px;
 }
 
 .clusterLevel2 .filterName {
-    padding-left: 15px;
+    padding-left: 20px;
 }
 
 .filterName {
     color: #3399cc;
+    cursor: pointer;
 }
 
-.filterName:hover {
-    text-decoration: underline;
+.filterName--selected {
+    font-weight: bold;
 }
 
 .filterName > span {
@@ -449,53 +399,47 @@ ff-asn-group-element {
 ff-sortbox-item {
     padding: 1px 5px 0 5px;
     margin: 0;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #cccccc;
-    background-color: #fff;
+    border: 1px solid #ccc;
+    background: #fff;
     width: 200px;
 }
 
+.ffw-dropdown-container ff-sortbox-item {
+    border-top: 0;
+}
+
 ff-products-per-page-item {
-    padding: 1px 5px 0 9px;
     margin-right: 3px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #cccccc;
-    background-color: #fff;
+    border: 1px solid #ccc;
+    background: #fff;
     width: 30px;
+    text-align: center;
 }
 
 .toolbar {
     height: 44px !important;
 }
 
-.ff-current-link {
-    color: #636363;
-    border: 1px solid #cccccc;
-    width: 30px;
-    background-color: #FFFFFF;
-    cursor: default;
-    text-align: center;
-    height: 25px;
+ff-paging {
+    text-align: right;
+    display: block;
 }
 
-.ff-link {
+.ffw-page-item-container {
     display: inline-block;
-    border: 0;
-    font-size: 13px;
+    border: solid 1px transparent;
+    font-size: .875rem;
     text-align: center;
     text-transform: uppercase;
-    vertical-align: middle;
     white-space: nowrap;
     line-height: 30px;
-    width: 25px;
-    height: 30px;
-    padding: 0;
-    color: #3399cc;
-    font-family: "Helvetica Neue", Verdana, Arial, sans-serif;
+    padding: 0 12px;
+    color: #39c;
+    font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
+    cursor: pointer;
 }
 
-ff-paging {
-    float: right;
+.ff-current-link .ffw-page-item-container {
+    color: #636363;
+    border-color: #ccc;
 }

@@ -1,0 +1,12 @@
+<?php /** @var $this Mage_Core_Block_Template */ ?>
+<div class="pager">
+    <div class="count-container">
+        <p class="amount">
+            <ff-template scope="result" unresolved><strong><?php echo $this->escapeHtml($this->__('{{resultCount}} Item(s)')) ?></strong></ff-template>
+        </p>
+        <div class="limiter">
+            <label><?php echo $this->escapeHtml($this->__('Show')) ?></label>
+            <ff-products-per-page-list unresolved></ff-products-per-page-list>
+        </div>
+    </div>
+</div>

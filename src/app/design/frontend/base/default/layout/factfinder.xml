@@ -1,25 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layout>
     <!-- Search Result Page with Toolbar and Campaigns -->
-    <catalogsearch_result_index translate="label">
+    <catalogsearch_result_index>
+        <block type="core/template" name="ff.paging" template="factfinder/catalog/product/list/paging.phtml" />
+        <block type="core/template" name="ff.sortbox" template="factfinder/catalog/product/list/sortbox.phtml" />
+        <block type="core/template" name="ff.ppp_list" template="factfinder/catalog/product/list/ppp_list.phtml" />
+
         <action method="setTemplate" block="root">
             <template>page/2columns-left.phtml</template>
         </action>
         <action method="setTemplate" block="catalogsearch.leftnav">
             <template>factfinder/catalog/layer/view.phtml</template>
         </action>
-        <reference name="search.result">
-            <action method="setTemplate">
-                <template>factfinder/catalogsearch/result.phtml</template>
-            </action>
-            <block type="catalog/product_list" name="search_result_list" template="factfinder/catalog/product/list.phtml">
-                <block type="catalog/product_list_toolbar" name="product_list_toolbar" template="factfinder/catalog/product/list/toolbar.phtml" />
+        <action method="setData" block="ff.communication">
+            <key>search_immediate</key>
+            <value>1</value>
+        </action>
+
+        <block type="core/template" name="ff.result.list" template="factfinder/catalog/product/list.phtml">
+            <block type="core/text_list" name="ff.toolbar" as="toolbar">
+                <action method="setFrameTags">
+                    <before><![CDATA[div class="toolbar"]]></before>
+                    <after><![CDATA[/div]]></after>
+                </action>
+                <action method="append" ifconfig="factfinder/components/ff_sortbox">
+                    <name>ff.sortbox</name>
+                    <as>sortbox</as>
+                </action>
+                <action method="append" ifconfig="factfinder/components/ff_productspp">
+                    <name>ff.ppp_list</name>
+                    <as>ppp_list</as>
+                </action>
             </block>
+
+            <action method="append" ifconfig="factfinder/components/ff_paging">
+                <name>ff.paging</name>
+                <as>paging</as>
+            </action>
+        </block>
+
+        <reference name="content">
+            <action method="unsetChild"><child>search.result</child></action>
+            <action method="append"><name>ff.result.list</name></action>
         </reference>
     </catalogsearch_result_index>
 
     <!-- Product Details Campaign and Similar Products -->
-    <catalog_product_view translate="label">
+    <catalog_product_view>
         <reference name="content">
             <block type="catalog/product_view" name="factfinder_roduct_campaign" template="factfinder/campaign/product.phtml" />
             <block type="catalog/product_view" name="factfinder_roduct_similar_products" template="factfinder/catalog/product/similar_products.phtml" />
@@ -45,7 +72,7 @@
     <!-- Checkout Tracking -->
     <checkout_onepage_success>
         <reference name="content">
-            <block type="checkout/onepage_success" name="factfinder_checkout_success" template="factfinder/checkout/success.phtml"/>
+            <block type="core/template" name="factfinder_checkout_success" template="factfinder/checkout/success.phtml" after="-" />
         </reference>
     </checkout_onepage_success>
 
@@ -53,14 +80,12 @@
     <default>
         <reference name="head">
             <action method="addJs">
-                <script>factfinder/top.js</script>
-            </action>
-            <action method="addJs">
                 <script>factfinder/search-redirect.js</script>
             </action>
             <action method="addCss">
                 <stylesheet>css/factfinder/factfinder.css</stylesheet>
             </action>
+            <block type="core/template" name="ff.communication.elements" template="factfinder/communication/elements.phtml" />
         </reference>
 
         <!-- Search Box and Suggest -->
@@ -69,20 +94,13 @@
         </action>
 
         <!-- Header Navigation -->
-        <reference name="page/html_header">
-            <block type="core/text_list" name="top.menu" as="topMenu" translate="label">
-                <block type="page/html_topmenu" name="catalog.topnav">
-                    <action method="setTemplate">
-                        <template>factfinder/page/html/topmenu.phtml</template>
-                    </action>
-                </block>
-            </block>
-        </reference>
+        <action method="setTemplate" block="catalog.topnav" ifconfig="factfinder/components/ff_navigation">
+            <template>factfinder/page/html/topmenu.phtml</template>
+        </action>
 
         <!-- Communication -->
         <reference name="after_body_start">
             <block type="core/template" name="ff.communication" template="factfinder/communication/communication.phtml" />
-            <block type="core/template" name="ff.communication.elements" template="factfinder/communication/elements.phtml" />
         </reference>
     </default>
 </layout>
