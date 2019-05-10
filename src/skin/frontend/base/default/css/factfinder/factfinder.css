@@ -16,6 +16,26 @@
     display: inline-block;
 }
 
+ff-suggest {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+}
+
+@media only screen and (min-width: 770px) {
+    ff-suggest {
+        width: 650px;
+        left: auto;
+        right: 0;
+    }
+}
+
+ff-suggest .ffw-suggestContainerWrapper {
+    position: static;
+    border: 1px solid #ddd;
+    border-top: 0;
+}
+
 ff-suggest-item {
     cursor: pointer;
 }
@@ -25,7 +45,7 @@ ff-suggest-item.ff-highlight-suggest-item {
 }
 
 ff-suggest[layout="block"] section.searchTermContainer {
-    width: 198px;
+    flex: 1 1 198px;
 }
 
 ff-suggest[layout="list"] section.searchTermContainer {
@@ -37,7 +57,7 @@ ff-suggest[layout="list"] section.searchTermContainer {
 }
 
 ff-suggest[layout="block"] section.productsContainer {
-    width: 510px;
+    flex: 2 1 510px;
 }
 
 ff-suggest[layout="list"] section.productsContainer {
@@ -54,41 +74,18 @@ ff-suggest[layout="list"] section.productsContainer {
 }
 
 ff-suggest-item[type="productName"] {
-    height: 50px;
-    position: relative;
-    display: block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+ff-suggest-item[type="productName"] .product-img {
+    flex: 0 0 100px;
+    margin-right: 10px;
 }
 
 ff-suggest-item[type="productName"] img {
-    width: 40px;
-    height: 40px;
-    margin: 5px;
-    float: left;
-}
-
-.product-center {
-    position: relative;
-    /*width: 300px;*/
-    float: left;
-    margin-top: 15px;
-}
-
-.product-name {
-    /*width: 300px;*/
-    position: relative;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.product-right {
-    width: 100px;
-    position: relative;
-    float: right;
-}
-
-.product-price {
-    font-weight: bold;
+    width: 100%;
 }
 
 .product-availabilitytext {
@@ -108,9 +105,7 @@ ff-suggest-item span.query {
 }
 
 ff-suggest-item {
-    padding-left: 13px;
-    padding-bottom: 5px;
-    padding-top: 5px;
+    padding: 5px 10px;
 }
 
 #navigation-container {
@@ -268,7 +263,6 @@ ff-asn {
 
 ff-asn-group-slider {
     margin-bottom: 6px;
-    min-width: 290px !important;
     height: auto;
 }
 
@@ -308,12 +302,15 @@ ff-asn-group-slider {
 ff-slider {
     height: 5px;
     background-color: #336;
-    margin: 50px auto 5px;
+    margin: 50px 10px 5px;
     display: block;
-    width: 220px;
     --slidebar-mixin: {
         background-color: #00bfa5;
     }
+}
+
+ff-slider [slot^=slider] {
+    margin-top: 0;
 }
 
 ff-asn-group-slider[opened] > .ff-asn-group-container {
@@ -321,6 +318,7 @@ ff-asn-group-slider[opened] > .ff-asn-group-container {
     border-top: 0;
 }
 
+ff-asn-group-slider,
 ff-asn-group {
     display: block;
     overflow: hidden;
@@ -346,12 +344,13 @@ ff-asn-group {
     border-bottom: 1px solid #ccc;
 }
 
+.ff-asn-group-slider .ffw-container,
 .ffw-asn-group-container {
     background: #fff;
 }
 
 ff-asn-group-element {
-    display:block;
+    display: block;
     padding: 10px;
 }
 
