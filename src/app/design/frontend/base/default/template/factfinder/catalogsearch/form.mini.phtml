@@ -23,17 +23,17 @@ $dataHelper = Mage::helper('factfinder/data');
 </div>
 
 <?php if ($dataHelper->getFFSuggest()): ?>
-    <ff-suggest layout="list" unresolved>
+    <ff-suggest layout="block" unresolved>
         <section id="searchContainer" class="searchTermContainer">
             <div data-container="searchTerm">
-                <p class="containerCaption"><?php echo $this->escapeHtml($this->__('Search suggestions')) ?></p>
+                <p class="containerCaption"><?php echo $this->escapeHtml($this->__('Suggestions')) ?></p>
                 <ff-suggest-item type="searchTerm">
                     <span>{{{name}}}</span>
                 </ff-suggest-item>
             </div>
 
             <div data-container="category">
-                <p class="containerCaption"><?php echo $this->escapeHtml($this->__('Category suggestions')) ?></p>
+                <p class="containerCaption"><?php echo $this->escapeHtml($this->__('Categories')) ?></p>
                 <ff-suggest-item type="category">
                     <span class="ff-suggest-parent-category">{{attributes.parentCategory}} ></span><span> {{{name}}}</span>
                 </ff-suggest-item>
@@ -52,9 +52,10 @@ $dataHelper = Mage::helper('factfinder/data');
                 <p class="containerCaption"><?php echo $this->escapeHtml($this->__('Suggested products')) ?></p>
                 <div>
                     <ff-suggest-item type="productName" onclick="changeSearchTerm(this)">
-                        <img data-image>
-                        <div class="product-center">
+                        <div class="product-img"><img data-image></div>
+                        <div class="product-info">
                             <div class="product-name">{{{name}}}</div>
+                            <div class="price">{{attributes.Price}}</div>
                         </div>
                     </ff-suggest-item>
                 </div>
