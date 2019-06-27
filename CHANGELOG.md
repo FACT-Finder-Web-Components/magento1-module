@@ -1,7 +1,7 @@
 # Changelog
 ## Unreleased
 ### Changed
-- Upgraded FACT-Finder WebComponents version to 3.3.1
+- Upgraded FACT-Finder WebComponents version to 3.4.0
 
 ## [v0.10.0] - 2019-04-26
 ### Changed
