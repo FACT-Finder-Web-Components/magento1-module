@@ -58,7 +58,8 @@ class Omikron_Factfinder_Helper_Communication extends Mage_Core_Helper_Abstract
         // Send HTTP GET with curl
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_ENCODING, 'Accept-encoding: gzip, deflate');
+        // Special value '' for all supported encoding types.
+        curl_setopt($curl, CURLOPT_ENCODING, '');
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
         // Receive server response
