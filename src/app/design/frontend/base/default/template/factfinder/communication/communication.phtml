@@ -1,4 +1,5 @@
 <?php
+/** @var Mage_Core_Block_Template $this */
 /** @var Omikron_Factfinder_Helper_Data $dataHelper */
 $dataHelper = Mage::helper('factfinder/data');
 ?>
@@ -31,7 +32,7 @@ $dataHelper = Mage::helper('factfinder/data');
         } ?>
         currency-code="<?php echo Mage::app()->getStore()->getCurrentCurrencyCode(); ?>"
         currency-country-code="<?php echo Mage::getStoreConfig('general/country/default'); ?>"
-        <?php if(Mage::getSingleton('customer/session')->isLoggedIn()) {
+        <?php if (Mage::getSingleton('customer/session')->isLoggedIn()) {
             echo 'user-id="' . Mage::getSingleton('customer/session')->getId() . '"';
         } ?>
 >
@@ -45,6 +46,8 @@ if ($dataHelper->getFFCampaign()) {
 ?>
 
 <script>
+    var ffRedirectPath = '<?php echo $this->jsQuoteEscape($this->getUrl('catalogsearch/result')) ?>';
+
     document.addEventListener("ffReady", function () {
         factfinder.communication.fieldRoles = {
             displayProductNumber: "ProductNumber",

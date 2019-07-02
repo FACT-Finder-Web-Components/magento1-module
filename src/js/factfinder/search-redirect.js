@@ -1,5 +1,5 @@
 document.addEventListener('ffReady', function () {
-    var redirectPath = '/catalogsearch/result';
+    var redirectPath = window.ffRedirectPath || '/catalogsearch/result';
     factfinder.communication.FFCommunicationEventAggregator.addBeforeDispatchingCallback(function (event) {
         if (event.type === 'search' && window.location.href.indexOf(redirectPath) < 0) {
             var params = Object.assign({}, event);
@@ -10,26 +10,27 @@ document.addEventListener('ffReady', function () {
     });
 });
 
-document.addEventListener("dom-updated", function () {
+document.addEventListener('dom-updated', function () {
     var parentCategory = document.getElementsByClassName('ff-suggest-parent-category');
     Array.prototype.forEach.call(parentCategory, function (el) {
-        if (el.innerText == '>') {
-            el.style.display = "none";
+        if (el.innerText === '>') {
+            el.style.display = 'none';
         } else {
-            el.style.display = "inline-block";
+            el.style.display = 'inline-block';
         }
     });
 });
 
 document.addEventListener('ffReady', function () {
-    factfinder.communication.ResultDispatcher.subscribe(`navigation`, (navData, e) => {
-        if (window.location.href.match(/catalogsearch\/result/) === null) {
-            navData.forEach(navSection => navSection.forEach(navEl => {
-                    let url = navEl.__TARGET_URL__.url.split('?');
-                    url.splice(1, 0, 'catalogsearch/result?');
-                    navEl.__TARGET_URL__.setUrl(url.join(''));
-                }
-            ))
+    factfinder.communication.ResultDispatcher.subscribe('navigation', function (navData) {
+        var redirectPath = window.ffRedirectPath || '/catalogsearch/result';
+        if (window.location.href.indexOf(redirectPath) < 0) {
+            navData.forEach(function (navSection) {
+                navSection.forEach(function (navEl) {
+                    var url = navEl.__TARGET_URL__.url.split('?')[1];
+                    navEl.__TARGET_URL__.setUrl(redirectPath + '?' + url);
+                });
+            });
         }
     });
 });
