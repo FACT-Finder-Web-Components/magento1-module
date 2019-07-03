@@ -1,10 +1,11 @@
 # Changelog
-## [v0.11.0] - 2019-06-28
+## [v1.0.0] - 2019-07-03
 ### Changed
 - Upgraded FACT-Finder WebComponents version to 3.4.0
 
 ### Fixed
 - Fix wrong value for CURLOPT_ENCODING and add support for all encoding types.
+- Fix search redirect on multistore environment.
 
 ## [v0.10.0] - 2019-04-26
 ### Changed
