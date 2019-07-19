@@ -261,6 +261,11 @@ ff-asn {
     margin-right: 5px;
 }
 
+ff-asn-group, ff-asn-group-slider {
+    max-width: none;
+    min-width: auto;
+}
+
 ff-asn-group-slider {
     margin-bottom: 6px;
     height: auto;

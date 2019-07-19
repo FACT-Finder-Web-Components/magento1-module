@@ -10,11 +10,6 @@
             <factfinder>
                 <class>Omikron_Factfinder_Helper</class>
             </factfinder>
-            <catalogsearch>
-                <rewrite>
-                    <data>Omikron_Factfinder_Helper_CatalogSearch_Data</data>
-                </rewrite>
-            </catalogsearch>
         </helpers>
         <models>
             <factfinder>
@@ -27,7 +22,7 @@
             <checkout_cart_product_add_after>
                 <observers>
                     <omikron_factfinder_model_observer>
-                        <class>factfinder/observer</class>
+                        <class>factfinder/observer_tracking</class>
                         <method>saveProductToSession</method>
                     </omikron_factfinder_model_observer>
                 </observers>
@@ -50,13 +45,6 @@
             </modules>
         </translate>
         <routers>
-            <catalogsearch>
-                <args>
-                    <modules>
-                        <factfinder before="Mage_CatalogSearch">Omikron_Factfinder_CatalogSearch</factfinder>
-                    </modules>
-                </args>
-            </catalogsearch>
             <factfinder>
                 <use>standard</use>
                 <args>

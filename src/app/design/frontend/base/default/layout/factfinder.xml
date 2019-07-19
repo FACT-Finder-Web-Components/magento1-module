@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layout>
     <!-- Search Result Page with Toolbar and Campaigns -->
-    <catalogsearch_result_index>
-        <block type="core/template" name="ff.paging" template="factfinder/catalog/product/list/paging.phtml" />
-        <block type="core/template" name="ff.sortbox" template="factfinder/catalog/product/list/sortbox.phtml" />
-        <block type="core/template" name="ff.ppp_list" template="factfinder/catalog/product/list/ppp_list.phtml" />
+    <factfinder_result_index>
+        <update handle="page_two_columns_left" />
 
-        <action method="setTemplate" block="root">
-            <template>page/2columns-left.phtml</template>
-        </action>
-        <action method="setTemplate" block="catalogsearch.leftnav">
-            <template>factfinder/catalog/layer/view.phtml</template>
-        </action>
         <action method="setData" block="ff.communication">
             <key>search_immediate</key>
             <value>1</value>
         </action>
+
+        <block type="core/template" name="ff.asn" template="factfinder/catalog/layer/view.phtml" />
+        <block type="core/template" name="ff.paging" template="factfinder/catalog/product/list/paging.phtml" />
+        <block type="core/template" name="ff.sortbox" template="factfinder/catalog/product/list/sortbox.phtml" />
+        <block type="core/template" name="ff.ppp_list" template="factfinder/catalog/product/list/ppp_list.phtml" />
 
         <block type="core/template" name="ff.result.list" template="factfinder/catalog/product/list.phtml">
             <block type="core/text_list" name="ff.toolbar" as="toolbar">
@@ -39,11 +36,9 @@
             </action>
         </block>
 
-        <reference name="content">
-            <action method="unsetChild"><child>search.result</child></action>
-            <action method="append"><name>ff.result.list</name></action>
-        </reference>
-    </catalogsearch_result_index>
+        <action method="append" block="content"><name>ff.result.list</name></action>
+        <action method="append" block="left"><name>ff.asn</name></action>
+    </factfinder_result_index>
 
     <!-- Product Details Campaign and Similar Products -->
     <catalog_product_view>

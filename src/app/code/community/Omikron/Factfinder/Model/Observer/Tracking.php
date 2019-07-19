@@ -2,7 +2,7 @@
 
 use Varien_Event_Observer as Event;
 
-class Omikron_Factfinder_Model_Observer
+class Omikron_Factfinder_Model_Observer_Tracking
 {
     public function saveProductToSession(Event $event)
     {
