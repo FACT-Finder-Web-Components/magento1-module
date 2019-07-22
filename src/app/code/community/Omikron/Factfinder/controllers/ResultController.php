@@ -12,7 +12,7 @@ class Omikron_Factfinder_ResultController extends Mage_Core_Controller_Front_Act
         $this->loadLayout();
 
         $title = $this->__("Search results for: '%s'", $this->getQueryText());
-        $this->getLayout()->getBlock('head')->setTitle($title);
+        $this->_title()->_title($title);
 
         $breadcrumbs = $this->getLayout()->getBlock('breadcrumbs');
         if ($breadcrumbs instanceof Breadcrumbs) {
