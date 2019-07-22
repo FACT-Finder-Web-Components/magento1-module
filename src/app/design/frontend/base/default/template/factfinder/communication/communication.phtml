@@ -46,7 +46,7 @@ if ($dataHelper->getFFCampaign()) {
 ?>
 
 <script>
-    var ffRedirectPath = '<?php echo $this->jsQuoteEscape($this->getUrl('catalogsearch/result')) ?>';
+    var ffRedirectPath = '<?php echo $this->jsQuoteEscape($this->getUrl('factfinder/result')) ?>';
 
     document.addEventListener("ffReady", function () {
         factfinder.communication.fieldRoles = {

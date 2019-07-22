@@ -1,5 +1,5 @@
 document.addEventListener('ffReady', function () {
-    var redirectPath = window.ffRedirectPath || '/catalogsearch/result';
+    var redirectPath = window.ffRedirectPath || '/factfinder/result';
     factfinder.communication.FFCommunicationEventAggregator.addBeforeDispatchingCallback(function (event) {
         if (event.type === 'search' && window.location.href.indexOf(redirectPath) < 0) {
             var params = Object.assign({}, event);
@@ -23,7 +23,7 @@ document.addEventListener('dom-updated', function () {
 
 document.addEventListener('ffReady', function () {
     factfinder.communication.ResultDispatcher.subscribe('navigation', function (navData) {
-        var redirectPath = window.ffRedirectPath || '/catalogsearch/result';
+        var redirectPath = window.ffRedirectPath || '/factfinder/result';
         if (window.location.href.indexOf(redirectPath) < 0) {
             navData.forEach(function (navSection) {
                 navSection.forEach(function (navEl) {
