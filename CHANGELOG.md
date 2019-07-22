@@ -1,4 +1,8 @@
 # Changelog
+## Unreleased
+### Changed
+- Avoid all rewrites of Magento core classes and implement search result in a dedicated controller
+
 ## [v1.0.0] - 2019-07-03
 ### Changed
 - Upgraded FACT-Finder WebComponents version to 3.4.0
@@ -82,6 +86,7 @@
 - Allow user to choose which visibilities should be applied to collection filter
 - Divide product collection into batches in order to prevent memory exhaustion on product collection load
 
+[v1.0.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.10.0...v1.0.0
 [v0.10.0]:     https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9.0...v0.10.0
 [v0.9.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9-beta.7...v0.9.0
 [v0.9-beta.7]: https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9-beta.6...v0.9-beta.7
