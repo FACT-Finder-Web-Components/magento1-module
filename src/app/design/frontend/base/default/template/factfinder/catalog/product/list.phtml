@@ -3,30 +3,11 @@
 $dataHelper = Mage::helper('factfinder/data');
 
 // It returns advisor and feedback campaign if enabled
-if ($dataHelper->getFFCampaign()) {
-    echo $this->getLayout()->createBlock('page/html')->setTemplate('factfinder/campaign/advisor.phtml')->toHtml();
-    echo $this->getLayout()->createBlock('page/html')->setTemplate('factfinder/campaign/feedback.phtml')->toHtml();
-}
-?>
-
-<?php if ($dataHelper->getFFBreadcrumb()) { ?>
-    <div class="page-title">
-        <h1><?php echo $this->__('Search results for'); ?> '
-            <ff-breadcrumb-trail unresolved>
-                <ff-breadcrumb-trail-item type="search">
-                    <span>{{text}}</span>
-                </ff-breadcrumb-trail-item>
-                <ff-breadcrumb-trail-item type="filter">
-                    <span>{{text}}</span>
-                </ff-breadcrumb-trail-item>
-                <ff-breadcrumb-trail-item type="advisor">
-                    <span>{{text}}</span>
-                </ff-breadcrumb-trail-item>
-            </ff-breadcrumb-trail>
-            '
-        </h1>
-    </div>
-<?php } ?>
+if ($dataHelper->getFFCampaign()): ?>
+<?php
+    echo $this->getChildHtml('advisor_campaign') ;
+    echo $this->getChildHtml('feedback_campaign');
+endif; ?>
 
 <p id="ff-nothing-found">
     <?php echo $this->__('Your search returns no results.'); ?>
@@ -37,7 +18,8 @@ if ($dataHelper->getFFCampaign()) {
 
     <ff-record-list unresolved>
         <ff-record>
-            <a data-anchor="{{record.ProductUrl}}" data-redirect="{{record.ProductUrl}}" data-redirect-target="_self" class="product-name result-product-name">
+            <a data-anchor="{{record.ProductUrl}}" data-redirect="{{record.ProductUrl}}" data-redirect-target="_self"
+               class="product-name result-product-name">
                 <img data-image="{{record.ImageName}}" class="product-image">
                 <h2 class="result-product-name">
                     {{record.Name}}
@@ -50,7 +32,10 @@ if ($dataHelper->getFFCampaign()) {
             </div>
 
             <div class="actions">
-                <a title="View Details" class="button" data-anchor="{{record.ProductUrl}}" data-redirect="{{record.ProductUrl}}" data-redirect-target="_self"><?php echo $this->__('View Details'); ?></a>
+                <a title="View Details" class="button" data-anchor="{{record.ProductUrl}}"
+                   data-redirect="{{record.ProductUrl}}" data-redirect-target="_self"><?php echo $this->__(
+                        'View Details'
+                    ); ?></a>
             </div>
         </ff-record>
     </ff-record-list>

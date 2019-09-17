@@ -15,7 +15,7 @@ $dataHelper = Mage::helper('factfinder/data');
         } ?>
         disable-cache="<?php echo $dataHelper->getDisableCache() ? 'true' : 'false' ?>"
         default-query="<?php echo $dataHelper->getDefaultQuery(); ?>"
-        add-params="<?php echo $dataHelper->getAddParams(); ?>"
+        add-params="<?php echo $dataHelper->getAddParams() . $this->getData('add-params'); ?>"
         add-tracking-params="<?php echo $dataHelper->getAddTrackingParams(); ?>"
         keep-url-params="<?php echo $dataHelper->getKeepUrlParams(); ?>"
         use-asn="<?php echo $dataHelper->getUseAsn() ? 'true' : 'false' ?>"

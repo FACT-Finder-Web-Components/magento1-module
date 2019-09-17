@@ -1,7 +1,12 @@
-document.addEventListener('ffReady', function () {
+document.addEventListener('WebComponentsReady', function () {
     var redirectPath = window.ffRedirectPath || '/factfinder/result';
+
+    function isSearchResultPage() {
+        return window.location.href.indexOf(redirectPath) >= 0;
+    }
+
     factfinder.communication.FFCommunicationEventAggregator.addBeforeDispatchingCallback(function (event) {
-        if (event.type === 'search' && window.location.href.indexOf(redirectPath) < 0) {
+        if (event.type === 'search' && !isSearchResultPage()) {
             var params = Object.assign({}, event);
             delete params.type;
             delete params.version;

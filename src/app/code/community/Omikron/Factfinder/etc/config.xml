@@ -19,6 +19,14 @@
     </global>
     <frontend>
         <events>
+            <controller_action_layout_load_before>
+                <observers>
+                    <add_layout_update>
+                        <class>factfinder/observer_category</class>
+                        <method>updateLayout</method>
+                    </add_layout_update>
+                </observers>
+            </controller_action_layout_load_before>
             <checkout_cart_product_add_after>
                 <observers>
                     <omikron_factfinder_model_observer>
