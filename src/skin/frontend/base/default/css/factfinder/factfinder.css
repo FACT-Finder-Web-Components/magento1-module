@@ -377,26 +377,6 @@ ff-asn-group-element {
     color: #a0a0a0;
 }
 
-ff-sortbox-item {
-    padding: 1px 5px 0 5px;
-    margin: 0;
-    border: 1px solid #ccc;
-    background: #fff;
-    width: 200px;
-}
-
-.ffw-dropdown-container ff-sortbox-item {
-    border-top: 0;
-}
-
-ff-products-per-page-item {
-    margin-right: 3px;
-    border: 1px solid #ccc;
-    background: #fff;
-    width: 30px;
-    text-align: center;
-}
-
 .category-products .toolbar {
     margin:0px;
     height: 44px !important;

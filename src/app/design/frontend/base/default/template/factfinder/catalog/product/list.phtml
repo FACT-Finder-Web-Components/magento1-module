@@ -1,16 +1,19 @@
 <?php
+/** @var Mage_Core_Block_Template $this */
 /** @var Omikron_Factfinder_Helper_Data $dataHelper */
 $dataHelper = Mage::helper('factfinder/data');
 
 // It returns advisor and feedback campaign if enabled
-if ($dataHelper->getFFCampaign()): ?>
-<?php
-    echo $this->getChildHtml('advisor_campaign') ;
-    echo $this->getChildHtml('feedback_campaign');
-endif; ?>
+if ($dataHelper->getFFCampaign()) {
+    echo $this->getLayout()->createBlock('page/html')->setTemplate('factfinder/campaign/advisor.phtml')->toHtml();
+    echo $this->getLayout()->createBlock('page/html')->setTemplate('factfinder/campaign/feedback.phtml')->toHtml();
+}
+?>
+
+<?php echo $this->getChildHtml('breadcrumbs') ?>
 
 <p id="ff-nothing-found">
-    <?php echo $this->__('Your search returns no results.'); ?>
+    <?php echo $this->escapeHtml($this->__('Your search returns no results.')) ?>
 </p>
 
 <div class="category-products">
@@ -18,8 +21,7 @@ endif; ?>
 
     <ff-record-list unresolved>
         <ff-record>
-            <a data-anchor="{{record.ProductUrl}}" data-redirect="{{record.ProductUrl}}" data-redirect-target="_self"
-               class="product-name result-product-name">
+            <a data-anchor="{{record.ProductUrl}}" data-redirect="{{record.ProductUrl}}" data-redirect-target="_self" class="product-name result-product-name">
                 <img data-image="{{record.ImageName}}" class="product-image">
                 <h2 class="result-product-name">
                     {{record.Name}}
@@ -32,28 +34,23 @@ endif; ?>
             </div>
 
             <div class="actions">
-                <a title="View Details" class="button" data-anchor="{{record.ProductUrl}}"
-                   data-redirect="{{record.ProductUrl}}" data-redirect-target="_self"><?php echo $this->__(
-                        'View Details'
-                    ); ?></a>
+                <a title="View Details" class="button" data-anchor="{{record.ProductUrl}}" data-redirect="{{record.ProductUrl}}" data-redirect-target="_self"><?php echo $this->__('View Details'); ?></a>
             </div>
         </ff-record>
     </ff-record-list>
 
-    <!-- It returns page -->
     <?php echo $this->getChildHtml('paging') ?>
 </div>
 
 <script>
-    document.addEventListener("WebComponentsReady", function () {
-        factfinder.communication.ResultDispatcher.subscribe("result", function (result) {
+    document.addEventListener('ffReady', function () {
+        factfinder.communication.ResultDispatcher.subscribe('result', function (result) {
             if (result.resultStatus === 'nothingFound') {
-                console.log(result.resultStatus);
-                document.querySelector(".category-products").style.display = 'none';
-                document.getElementById("ff-nothing-found").style.display = 'block';
+                document.querySelector('.category-products').style.display = 'none';
+                document.getElementById('ff-nothing-found').style.display = 'block';
             } else {
-                document.querySelector(".category-products").style.display = 'block';
-                document.getElementById("ff-nothing-found").style.display = 'none';
+                document.querySelector('.category-products').style.display = 'block';
+                document.getElementById('ff-nothing-found').style.display = 'none';
             }
         });
     });

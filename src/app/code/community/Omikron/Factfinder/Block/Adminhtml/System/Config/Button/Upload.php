@@ -2,9 +2,6 @@
 
 class Omikron_Factfinder_Block_Adminhtml_System_Config_Button_Upload extends Mage_Adminhtml_Block_System_Config_Form_Field
 {
-    /*
-    * Set template
-    */
     protected function _construct()
     {
         parent::_construct();
@@ -14,7 +11,8 @@ class Omikron_Factfinder_Block_Adminhtml_System_Config_Button_Upload extends Mag
     /**
      * Return element html
      *
-     * @param  Varien_Data_Form_Element_Abstract $element
+     * @param Varien_Data_Form_Element_Abstract $element
+     *
      * @return string
      */
     protected function _getElementHtml(Varien_Data_Form_Element_Abstract $element)
@@ -29,7 +27,7 @@ class Omikron_Factfinder_Block_Adminhtml_System_Config_Button_Upload extends Mag
      */
     public function getAjaxCheckUrl()
     {
-        return Mage::helper('adminhtml')->getUrl('*/factfinder_feed/upload');
+        return $this->helper('adminhtml')->getUrl('*/factfinder_feed/upload');
     }
 
     /**
@@ -41,9 +39,9 @@ class Omikron_Factfinder_Block_Adminhtml_System_Config_Button_Upload extends Mag
     {
         $button = $this->getLayout()->createBlock('adminhtml/widget_button')
             ->setData([
-                'id' => 'omikron_factfinder_feed_upload_button',
-                'label' => $this->helper('adminhtml')->__('Upload export files(s) now'),
-                'onclick' => 'javascript:uploadCsv(); return false;'
+                'id'      => 'omikron_factfinder_feed_upload_button',
+                'label'   => $this->helper('adminhtml')->__('Upload export files(s) now'),
+                'onclick' => 'javascript:uploadCsv(); return false;',
             ]);
 
         return $button->toHtml();

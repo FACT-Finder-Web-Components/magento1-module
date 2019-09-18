@@ -16,8 +16,6 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
 
     // Components
     const PATH_FF_SUGGEST = 'factfinder/components/ff_suggest';
-    const PATH_FF_ASN = 'factfinder/components/ff_asn';
-    const PATH_FF_BREADCRUMB = 'factfinder/components/ff_breadcrumb';
     const PATH_FF_RECOMMENDATION = 'factfinder/components/ff_recommendation';
     const PATH_FF_CAMPAIGN = 'factfinder/components/ff_campaign';
     const PATH_FF_PUSHEDPRODUCTSCAMPAIGN = 'factfinder/components/ff_pushedproductscampaign';
@@ -119,24 +117,6 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
     public function getFFSuggest()
     {
         return boolval(Mage::getStoreConfig(self::PATH_FF_SUGGEST));
-    }
-
-    /**
-     * Defines if FF ASN is enabled
-     * @return bool
-     */
-    public function getFFAsn()
-    {
-        return boolval(Mage::getStoreConfig(self::PATH_FF_ASN));
-    }
-
-    /**
-     * Defines if FF Breadcrumb is enabled
-     * @return bool
-     */
-    public function getFFBreadcrumb()
-    {
-        return boolval(Mage::getStoreConfig(self::PATH_FF_BREADCRUMB));
     }
 
     /**
@@ -445,20 +425,16 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getAuthArray()
     {
-        $authArray             = [];
-        $authArray['username'] = $this->getUsername();
-
         $time     = round(microtime(true) * 1000);
         $password = $this->getPassword();
         $prefix   = $this->getAuthenticationPrefix();
         $postfix  = $this->getAuthenticationPostfix();
 
-        $hashPassword = md5($prefix . (string) $time . $password . $postfix);
-
-        $authArray['password']  = $hashPassword;
-        $authArray['timestamp'] = $time;
-
-        return $authArray;
+        return [
+            'username'  => $this->getUsername(),
+            'password'  => md5($prefix . (string) $time . $password . $postfix),
+            'timestamp' => $time,
+        ];
     }
 
     /**

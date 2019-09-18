@@ -92,11 +92,6 @@
             </general>
             <components>
                 <ff_suggest>0</ff_suggest>
-                <ff_asn>0</ff_asn>
-                <ff_paging>0</ff_paging>
-                <ff_sortbox>0</ff_sortbox>
-                <ff_breadcrumb>0</ff_breadcrumb>
-                <ff_productspp>0</ff_productspp>
                 <ff_campaign>0</ff_campaign>
                 <ff_pushedproductscampaign>0</ff_pushedproductscampaign>
                 <ff_recommendation>0</ff_recommendation>

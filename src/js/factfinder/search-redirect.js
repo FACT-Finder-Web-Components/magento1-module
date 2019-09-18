@@ -25,17 +25,3 @@ document.addEventListener('dom-updated', function () {
         }
     });
 });
-
-document.addEventListener('ffReady', function () {
-    factfinder.communication.ResultDispatcher.subscribe('navigation', function (navData) {
-        var redirectPath = window.ffRedirectPath || '/factfinder/result';
-        if (window.location.href.indexOf(redirectPath) < 0) {
-            navData.forEach(function (navSection) {
-                navSection.forEach(function (navEl) {
-                    var url = navEl.__TARGET_URL__.url.split('?')[1];
-                    navEl.__TARGET_URL__.setUrl(redirectPath + '?' + url);
-                });
-            });
-        }
-    });
-});
