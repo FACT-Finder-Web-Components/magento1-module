@@ -1,7 +1,7 @@
 <?php
 
-use Varien_Event_Observer as Event;
 use Mage_Catalog_Model_Category as Category;
+use Varien_Event_Observer as Event;
 
 class Omikron_Factfinder_Model_Observer_Category
 {
@@ -15,7 +15,7 @@ class Omikron_Factfinder_Model_Observer_Category
 
         /** @var ?Category $category */
         $category = Mage::registry('current_category');
-        if ($category && $category->getDisplayMode() !== Category::DM_PAGE && $this->isUsedForCategories() ) {
+        if ($category && $category->getDisplayMode() !== Category::DM_PAGE && $this->isUsedForCategories()) {
             $event->getData('layout')->getUpdate()->addHandle('factfinder_category_view');
         }
     }

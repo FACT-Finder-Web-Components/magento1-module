@@ -50,9 +50,9 @@
     <!-- Product Details Campaign and Similar Products -->
     <catalog_product_view>
         <reference name="content">
-            <block type="catalog/product_view" name="factfinder_roduct_campaign" template="factfinder/campaign/product.phtml" />
-            <block type="catalog/product_view" name="factfinder_roduct_similar_products" template="factfinder/catalog/product/similar_products.phtml" />
-            <block type="catalog/product_view" name="factfinder_product_upsell" template="factfinder/catalog/product/list/upsell.phtml" />
+            <block type="catalog/product_view" name="ff.product.campaign" template="factfinder/campaign/product.phtml" />
+            <block type="catalog/product_view" name="ff.product.similar_products" template="factfinder/catalog/product/similar_products.phtml" />
+            <block type="catalog/product_view" name="ff.product.upsell" template="factfinder/catalog/product/list/upsell.phtml" />
         </reference>
     </catalog_product_view>
 
