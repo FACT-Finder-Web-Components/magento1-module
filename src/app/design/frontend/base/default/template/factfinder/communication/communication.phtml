@@ -31,8 +31,11 @@ $dataHelper = Mage::helper('factfinder/data');
         currency-country-code="<?php echo Mage::getStoreConfig('general/country/default'); ?>"
         <?php if (Mage::getSingleton('customer/session')->isLoggedIn()):
             echo 'user-id="' . Mage::getSingleton('customer/session')->getId() . '"';
-        endif;
-        foreach ($this->getMergeableParams() as $key => $value) echo sprintf(' %s="%s"', $key, $this->escapeHtml($value)) ?>
+        endif; ?>
+        add-params="<?php echo implode(',', array_filter([$dataHelper->getAddParams(), $this->getData('add-params')])) ?>"
+        add-tracking-params="<?php echo implode(',', array_filter([$dataHelper->getAddTrackingParams(), $this->getData('add-tracking-params')])) ?>"
+        keep-url-params="<?php echo implode(',', array_filter([$dataHelper->getKeepUrlParams(), $this->getData('keep-url-params')])) ?>"
+        parameter-whitelist="<?php echo implode(',', array_filter([$dataHelper->getParameterWhiteList(), $this->getData('parameter-whitelist')])) ?>"
 ></ff-communication>
 
 <?php

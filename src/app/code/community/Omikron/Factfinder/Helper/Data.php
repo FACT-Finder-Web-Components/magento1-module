@@ -28,6 +28,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
     const PATH_DEFAULT_QUERY = 'factfinder/advanced/default_query';
     const PATH_ADD_PARAMS = 'factfinder/advanced/add_params';
     const PATH_ADD_TRACKING_PARAMS = 'factfinder/advanced/add_tracking_params';
+    const PATH_PARAMETER_WHITELIST = 'factfinder/advanced/parameter_whitelist';
     const PATH_KEEP_URL_PARAMS = 'factfinder/advanced/keep_url_param';
     const PATH_USE_ASN = 'factfinder/advanced/use_asn';
     const PATH_USE_FOUND_ROWS = 'factfinder/advanced/use_found_words';
@@ -209,6 +210,15 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
     public function getAddTrackingParams()
     {
         return Mage::getStoreConfig(self::PATH_ADD_TRACKING_PARAMS);
+    }
+
+    /**
+     * Returns the parameter-whitelist configuration
+     * @return string
+     */
+    public function getParameterWhiteList()
+    {
+        return Mage::getStoreConfig(self::PATH_PARAMETER_WHITELIST);
     }
 
     /**

@@ -216,6 +216,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </keep_url_params>
+                        <parameter_whitelist translate="label comment">
+                            <label>Parameter whitelist	</label>
+                            <comment>If any URL parameters are omitted through other attributes like use-url-parameter="false" or only-search-params you can add specific important parameters manually. Just use a comma separated list like: parameter-whitelist="param1,myParam"</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </parameter_whitelist>
                         <use_asn translate="label comment">
                             <label>Use ASN</label>
                             <comment>Determines if the the ASN is returned. Can be set to false to save performance, if the ASN is not required. Default is true.</comment>
