@@ -97,7 +97,9 @@
 
         <!-- Communication -->
         <reference name="after_body_start">
-            <block type="core/template" name="ff.communication" template="factfinder/communication/communication.phtml" />
+            <block type="factfinder/communication" name="ff.communication" template="factfinder/communication/communication.phtml">
+                <block type="core/template" name="ff.campaign_redirect" as="redirect_campaign" template="factfinder/campaign/redirect.phtml" />
+            </block>
         </reference>
     </default>
 </layout>

@@ -4,11 +4,10 @@
 $dataHelper = Mage::helper('factfinder/data');
 
 // It returns advisor and feedback campaign if enabled
-if ($dataHelper->getFFCampaign()) {
-    echo $this->getLayout()->createBlock('page/html')->setTemplate('factfinder/campaign/advisor.phtml')->toHtml();
-    echo $this->getLayout()->createBlock('page/html')->setTemplate('factfinder/campaign/feedback.phtml')->toHtml();
-}
-?>
+if ($dataHelper->getFFCampaign()):
+    echo $this->getChildHtml('advisor_campaign');
+    echo $this->getChildHtml('feedback_campaign');
+endif; ?>
 
 <?php echo $this->getChildHtml('breadcrumbs') ?>
 

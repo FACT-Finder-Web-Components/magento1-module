@@ -1,5 +1,5 @@
 <?php
-/** @var Mage_Core_Block_Template $this */
+/** @var Omikron_Factfinder_Block_Communication $this */
 /** @var Omikron_Factfinder_Helper_Data $dataHelper */
 $dataHelper = Mage::helper('factfinder/data');
 ?>
@@ -10,14 +10,11 @@ $dataHelper = Mage::helper('factfinder/data');
         channel="<?php echo $dataHelper->getChannel(); ?>"
         search-immediate="<?php echo $this->getData('search_immediate') ? 'true' : 'false' ?>"
         use-url-parameter="<?php echo $dataHelper->getUseUrlParameter() ? 'true' : 'false' ?>"
-        <?php if($dataHelper->getUseCache()) {
+        <?php if($dataHelper->getUseCache()):
             echo 'use-cache';
-        } ?>
+        endif; ?>
         disable-cache="<?php echo $dataHelper->getDisableCache() ? 'true' : 'false' ?>"
         default-query="<?php echo $dataHelper->getDefaultQuery(); ?>"
-        add-params="<?php echo implode(',', array_filter([$dataHelper->getAddParams(), $this->getData('add-params')])) ?>"
-        add-tracking-params="<?php echo $dataHelper->getAddTrackingParams(); ?>"
-        keep-url-params="<?php echo $dataHelper->getKeepUrlParams(); ?>"
         use-asn="<?php echo $dataHelper->getUseAsn() ? 'true' : 'false' ?>"
         use-found-rows="<?php echo $dataHelper->getUseFoundWords() ? 'true' : 'false' ?>"
         use-campaigns="<?php echo $dataHelper->getFFCampaign() ? 'true' : 'false' ?>"
@@ -27,23 +24,22 @@ $dataHelper = Mage::helper('factfinder/data');
         use-browser-history="<?php echo $dataHelper->getUseBrowserHistory() ? 'true' : 'false' ?>"
         use-seo="<?php echo $dataHelper->getUseSeo() ? 'true' : 'false' ?>"
         seo-prefix="<?php echo $dataHelper->getSeoPrefix(); ?>"
-        <?php if($dataHelper->getOnlySearchParams()) {
+        <?php if($dataHelper->getOnlySearchParams()):
             echo 'only-search-params';
-        } ?>
+        endif; ?>
         currency-code="<?php echo Mage::app()->getStore()->getCurrentCurrencyCode(); ?>"
         currency-country-code="<?php echo Mage::getStoreConfig('general/country/default'); ?>"
-        <?php if (Mage::getSingleton('customer/session')->isLoggedIn()) {
+        <?php if (Mage::getSingleton('customer/session')->isLoggedIn()):
             echo 'user-id="' . Mage::getSingleton('customer/session')->getId() . '"';
-        } ?>
->
-</ff-communication>
+        endif;
+        foreach ($this->getMergeableParams() as $key => $value) echo sprintf(' %s="%s"', $key, $this->escapeHtml($value)) ?>
+></ff-communication>
 
 <?php
 // It returns redirect campaign if enabled
-if ($dataHelper->getFFCampaign()) {
-    echo $this->getLayout()->createBlock('core/template')->setTemplate('factfinder/campaign/redirect.phtml')->toHtml();
-}
-?>
+if ($dataHelper->getFFCampaign()):
+    echo $this->getChildHtml('redirect_campaign');
+endif; ?>
 
 <script>
     var ffRedirectPath = '<?php echo $this->jsQuoteEscape($this->getUrl('factfinder/result')) ?>';
