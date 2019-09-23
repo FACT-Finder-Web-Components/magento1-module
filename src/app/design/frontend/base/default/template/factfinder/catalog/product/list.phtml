@@ -1,4 +1,5 @@
 <?php
+/** @var Mage_Core_Block_Template $this */
 /** @var Omikron_Factfinder_Helper_Data $dataHelper */
 $dataHelper = Mage::helper('factfinder/data');
 
@@ -9,27 +10,10 @@ if ($dataHelper->getFFCampaign()) {
 }
 ?>
 
-<?php if ($dataHelper->getFFBreadcrumb()) { ?>
-    <div class="page-title">
-        <h1><?php echo $this->__('Search results for'); ?> '
-            <ff-breadcrumb-trail unresolved>
-                <ff-breadcrumb-trail-item type="search">
-                    <span>{{text}}</span>
-                </ff-breadcrumb-trail-item>
-                <ff-breadcrumb-trail-item type="filter">
-                    <span>{{text}}</span>
-                </ff-breadcrumb-trail-item>
-                <ff-breadcrumb-trail-item type="advisor">
-                    <span>{{text}}</span>
-                </ff-breadcrumb-trail-item>
-            </ff-breadcrumb-trail>
-            '
-        </h1>
-    </div>
-<?php } ?>
+<?php echo $this->getChildHtml('breadcrumbs') ?>
 
 <p id="ff-nothing-found">
-    <?php echo $this->__('Your search returns no results.'); ?>
+    <?php echo $this->escapeHtml($this->__('Your search returns no results.')) ?>
 </p>
 
 <div class="category-products">
@@ -55,20 +39,18 @@ if ($dataHelper->getFFCampaign()) {
         </ff-record>
     </ff-record-list>
 
-    <!-- It returns page -->
     <?php echo $this->getChildHtml('paging') ?>
 </div>
 
 <script>
-    document.addEventListener("WebComponentsReady", function () {
-        factfinder.communication.ResultDispatcher.subscribe("result", function (result) {
+    document.addEventListener('ffReady', function () {
+        factfinder.communication.ResultDispatcher.subscribe('result', function (result) {
             if (result.resultStatus === 'nothingFound') {
-                console.log(result.resultStatus);
-                document.querySelector(".category-products").style.display = 'none';
-                document.getElementById("ff-nothing-found").style.display = 'block';
+                document.querySelector('.category-products').style.display = 'none';
+                document.getElementById('ff-nothing-found').style.display = 'block';
             } else {
-                document.querySelector(".category-products").style.display = 'block';
-                document.getElementById("ff-nothing-found").style.display = 'none';
+                document.querySelector('.category-products').style.display = 'block';
+                document.getElementById('ff-nothing-found').style.display = 'none';
             }
         });
     });

@@ -19,6 +19,14 @@
     </global>
     <frontend>
         <events>
+            <controller_action_layout_load_before>
+                <observers>
+                    <add_layout_update>
+                        <class>factfinder/observer_category</class>
+                        <method>updateLayout</method>
+                    </add_layout_update>
+                </observers>
+            </controller_action_layout_load_before>
             <checkout_cart_product_add_after>
                 <observers>
                     <omikron_factfinder_model_observer>
@@ -84,11 +92,6 @@
             </general>
             <components>
                 <ff_suggest>0</ff_suggest>
-                <ff_asn>0</ff_asn>
-                <ff_paging>0</ff_paging>
-                <ff_sortbox>0</ff_sortbox>
-                <ff_breadcrumb>0</ff_breadcrumb>
-                <ff_productspp>0</ff_productspp>
                 <ff_campaign>0</ff_campaign>
                 <ff_pushedproductscampaign>0</ff_pushedproductscampaign>
                 <ff_recommendation>0</ff_recommendation>

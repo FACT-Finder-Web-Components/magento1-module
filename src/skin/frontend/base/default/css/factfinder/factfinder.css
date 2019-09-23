@@ -108,29 +108,6 @@ ff-suggest-item {
     padding: 5px 10px;
 }
 
-#navigation-container {
-    margin: 15px 0 5px;
-    width: 1000px;
-    text-transform: uppercase;
-    text-align: center;
-}
-
-.ffw-nav-item {
-    cursor: pointer;
-}
-
-.ffw-nav-item:hover {
-    color: #3399cc;
-}
-
-.ff-header-navigation a {
-    color: black;
-}
-
-.ffw-body {
-    cursor: pointer;
-}
-
 ff-record-list {
     position: relative;
     display: block;
@@ -400,28 +377,18 @@ ff-asn-group-element {
     color: #a0a0a0;
 }
 
-ff-sortbox-item {
-    padding: 1px 5px 0 5px;
-    margin: 0;
-    border: 1px solid #ccc;
-    background: #fff;
-    width: 200px;
-}
-
-.ffw-dropdown-container ff-sortbox-item {
-    border-top: 0;
-}
-
-ff-products-per-page-item {
-    margin-right: 3px;
-    border: 1px solid #ccc;
-    background: #fff;
-    width: 30px;
-    text-align: center;
-}
-
-.toolbar {
+.category-products .toolbar {
+    margin:0px;
     height: 44px !important;
+}
+
+.ff-breadcrumbs h1 {
+    margin: -15px 0 15px;
+    font-weight: normal;
+    color: #636363;
+    font-size: 12px;
+    font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
+    text-transform: uppercase;
 }
 
 ff-paging {
