@@ -1,4 +1,4 @@
-document.addEventListener('WebComponentsReady', function () {
+document.addEventListener('ffReady', function () {
     var redirectPath = window.ffRedirectPath || '/factfinder/result';
 
     function isSearchResultPage() {
@@ -6,7 +6,7 @@ document.addEventListener('WebComponentsReady', function () {
     }
 
     factfinder.communication.FFCommunicationEventAggregator.addBeforeDispatchingCallback(function (event) {
-        if (event.type === 'search' && !isSearchResultPage()) {
+        if (event.type === 'search' && !event.__immediate && !isSearchResultPage()) {
             var params = Object.assign({}, event);
             delete params.type;
             delete params.version;
