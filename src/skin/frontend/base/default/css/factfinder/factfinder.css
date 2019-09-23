@@ -390,8 +390,9 @@ ff-asn-group-element {
     font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
     text-transform: uppercase;
 }
-ff-breadcrumb-trail-item[type="search"] {
-    font-weight: bold;
+
+ff-breadcrumb-trail-item {
+    color: #3399cc;
 }
 
 ff-paging {

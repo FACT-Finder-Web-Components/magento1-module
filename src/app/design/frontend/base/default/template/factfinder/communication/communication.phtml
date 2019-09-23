@@ -1,5 +1,5 @@
 <?php
-/** @var Omikron_Factfinder_Block_Communication $this */
+/** @var Mage_Core_Block_Template $this */
 /** @var Omikron_Factfinder_Helper_Data $dataHelper */
 $dataHelper = Mage::helper('factfinder/data');
 ?>
@@ -37,12 +37,6 @@ $dataHelper = Mage::helper('factfinder/data');
         keep-url-params="<?php echo implode(',', array_filter([$dataHelper->getKeepUrlParams(), $this->getData('keep-url-params')])) ?>"
         parameter-whitelist="<?php echo implode(',', array_filter([$dataHelper->getParameterWhiteList(), $this->getData('parameter-whitelist')])) ?>"
 ></ff-communication>
-
-<?php
-// It returns redirect campaign if enabled
-if ($dataHelper->getFFCampaign()):
-    echo $this->getChildHtml('redirect_campaign');
-endif; ?>
 
 <script>
     var ffRedirectPath = '<?php echo $this->jsQuoteEscape($this->getUrl('factfinder/result')) ?>';

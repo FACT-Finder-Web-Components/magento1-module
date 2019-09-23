@@ -117,7 +117,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getFFSuggest()
     {
-        return boolval(Mage::getStoreConfig(self::PATH_FF_SUGGEST));
+        return Mage::getStoreConfigFlag(self::PATH_FF_SUGGEST);
     }
 
     /**
@@ -126,7 +126,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getFFRecommendation()
     {
-        return boolval(Mage::getStoreConfig(self::PATH_FF_RECOMMENDATION));
+        return Mage::getStoreConfigFlag(self::PATH_FF_RECOMMENDATION);
     }
 
     /**
@@ -135,7 +135,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getFFCampaign()
     {
-        return boolval(Mage::getStoreConfig(self::PATH_FF_CAMPAIGN));
+        return Mage::getStoreConfigFlag(self::PATH_FF_CAMPAIGN);
     }
 
     /**
@@ -144,7 +144,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getFFPushedproductscampaign()
     {
-        return boolval(Mage::getStoreConfig(self::PATH_FF_PUSHEDPRODUCTSCAMPAIGN));
+        return Mage::getStoreConfigFlag(self::PATH_FF_PUSHEDPRODUCTSCAMPAIGN);
     }
 
     /**
@@ -153,7 +153,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getFFSimilar()
     {
-        return boolval(Mage::getStoreConfig(self::PATH_FF_SIMILAR));
+        return Mage::getStoreConfigFlag(self::PATH_FF_SIMILAR);
     }
 
     /**
@@ -173,7 +173,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getUseUrlParameter()
     {
-        return boolval(Mage::getStoreConfig(self::PATH_USE_URL_PARAMETER));
+        return Mage::getStoreConfigFlag(self::PATH_USE_URL_PARAMETER);
     }
 
     /**
@@ -182,7 +182,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getUseCache()
     {
-        return boolval(Mage::getStoreConfig(self::PATH_USE_CACHE));
+        return Mage::getStoreConfigFlag(self::PATH_USE_CACHE);
     }
 
     /**
@@ -236,7 +236,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getUseAsn()
     {
-        return boolval(Mage::getStoreConfig(self::PATH_USE_ASN));
+        return Mage::getStoreConfigFlag(self::PATH_USE_ASN);
     }
 
     /**
@@ -245,7 +245,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getUseFoundWords()
     {
-        return boolval(Mage::getStoreConfig(self::PATH_USE_FOUND_ROWS));
+        return Mage::getStoreConfigFlag(self::PATH_USE_FOUND_ROWS);
     }
 
     /**
@@ -254,7 +254,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getUseCampaigns()
     {
-        return boolval(Mage::getStoreConfig(self::PATH_USE_CAMPAIGNS));
+        return Mage::getStoreConfigFlag(self::PATH_USE_CAMPAIGNS);
     }
 
     /**
@@ -344,7 +344,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getGenerateAdvisorTree()
     {
-        return boolval(Mage::getStoreConfig(self::PATH_GENERATE_ADVISOR_TREE));
+        return Mage::getStoreConfigFlag(self::PATH_GENERATE_ADVISOR_TREE);
     }
 
     /**
@@ -353,7 +353,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getDisableCache()
     {
-        return boolval(Mage::getStoreConfig(self::PATH_DISABLE_CACHE));
+        return Mage::getStoreConfigFlag(self::PATH_DISABLE_CACHE);
     }
 
     /**
@@ -362,7 +362,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getUsePersonalization()
     {
-        return boolval(Mage::getStoreConfig(self::PATH_USE_PERSONALIZATION));
+        return Mage::getStoreConfigFlag(self::PATH_USE_PERSONALIZATION);
     }
 
     /**
@@ -371,7 +371,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getUseSemanticEnhancer()
     {
-        return boolval(Mage::getStoreConfig(self::PATH_USE_SEMANTIC_ENHANCER));
+        return Mage::getStoreConfigFlag(self::PATH_USE_SEMANTIC_ENHANCER);
     }
 
     /**
@@ -380,7 +380,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getUseAso()
     {
-        return boolval(Mage::getStoreConfig(self::PATH_USE_ASO));
+        return Mage::getStoreConfigFlag(self::PATH_USE_ASO);
     }
 
     /**
@@ -389,7 +389,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getUseBrowserHistory()
     {
-        return boolval(Mage::getStoreConfig(self::PATH_USE_BROWSER_HISTORY));
+        return Mage::getStoreConfigFlag(self::PATH_USE_BROWSER_HISTORY);
     }
 
     /**
@@ -398,7 +398,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getUseSeo()
     {
-        return boolval(Mage::getStoreConfig(self::PATH_USE_SEO));
+        return Mage::getStoreConfigFlag(self::PATH_USE_SEO);
     }
 
     /**
@@ -416,7 +416,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getOnlySearchParams()
     {
-        return boolval(Mage::getStoreConfig(self::PATH_ONLY_SEARCH_PARAMS));
+        return Mage::getStoreConfigFlag(self::PATH_ONLY_SEARCH_PARAMS);
     }
 
     /**
@@ -473,7 +473,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function isCronEnabled()
     {
-        return  boolval(Mage::getStoreConfig(self::PATH_FF_CRON_ENABLED));
+        return  Mage::getStoreConfigFlag(self::PATH_FF_CRON_ENABLED);
     }
 
     /**
