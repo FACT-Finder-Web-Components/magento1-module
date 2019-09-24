@@ -2,6 +2,8 @@
 ## Unreleased
 ### Changed
 - Avoid all rewrites of Magento core classes and implement search result in a dedicated controller
+- Remove `ff-navigation`
+- Render category pages using Web Components
 
 ## [v1.0.0] - 2019-07-03
 ### Changed
