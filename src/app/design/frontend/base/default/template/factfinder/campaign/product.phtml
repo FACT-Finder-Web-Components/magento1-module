@@ -11,10 +11,8 @@ $dataHelper = Mage::helper('factfinder/data');
                 <ff-record>
                     <a data-anchor="{{record.ProductUrl}}"
                        data-redirect="{{record.ProductUrl}}" data-redirect-target="_self" class="product-name result-product-name">
-                        <img data-image="{{record.ImageName}}" class="product-image">
-                        <h2 class="result-product-name">
-                            {{record.Name}}
-                        </h2>
+                        <img data-image="{{record.ImageName}}" alt="{{record.Name}}" class="product-image">
+                        <h2 class="result-product-name">{{record.Name}}</h2>
                     </a>
 
                     <div class="priceContainer">

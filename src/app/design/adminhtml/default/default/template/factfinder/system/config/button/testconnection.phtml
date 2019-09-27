@@ -1,3 +1,4 @@
+<?php /* @var Omikron_Factfinder_Block_Adminhtml_System_Config_Button_TestConnection $this */ ?>
 <script type="text/javascript">
     function checkTestConnection() {
         new Ajax.Request('<?php echo $this->getAjaxCheckUrl() ?>', {
@@ -11,17 +12,17 @@
                 authenticationPostfix: document.getElementById('factfinder_general_authentication_postfix').value
             },
             onSuccess: function (transport) {
-                var response = JSON.parse(transport.responseText);
+                var response = transport.responseJSON || transport.responseText.evalJSON(true) || {};
                 setFFCommunicationInfoMessage(response.message);
             },
-            onFailure: function (transport) {
+            onFailure: function () {
                 setFFCommunicationInfoMessage('<?php echo $this->jsQuoteEscape($this->__('There were an error during test connection. Please check if You provide all required authorization data')) ?>');
             }
         });
     }
 
     function setFFCommunicationInfoMessage(message) {
-        document.getElementById("ffCommunicationInfo").innerHTML = message;
+        document.getElementById('ffCommunicationInfo').update(message);
     }
 </script>
 
