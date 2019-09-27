@@ -61,19 +61,15 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
     const PATH_FF_CRON_ENABLED   = 'factfinder/configurable_cron/enabled';
 
     /**
-     * Returns URL     *
+     * Returns URL
+     *
      * @return string
      */
     public function getAddress()
     {
         $registeredAuthData = $this->getRegisteredAuthParams();
         $url = $registeredAuthData['serverUrl'] ? $registeredAuthData['serverUrl'] : Mage::getStoreConfig(self::PATH_ADDRESS);
-
-        if (substr(rtrim($url), -1) != '/') {
-            $url .= '/';
-        }
-
-        return $url;
+        return trim($url, ' /') . '/';
     }
 
     /**

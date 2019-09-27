@@ -1,95 +1,78 @@
 <?php
 
+use Varien_Http_Client as HttpClient;
+
 class Omikron_Factfinder_Helper_Communication extends Mage_Core_Helper_Abstract
 {
-    // API data
-    const API_NAME = 'Search.ff';
+    const API_NAME  = 'Search.ff';
     const API_QUERY = 'FACT-Finder version';
 
-    /**
-     * @var Omikron_Factfinder_Helper_Data
-     */
+    /** @var Omikron_Factfinder_Helper_Data */
     private $dataHelper;
 
-    /**
-     * Omikron_Factfinder_Helper_Communication constructor.
-     */
     public function __construct()
     {
-        $this->dataHelper = Mage::helper('factfinder/data');
+        $this->dataHelper = Mage::helper('factfinder');
     }
 
     /**
      * Update trackingProductNumber field role
      *
      * @param Mage_Core_Model_Store $store
+     *
      * @return array
      */
     public function updateFieldRoles($store)
     {
         $conCheck = $this->checkConnection($store);
-        if($conCheck['hasFieldRoles']) {
+        if ($conCheck['hasFieldRoles']) {
             $this->dataHelper->setFieldRoles($conCheck['fieldRoles']);
         }
-
         return $conCheck;
     }
 
     /**
      * Sends HTTP GET request to FACT-Finder. Returns the server response.
      *
-     * @param $apiName string
-     * @param $params string|array
-     * @return mixed
+     * @param string $apiName
+     * @param array  $params
+     *
+     * @return array
+     * @throws Zend_Http_Client_Exception
      */
-    public function sendToFF($apiName, $params)
+    public function sendToFF($apiName, array $params)
     {
-        $authentication = $this->dataHelper->getAuthArray();
-        $address = $this->dataHelper->getAddress();
-
-        $url = $address . $apiName . '?format=json&' . http_build_query($authentication) . '&';
-
-        if (is_array($params)) {
-            $url .= http_build_query($params);
-        } else {
-            $url .= $params;
-        }
-
-        // Send HTTP GET with curl
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        // Special value '' for all supported encoding types.
-        curl_setopt($curl, CURLOPT_ENCODING, '');
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-
-        // Receive server response
-        $response = curl_exec($curl);
-
-        curl_close($curl);
-
-        return $response;
+        $client = new HttpClient();
+        $client->setUri($this->dataHelper->getAddress() . $apiName);
+        $client->setParameterGet($params + ['format' => 'json'] + $this->dataHelper->getAuthArray());
+        return (array) Mage::helper('core')->jsonDecode($client->request(HttpClient::GET)->getBody());
     }
 
     /**
      * Triggers an ff import on the pushed data
      *
      * @param string $channelName
+     *
      * @return bool
      */
     public function pushImport($channelName)
     {
-        $response_json = json_decode($this->sendToFF('Import.ff', [
-            'channel'  => $channelName,
-            'type'     => 'suggest',
-            'format'   => 'json',
-            'quiet'    => 'true',
-            'download' => 'true',
-        ]), JSON_OBJECT_AS_ARRAY);
+        try {
+            $response = $this->sendToFF('Import.ff', [
+                'channel'  => $channelName,
+                'type'     => 'suggest',
+                'quiet'    => 'true',
+                'download' => 'true',
+            ]);
 
-        if (is_array($response_json) && isset($response_json['errors']) && is_array($response_json['errors']) && count($response_json['errors'])) {
+            if (isset($response['errors']) && is_array($response['errors']) && count($response['errors'])) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (Zend_Http_Client_Exception $e) {
+            Mage::logException($e);
             return false;
-        } else {
-            return true;
         }
     }
 
@@ -111,7 +94,7 @@ class Omikron_Factfinder_Helper_Communication extends Mage_Core_Helper_Abstract
         $result['success'] = true;
         $result['ff_error_response'] = '';
         $result['ff_error_stacktrace'] = '';
-        $result['ff_response_decoded'] = json_decode($response, JSON_OBJECT_AS_ARRAY);
+        $result['ff_response_decoded'] = $response;
 
         if (!is_array($result['ff_response_decoded'])) {
             $result['ff_response_decoded'] = [];
