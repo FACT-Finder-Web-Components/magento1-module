@@ -1,5 +1,6 @@
 <?php
 
+use Mage_Core_Model_Store as Store;
 use Varien_Http_Client as HttpClient;
 
 class Omikron_Factfinder_Helper_Communication extends Mage_Core_Helper_Abstract
@@ -13,22 +14,6 @@ class Omikron_Factfinder_Helper_Communication extends Mage_Core_Helper_Abstract
     public function __construct()
     {
         $this->dataHelper = Mage::helper('factfinder');
-    }
-
-    /**
-     * Update trackingProductNumber field role
-     *
-     * @param Mage_Core_Model_Store $store
-     *
-     * @return array
-     */
-    public function updateFieldRoles($store)
-    {
-        $conCheck = $this->checkConnection($store);
-        if ($conCheck['hasFieldRoles']) {
-            $this->dataHelper->setFieldRoles($conCheck['fieldRoles']);
-        }
-        return $conCheck;
     }
 
     /**
@@ -79,10 +64,13 @@ class Omikron_Factfinder_Helper_Communication extends Mage_Core_Helper_Abstract
     /**
      * Update trackingProductNumber field role
      *
-     * @param Mage_Core_Model_Store $store
+     * @param Store $store
+     *
      * @return array
+     * @throws Zend_Http_Client_Exception
+     * @throws Mage_Core_Exception
      */
-    public function checkConnection($store)
+    public function checkConnection(Store $store)
     {
         $response = $this->sendToFF(self::API_NAME, [
             'query'   => self::API_QUERY,
@@ -90,30 +78,10 @@ class Omikron_Factfinder_Helper_Communication extends Mage_Core_Helper_Abstract
             'verbose' => 'true',
         ]);
 
-        $result = [];
-        $result['success'] = true;
-        $result['ff_error_response'] = '';
-        $result['ff_error_stacktrace'] = '';
-        $result['ff_response_decoded'] = $response;
-
-        if (!is_array($result['ff_response_decoded'])) {
-            $result['ff_response_decoded'] = [];
-            $result['success'] = false;
-        }
-        if (isset($result['ff_response_decoded']['error'])) {
-            $result['ff_error_response'] = $result['ff_response_decoded']['error'];
-            if(isset($result['ff_response_decoded']['stacktrace'])) $result['ff_error_stacktrace'] = explode('at', $result['ff_response_decoded']['stacktrace'])[0];
-            $result['success'] = false;
-        }
-        if($result['success'] && isset($result['ff_response_decoded']['searchResult']) && isset($result['ff_response_decoded']['searchResult']['fieldRoles'])) {
-            $result['hasFieldRoles'] = true;
-            $result['fieldRoles'] = json_encode($result['ff_response_decoded']['searchResult']['fieldRoles']);
-        }
-        else {
-            $result['hasFieldRoles'] = false;
-            $result['fieldRoles'] = false;
+        if (isset($response['error'])) {
+            Mage::throwException($response['error']);
         }
 
-        return $result;
+        return $response;
     }
 }

@@ -1,8 +1,5 @@
 <?php
 
-/**
- * Class Omikron_Factfinder_Helper_Data
- */
 class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
 {
     // General
