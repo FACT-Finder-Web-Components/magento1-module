@@ -1,8 +1,5 @@
 <?php
 
-/**
- * Class Omikron_Factfinder_Model_Source_CustomerGroup
- */
 class Omikron_Factfinder_Model_Source_CustomerGroup
 {
     /**

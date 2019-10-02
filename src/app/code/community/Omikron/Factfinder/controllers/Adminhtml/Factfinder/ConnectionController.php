@@ -2,24 +2,22 @@
 
 class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_Adminhtml_Controller_Action
 {
-    /**
-     * @throws Mage_Core_Exception
-     * @throws Mage_Core_Model_Store_Exception
-     */
     public function testAction()
     {
-        Mage::register('ff-auth', $this->getAuthFromRequest(), true);
-        $connCheck = Mage::helper('factfinder/communication')->checkConnection(Mage::app()->getStore());
+        $message = $this->__('Success! Connection successfully tested!');
 
-        if ($connCheck['success']) {
-            $message = (string) $this->__('Success! Connection successfully tested!');
-        } else {
-            $message = (string) $this->__('Error! Connection could not be established. Please check your setup.');
-            if (strlen($connCheck['ff_error_stacktrace'])) {
-                $message .= ' ' . $this->__('FACT-Finder error message: %s', $connCheck['ff_error_stacktrace']);
-            }
+        try {
+            Mage::register('ff-auth', $this->getAuthFromRequest(), true);
+            Mage::helper('factfinder/communication')->checkConnection(Mage::app()->getStore());
+        } catch (Exception $e) {
+            $message = $this->__('Connection could not be established: %s', $e->getMessage());
         }
 
+        $this->jsonResponse($message);
+    }
+
+    private function jsonResponse($message)
+    {
         $this->getResponse()->setHeader('Content-type', 'application/json');
         $this->getResponse()->setBody(Mage::helper('core')->jsonEncode(['message' => $message]));
     }
