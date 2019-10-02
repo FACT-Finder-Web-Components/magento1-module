@@ -217,7 +217,7 @@
                             <show_in_store>1</show_in_store>
                         </keep_url_params>
                         <parameter_whitelist translate="label comment">
-                            <label>Parameter whitelist	</label>
+                            <label>Parameter whitelist</label>
                             <comment>If any URL parameters are omitted through other attributes like use-url-parameter="false" or only-search-params you can add specific important parameters manually. Just use a comma separated list like: parameter-whitelist="param1,myParam"</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>8</sort_order>
