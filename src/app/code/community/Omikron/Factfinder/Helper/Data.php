@@ -435,7 +435,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
 
         return [
             'username'  => $this->getUsername(),
-            'password'  => md5($prefix . (string) $time . $password . $postfix),
+            'password'  => md5($prefix . (string) $time . md5($password) . $postfix),
             'timestamp' => $time,
         ];
     }
