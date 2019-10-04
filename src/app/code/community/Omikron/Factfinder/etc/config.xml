@@ -35,6 +35,14 @@
                     </omikron_factfinder_model_observer>
                 </observers>
             </checkout_cart_product_add_after>
+            <checkout_submit_all_after>
+                <observers>
+                    <omikron_factfinder_model_observer>
+                        <class>factfinder/observer_checkout</class>
+                        <method>submitAllAfter</method>
+                    </omikron_factfinder_model_observer>
+                </observers>
+            </checkout_submit_all_after>
         </events>
         <layout>
             <updates>

@@ -29,11 +29,17 @@ class Omikron_Factfinder_Helper_Communication extends Mage_Core_Helper_Abstract
     {
         $client = new HttpClient();
         $client->setUri($this->dataHelper->getAddress() . $apiName);
-        $client->setParameterGet($params + ['format' => 'json'] + $this->dataHelper->getAuthArray());
         $query = preg_replace('#products%5B\d+%5D%5B(.+?)%5D=#', '\1=',
             http_build_query($params + ['format' => 'json'] + $this->dataHelper->getAuthArray()));
-        $client->setQuery($query);
-        return (array) Mage::helper('core')->jsonDecode($client->request(HttpClient::GET)->getBody());
+        $uri = $client->getUri();
+        $uri->setQuery($query);
+        try {
+            $result = (array) Mage::helper('core')->jsonDecode($client->request(HttpClient::GET)->getBody());
+        } catch (Zend_Json_Exception $e) {
+            $result = (array) $client->request(HttpClient::GET)->getBody();
+        }
+
+        return $result;
     }
 
     /**
