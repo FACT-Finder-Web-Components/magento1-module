@@ -12,10 +12,14 @@ class Omikron_Factfinder_Model_Observer_Checkout
     /** @var Omikron_Factfinder_Helper_Product */
     private $productHelper;
 
+    /** @var Omikron_Factfinder_Helper_Data */
+    private $config;
+
     public function __construct()
     {
         $this->tracking      = Mage::getModel('factfinder/tracking');
         $this->productHelper = Mage::helper('factfinder/product');
+        $this->config        = Mage::helper('factfinder');
     }
 
     public function submitAllAfter(Event $event)
@@ -23,17 +27,18 @@ class Omikron_Factfinder_Model_Observer_Checkout
         /** @var Mage_Sales_Model_Quote $cart */
         $cart = $event->getData('quote');
 
-        $trackingProducts = array_map(
-            function (OrderItem $item) {
-                return new TrackingProduct(
-                    $this->productHelper->getProductNumber($item->getProduct()),
-                    $this->productHelper->getMasterProductNumber($item->getProduct()),
-                    $item->getPrice(),
-                    $item->getQty()
-                );
-            }, $cart->getAllVisibleItems()
-        );
-
-        $this->tracking->execute('checkout', $trackingProducts);
+        if($this->config->isEnabled()) {
+            $trackingProducts = array_map(
+                function (OrderItem $item) {
+                    return new TrackingProduct(
+                        $this->productHelper->getProductNumber($item->getProduct()),
+                        $this->productHelper->getMasterProductNumber($item->getProduct()),
+                        $item->getPrice(),
+                        $item->getQty()
+                    );
+                }, $cart->getAllVisibleItems()
+            );
+            $this->tracking->execute('checkout', $trackingProducts);
+        }
     }
 }
