@@ -24,15 +24,15 @@ class Omikron_Factfinder_Helper_Communication extends Mage_Core_Helper_Abstract
      *
      * @return array
      * @throws Zend_Http_Client_Exception
+     * @throws Zend_Uri_Exception
      */
     public function sendToFF($apiName, array $params)
     {
         $client = new HttpClient();
         $client->setUri($this->dataHelper->getAddress() . $apiName);
-        $query = preg_replace('#products%5B\d+%5D%5B(.+?)%5D=#', '\1=',
-            http_build_query($params + ['format' => 'json'] + $this->dataHelper->getAuthArray()));
-        $uri = $client->getUri();
-        $uri->setQuery($query);
+        $query = http_build_query($params + ['format' => 'json'] + $this->dataHelper->getAuthArray());
+        $client->getUri()->setQuery(preg_replace('#products%5B\d+%5D%5B(.+?)%5D=#', '\1=', $query));
+
         try {
             $result = (array) Mage::helper('core')->jsonDecode($client->request(HttpClient::GET)->getBody());
         } catch (Zend_Json_Exception $e) {
@@ -58,13 +58,12 @@ class Omikron_Factfinder_Helper_Communication extends Mage_Core_Helper_Abstract
                 'quiet'    => 'true',
                 'download' => 'true',
             ]);
-
             if (isset($response['errors']) && is_array($response['errors']) && count($response['errors'])) {
                 return false;
             } else {
                 return true;
             }
-        } catch (Zend_Http_Client_Exception $e) {
+        } catch (Zend_Exception $e) {
             Mage::logException($e);
             return false;
         }
@@ -76,8 +75,8 @@ class Omikron_Factfinder_Helper_Communication extends Mage_Core_Helper_Abstract
      * @param Store $store
      *
      * @return array
-     * @throws Zend_Http_Client_Exception
      * @throws Mage_Core_Exception
+     * @throws Zend_Exception
      */
     public function checkConnection(Store $store)
     {
