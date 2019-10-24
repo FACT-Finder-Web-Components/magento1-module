@@ -4,12 +4,12 @@
 - Avoid all rewrites of Magento core classes and implement search result in a dedicated controller
 - Remove `ff-navigation`
 - Render category pages using Web Components
-- Upgraded FACT-Finder WebComponents version to 3.7.0
+- Upgrade FACT-Finder WebComponents version to 3.7.0
+- Tracking has been moved to be executed on the server side
 
 ## [v1.0.0] - 2019-07-03
 ### Changed
 - Upgraded FACT-Finder WebComponents version to 3.4.0
-- tracking has been moved to be executed on the server side
 
 ### Fixed
 - Fix wrong value for CURLOPT_ENCODING and add support for all encoding types.
