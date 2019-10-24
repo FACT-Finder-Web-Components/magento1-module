@@ -90,14 +90,14 @@
 - Allow user to choose which visibilities should be applied to collection filter
 - Divide product collection into batches in order to prevent memory exhaustion on product collection load
 
-[v1.1.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v1.0.0...v1.1.0
-[v1.0.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.10.0...v1.0.0
-[v0.10.0]:     https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9.0...v0.10.0
-[v0.9.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9-beta.7...v0.9.0
-[v0.9-beta.7]: https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9-beta.6...v0.9-beta.7
-[v0.9-beta.6]: https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9-beta.5...v0.9-beta.6
-[v0.9-beta.5]: https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9-beta.4...v0.9-beta.5
-[v0.9-beta.4]: https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9-beta.3...v0.9-beta.4
-[v0.9-beta.3]: https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9-beta.2...v0.9-beta.3
-[v0.9-beta.2]: https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9-beta.1...v0.9-beta.2
+[v1.1.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v1.1.0
+[v1.0.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v1.0.0
+[v0.10.0]:     https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v0.10.0
+[v0.9.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v0.9.0
+[v0.9-beta.7]: https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v0.9-beta.7
+[v0.9-beta.6]: https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v0.9-beta.6
+[v0.9-beta.5]: https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v0.9-beta.5
+[v0.9-beta.4]: https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v0.9-beta.4
+[v0.9-beta.3]: https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v0.9-beta.3
+[v0.9-beta.2]: https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v0.9-beta.2
 [v0.9-beta.1]: https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v0.9-beta.1
