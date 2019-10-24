@@ -90,6 +90,7 @@
 - Allow user to choose which visibilities should be applied to collection filter
 - Divide product collection into batches in order to prevent memory exhaustion on product collection load
 
+[v1.1.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v1.0.0...v1.1.0
 [v1.0.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.10.0...v1.0.0
 [v0.10.0]:     https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9.0...v0.10.0
 [v0.9.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/compare/v0.9-beta.7...v0.9.0
