@@ -1,10 +1,10 @@
 # Changelog
-## Unreleased
+## [v1.1.0] - 2019-10-25
 ### Changed
 - Avoid all rewrites of Magento core classes and implement search result in a dedicated controller
 - Remove `ff-navigation`
 - Render category pages using Web Components
-- Upgrade FACT-Finder WebComponents version to 3.7.0
+- Upgrade FACT-Finder WebComponents version to 3.8.0
 - Tracking has been moved to be executed on the server side
 
 ## [v1.0.0] - 2019-07-03
