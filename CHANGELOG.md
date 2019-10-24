@@ -9,6 +9,7 @@
 ## [v1.0.0] - 2019-07-03
 ### Changed
 - Upgraded FACT-Finder WebComponents version to 3.4.0
+- tracking has been moved to be executed on the server side
 
 ### Fixed
 - Fix wrong value for CURLOPT_ENCODING and add support for all encoding types.
