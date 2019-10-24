@@ -3,10 +3,8 @@ document.addEventListener('ffReady', function () {
 
     factfinder.communication.FFCommunicationEventAggregator.addBeforeDispatchingCallback(function (event) {
         if (event.type === 'search' && !event.__immediate) {
-            var params = Object.assign({}, event);
-            delete params.type;
-            delete params.version;
-            window.location.href = redirectPath + factfinder.common.dictToParameterString(params);
+            delete event.type;
+            window.location.href = redirectPath + factfinder.common.dictToParameterString(event);
         }
     });
 });

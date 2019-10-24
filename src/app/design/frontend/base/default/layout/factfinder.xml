@@ -63,20 +63,12 @@
         </reference>
     </cms_index_index>
 
-    <!-- Cart Campaign and Tracking -->
+    <!-- Cart Campaign -->
     <checkout_cart_index>
         <reference name="content">
             <block type="checkout/cart" name="factfinder_cart_campaign" template="factfinder/campaign/cart.phtml" />
-            <block type="checkout/cart" name="factfinder_cart_tracking" template="factfinder/cart/tracking.phtml" />
         </reference>
     </checkout_cart_index>
-
-    <!-- Checkout Tracking -->
-    <checkout_onepage_success>
-        <reference name="content">
-            <block type="core/template" name="factfinder_checkout_success" template="factfinder/checkout/success.phtml" after="-" />
-        </reference>
-    </checkout_onepage_success>
 
     <!-- Default css and js -->
     <default>

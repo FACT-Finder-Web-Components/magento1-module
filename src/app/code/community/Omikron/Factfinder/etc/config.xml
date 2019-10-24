@@ -30,11 +30,19 @@
             <checkout_cart_product_add_after>
                 <observers>
                     <omikron_factfinder_model_observer>
-                        <class>factfinder/observer_tracking</class>
-                        <method>saveProductToSession</method>
+                        <class>factfinder/observer_cart</class>
+                        <method>addAfter</method>
                     </omikron_factfinder_model_observer>
                 </observers>
             </checkout_cart_product_add_after>
+            <checkout_submit_all_after>
+                <observers>
+                    <omikron_factfinder_model_observer>
+                        <class>factfinder/observer_checkout</class>
+                        <method>submitAllAfter</method>
+                    </omikron_factfinder_model_observer>
+                </observers>
+            </checkout_submit_all_after>
         </events>
         <layout>
             <updates>
@@ -88,6 +96,7 @@
         <factfinder>
             <general>
                 <is_enabled>0</is_enabled>
+                <password backend_model="adminhtml/system_config_backend_encrypted" />
                 <tracking_product_number_field_role>{"brand":"Manufacturer","campaignProductNumber":"ProductNumber","deeplink":"ProductUrl","description":"Description","displayProductNumber":"ProductNumber","ean":"EAN","imageUrl":"ImageUrl","masterArticleNumber":"MasterProductNumber","price":"Price","productName":"Name","trackingProductNumber":"ProductNumber"}</tracking_product_number_field_role>
             </general>
             <components>

@@ -3,10 +3,12 @@
 class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
 {
     // General
-    const PATH_ADDRESS = 'factfinder/general/address';
-    const PATH_CHANNEL = 'factfinder/general/channel';
+    const PATH_ENABLED  = 'factfinder/general/is_enabled';
+    const PATH_ADDRESS  = 'factfinder/general/address';
+    const PATH_CHANNEL  = 'factfinder/general/channel';
     const PATH_USERNAME = 'factfinder/general/username';
     const PATH_PASSWORD = 'factfinder/general/password';
+
     const PATH_AUTHENTICATION_PREFIX = 'factfinder/general/authentication_prefix';
     const PATH_AUTHENTICATION_POSTFIX = 'factfinder/general/authentication_postfix';
     const PATH_TRACKING_PRODUCT_NUMBER_FIELD_ROLE = 'factfinder/general/tracking_product_number_field_role';
@@ -56,6 +58,14 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
 
     // Cron
     const PATH_FF_CRON_ENABLED   = 'factfinder/configurable_cron/enabled';
+
+    /**
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return Mage::getStoreConfigFlag(self::PATH_ENABLED);
+    }
 
     /**
      * Returns URL
@@ -435,7 +445,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
 
         return [
             'username'  => $this->getUsername(),
-            'password'  => md5($prefix . (string) $time . $password . $postfix),
+            'password'  => md5($prefix . (string) $time . md5($password) . $postfix),
             'timestamp' => $time,
         ];
     }
