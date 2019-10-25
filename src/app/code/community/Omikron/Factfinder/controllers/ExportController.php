@@ -2,54 +2,48 @@
 
 class Omikron_Factfinder_ExportController extends Mage_Core_Controller_Front_Action
 {
-    const REALM = 'Restricted area';
-
-    public function indexAction()
+    public function preDispatch()
     {
-        /** @var Omikron_Factfinder_Helper_Data $helper */
-        $helper                 = Mage::helper('factfinder/data');
-        $validPasswords         = [$helper->getUploadUrlUser() => $helper->getUploadUrlPassword()];
-        $validUsers             = array_keys($validPasswords);
-        $hasSuppliedCredentials = !(empty($_SERVER['PHP_AUTH_USER']) && empty($_SERVER['PHP_AUTH_PW']));
-
-        $validated = ($hasSuppliedCredentials && in_array($_SERVER['PHP_AUTH_USER'], $validUsers)) &&
-            strcmp($_SERVER['PHP_AUTH_PW'], $validPasswords[$_SERVER['PHP_AUTH_USER']]) === 0;
-
-        if (!$validated) {
-            header('WWW-Authenticate: Basic realm="' . self::REALM . '"');
-            header('HTTP/1.0 401 Unauthorized');
-            die($this->__('Not authorized.'));
+        list($username, $password) = Mage::helper('core/http')->authValidate();
+        if (!$this->authenticate($username, $password)) {
+            $response = $this->getResponse();
+            $response->setHttpResponseCode(401);
+            $response->setHeader('WWW-Authenticate', 'Basic realm="Resticted area"');
+            $this->setFlag('', self::FLAG_NO_DISPATCH, true);
         }
+        return parent::preDispatch();
+    }
 
-        try {
-            $this->generateCsvFile();
-        } catch (\Exception $e) {
-            die($this->__('Error: ') . $e->getMessage());
-        }
+    private function authenticate($username, $password)
+    {
+        $ff = Mage::helper('factfinder');
+        return strcmp($username, $ff->getUploadUrlUser()) === 0 && strcmp($password, $ff->getUploadUrlPassword()) === 0;
     }
 
     /**
      * Generate downloadable CSV file
      *
-     * @return void
      * @throws Mage_Core_Model_Store_Exception
      */
-    private function generateCsvFile()
+    public function indexAction()
     {
         $storeId = $this->getRequest()->getParam('store', Mage::app()->getDefaultStoreView());
         $store   = Mage::app()->getStore($storeId);
+        $data    = Mage::getSingleton('factfinder/export_product')->exportProductWithExternalUrl($store);
 
-        /** @var Omikron_Factfinder_Model_Export_Product $product */
-        $product = Mage::getModel('Omikron_Factfinder_Model_Export_Product');
+        $response = $this->getResponse();
+        $response->setHeader('Content-Type', 'text/csv; charset=utf-8');
+        $response->setHeader('Content-Disposition', 'attachment; filename=' . $data['filename']);
+        $response->setBody($this->toCsv($data['data']));
+    }
 
-        $data = $product->exportProductWithExternalUrl($store);
-
-        header('Content-Type: text/csv; charset=utf-8');
-        header('Content-Disposition: attachment; filename=' . $data['filename']);
-        $output = fopen('php://output', 'w');
-
-        foreach ($data['data'] as $row) {
-            fputcsv($output, $row, ';');
-        }
+    private function toCsv(array $data)
+    {
+        ob_start();
+        $csv = new Varien_File_Csv();
+        $csv->setDelimiter(';');
+        $csv->setEnclosure('"');
+        $csv->saveData('php://output', $data);
+        return ob_get_clean();
     }
 }

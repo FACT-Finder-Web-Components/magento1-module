@@ -1,8 +1,5 @@
 <?php
 
-/**
- * Class Omikron_Factfinder_Helper_Product_Price
- */
 class Omikron_Factfinder_Helper_Product_Price extends Mage_Core_Helper_Abstract
 {
     /**

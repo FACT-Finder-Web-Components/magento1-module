@@ -1,80 +1,74 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <layout>
-    <!-- Search Result Page with Toolbar and Campaigns -->
-    <catalogsearch_result_index>
-        <block type="core/template" name="ff.paging" template="factfinder/catalog/product/list/paging.phtml" />
-        <block type="core/template" name="ff.sortbox" template="factfinder/catalog/product/list/sortbox.phtml" />
-        <block type="core/template" name="ff.ppp_list" template="factfinder/catalog/product/list/ppp_list.phtml" />
-
-        <action method="setTemplate" block="root">
-            <template>page/2columns-left.phtml</template>
-        </action>
-        <action method="setTemplate" block="catalogsearch.leftnav">
-            <template>factfinder/catalog/layer/view.phtml</template>
-        </action>
-        <action method="setData" block="ff.communication">
-            <key>search_immediate</key>
-            <value>1</value>
-        </action>
+    <factfinder_product_list>
+        <update handle="page_two_columns_left" />
 
         <block type="core/template" name="ff.result.list" template="factfinder/catalog/product/list.phtml">
+            <block type="core/template" name="ff.campaign_advisor" as="advisor_campaign" template="factfinder/campaign/advisor.phtml" />
+            <block type="core/template" name="ff.campaign_feedback" as="feedback_campaign" template="factfinder/campaign/feedback.phtml" />
             <block type="core/text_list" name="ff.toolbar" as="toolbar">
                 <action method="setFrameTags">
                     <before><![CDATA[div class="toolbar"]]></before>
                     <after><![CDATA[/div]]></after>
                 </action>
-                <action method="append" ifconfig="factfinder/components/ff_sortbox">
-                    <name>ff.sortbox</name>
-                    <as>sortbox</as>
-                </action>
-                <action method="append" ifconfig="factfinder/components/ff_productspp">
-                    <name>ff.ppp_list</name>
-                    <as>ppp_list</as>
-                </action>
+                <block type="core/template" name="ff.sortbox" template="factfinder/catalog/product/list/sortbox.phtml" />
+                <block type="core/template" name="ff.ppp" template="factfinder/catalog/product/list/ppp.phtml" />
             </block>
-
-            <action method="append" ifconfig="factfinder/components/ff_paging">
-                <name>ff.paging</name>
-                <as>paging</as>
-            </action>
+            <block type="core/template" name="ff.paging" as="paging" template="factfinder/catalog/product/list/paging.phtml" />
         </block>
+        <block type="core/template" name="ff.asn" template="factfinder/catalog/layer/view.phtml" />
+
+        <action method="setData" block="ff.communication"><key>search_immediate</key><value>1</value></action>
+        <action method="append" block="content"><name>ff.result.list</name></action>
+        <action method="append" block="left"><name>ff.asn</name></action>
+    </factfinder_product_list>
+
+    <!-- Search Result Page with Toolbar and Campaigns -->
+    <factfinder_result_index>
+        <update handle="factfinder_product_list" />
+        <action method="setTemplate" block="breadcrumbs" ifconfig="factfinder/components/ff_breadcrumb">
+            <template>factfinder/catalog/product/list/breadcrumbs.phtml</template>
+        </action>
+    </factfinder_result_index>
+
+    <factfinder_category_view>
+        <update handle="factfinder_product_list" />
+
+        <remove name="category.products" />
+        <remove name="catalog.leftnav" />
 
         <reference name="content">
-            <action method="unsetChild"><child>search.result</child></action>
-            <action method="append"><name>ff.result.list</name></action>
+            <block type="catalog/category_view" name="breadcrumbs" as="breadcrumbs" before="-" />
         </reference>
-    </catalogsearch_result_index>
+
+        <action method="setData" block="ff.communication">
+            <key>add-params</key>
+            <value helper="factfinder/category/getPath" />
+        </action>
+    </factfinder_category_view>
 
     <!-- Product Details Campaign and Similar Products -->
     <catalog_product_view>
         <reference name="content">
-            <block type="catalog/product_view" name="factfinder_roduct_campaign" template="factfinder/campaign/product.phtml" />
-            <block type="catalog/product_view" name="factfinder_roduct_similar_products" template="factfinder/catalog/product/similar_products.phtml" />
-            <block type="catalog/product_view" name="factfinder_product_upsell" template="factfinder/catalog/product/list/upsell.phtml" />
+            <block type="catalog/product_view" name="ff.product.campaign" template="factfinder/campaign/product.phtml" />
+            <block type="catalog/product_view" name="ff.product.similar_products" template="factfinder/catalog/product/similar_products.phtml" />
+            <block type="catalog/product_view" name="ff.product.upsell" template="factfinder/catalog/product/list/upsell.phtml" />
         </reference>
     </catalog_product_view>
 
     <!-- Landing Page Campaign -->
     <cms_index_index>
         <reference name="content">
-            <block type="core/template" name="factfinder_landing_page_campaign" template="factfinder/campaign/landing_page.phtml"/>
+            <block type="core/template" name="factfinder_landing_page_campaign" template="factfinder/campaign/landing_page.phtml" />
         </reference>
     </cms_index_index>
 
-    <!-- Cart Campaign and Tracking -->
+    <!-- Cart Campaign -->
     <checkout_cart_index>
         <reference name="content">
             <block type="checkout/cart" name="factfinder_cart_campaign" template="factfinder/campaign/cart.phtml" />
-            <block type="checkout/cart" name="factfinder_cart_tracking" template="factfinder/cart/tracking.phtml" />
         </reference>
     </checkout_cart_index>
-
-    <!-- Checkout Tracking -->
-    <checkout_onepage_success>
-        <reference name="content">
-            <block type="core/template" name="factfinder_checkout_success" template="factfinder/checkout/success.phtml" after="-" />
-        </reference>
-    </checkout_onepage_success>
 
     <!-- Default css and js -->
     <default>
@@ -93,14 +87,14 @@
             <template>factfinder/catalogsearch/form.mini.phtml</template>
         </action>
 
-        <!-- Header Navigation -->
-        <action method="setTemplate" block="catalog.topnav" ifconfig="factfinder/components/ff_navigation">
-            <template>factfinder/page/html/topmenu.phtml</template>
-        </action>
-
         <!-- Communication -->
         <reference name="after_body_start">
             <block type="core/template" name="ff.communication" template="factfinder/communication/communication.phtml" />
         </reference>
+
+        <block type="core/template" name="ff.campaign_redirect" template="factfinder/campaign/redirect.phtml" />
+        <action method="append" block="after_body_start" ifconfig="factfinder/components/ff_campaign">
+            <name>ff.campaign_redirect</name>
+        </action>
     </default>
 </layout>

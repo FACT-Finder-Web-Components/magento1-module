@@ -2,11 +2,11 @@
 <div class="pager">
     <div class="count-container">
         <p class="amount">
-            <ff-template scope="result" unresolved><strong><?php echo $this->escapeHtml($this->__('{{resultCount}} Item(s)')) ?></strong></ff-template>
+            <ff-template scope="result" unresolved><?php echo $this->escapeHtml($this->__('{{resultCount}} Item(s)')) ?></ff-template>
         </p>
         <div class="limiter">
             <label><?php echo $this->escapeHtml($this->__('Show')) ?></label>
-            <ff-products-per-page-list unresolved></ff-products-per-page-list>
+            <ff-products-per-page-select unresolved></ff-products-per-page-select>
         </div>
     </div>
 </div>

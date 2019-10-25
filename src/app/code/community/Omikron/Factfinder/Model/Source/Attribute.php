@@ -1,24 +1,21 @@
 <?php
 
+use Mage_Eav_Model_Entity_Attribute as Attribute;
+
 class Omikron_Factfinder_Model_Source_Attribute
 {
     /**
-     * Options getter     *
      * @return array
      */
     public function toOptionArray()
     {
-        $attributes = Mage::getResourceModel('catalog/product_attribute_collection')
-            ->getItems();
+        $options = array_map(function (Attribute $item) {
+            return ['value' => $item->getAttributeCode(), 'label' => $item->getAttributeCode()];
+        }, Mage::getResourceModel('catalog/product_attribute_collection')->getItems());
 
-        foreach ($attributes as $attribute){
-            $options[] = [
-                'value' => $attribute->getAttributeCode(),
-                'label' => $attribute->getAttributeCode()
-            ];
-        }
-
-        asort($options);
+        usort($options, function (array $a, array $b) {
+            return strcasecmp($a['value'], $b['value']);
+        });
 
         return $options;
     }

@@ -1,65 +1,59 @@
-<?php
-/** @var Omikron_Factfinder_Helper_Data $dataHelper */
-/** @var Mage_Core_Block_Template $this */
-$dataHelper = Mage::helper('factfinder/data');
-?>
-<?php if ($dataHelper->getFFAsn()): ?>
-   <ff-asn align="vertical" unresolved>
-        <ff-asn-group for-group="all">
-            <ff-asn-group-element>
-                <div slot="selected">
-                    <input type="checkbox" checked>
-                    <span class="filterName">{{element.name}}</span>
-                </div>
-                <div slot="unselected">
-                    <input type="checkbox">
-                    <span class="filterName">{{element.name}} <span>({{element.recordCount}})</span></span>
-                </div>
-            </ff-asn-group-element>
-            <div slot="groupCaption" class="groupCaption">{{group.name}}</div>
-            <div opened data-container="detailedLinks">
-                <div data-content="detailedLinks"></div>
+<?php /** @var Mage_Core_Block_Template $this */ ?>
+<ff-asn align="vertical" unresolved>
+    <ff-asn-group for-group="all">
+        <ff-asn-group-element>
+            <div slot="selected">
+                <input type="checkbox" checked>
+                <span class="filterName">{{element.name}}</span>
             </div>
-            <div data-container="hiddenLinks">
-                <div data-content="hiddenLinks"></div>
+            <div slot="unselected">
+                <input type="checkbox">
+                <span class="filterName">{{element.name}} <span>({{element.recordCount}})</span></span>
             </div>
+        </ff-asn-group-element>
+        <div slot="groupCaption" class="groupCaption">{{group.name}}</div>
+        <div opened data-container="detailedLinks">
+            <div data-content="detailedLinks"></div>
+        </div>
+        <div data-container="hiddenLinks">
+            <div data-content="hiddenLinks"></div>
+        </div>
 
-            <div data-container="showMore">
-                <span class="text"><?php echo $this->escapeHtml($this->__('Show More')) ?></span>
-            </div>
-            <div data-container="showLess">
-                <span class="text"><?php echo $this->escapeHtml($this->__('Show Less')) ?></span>
-            </div>
-        </ff-asn-group>
+        <div data-container="showMore">
+            <span class="text"><?php echo $this->escapeHtml($this->__('Show More')) ?></span>
+        </div>
+        <div data-container="showLess">
+            <span class="text"><?php echo $this->escapeHtml($this->__('Show Less')) ?></span>
+        </div>
+    </ff-asn-group>
 
-        <ff-asn-group filter-style="TREE" opened>
-            <ff-asn-group-element>
-                <div slot="selected">
-                    <span class="filterName filterName--selected">{{element.name}}</span>
-                </div>
-                <div slot="unselected">
-                    <span class="filterName">{{element.name}} <span>({{element.recordCount}})</span></span>
-                </div>
-            </ff-asn-group-element>
-            <div slot="groupCaption" class="groupCaption">{{group.name}}</div>
-            <div opened data-container="detailedLinks">
-                <div data-content="detailedLinks"></div>
+    <ff-asn-group filter-style="TREE" opened>
+        <ff-asn-group-element>
+            <div slot="selected">
+                <span class="filterName filterName--selected">{{element.name}}</span>
             </div>
-        </ff-asn-group>
+            <div slot="unselected">
+                <span class="filterName">{{element.name}} <span>({{element.recordCount}})</span></span>
+            </div>
+        </ff-asn-group-element>
+        <div slot="groupCaption" class="groupCaption">{{group.name}}</div>
+        <div opened data-container="detailedLinks">
+            <div data-content="detailedLinks"></div>
+        </div>
+    </ff-asn-group>
 
-        <ff-asn-group-slider class="ff-asn-group-slider" opened>
-           <div slot="groupCaption" class="groupCaption">
-               {{group.name}}<span class="filterArrowDown">&nbsp;</span>
-           </div>
-           <ff-slider-control class="ff-slider-control" submit-on-input="true">
-               <input data-control='1' class="ff-slider-control-left ff-slider-control-common">
-               <input data-control='2' class="ff-slider-control-right ff-slider-control-common">
-               <ff-slider current-min-value="0">
-                   <div slot="slider1" id="slider1" class="sliderBtn"></div>
-                   <div slot="slider2" id="slider2" class="sliderBtn"></div>
-               </ff-slider>
-           </ff-slider-control>
-            <div data-container="removeFilter">Remove Filter</div>
-       </ff-asn-group-slider>
-    </ff-asn>
-<?php endif; ?>
+    <ff-asn-group-slider class="ff-asn-group-slider" opened>
+       <div slot="groupCaption" class="groupCaption">
+           {{group.name}}<span class="filterArrowDown">&nbsp;</span>
+       </div>
+       <ff-slider-control class="ff-slider-control" submit-on-input="true">
+           <input data-control='1' class="ff-slider-control-left ff-slider-control-common">
+           <input data-control='2' class="ff-slider-control-right ff-slider-control-common">
+           <ff-slider current-min-value="0">
+               <div slot="slider1" id="slider1" class="sliderBtn"></div>
+               <div slot="slider2" id="slider2" class="sliderBtn"></div>
+           </ff-slider>
+       </ff-slider-control>
+        <div data-container="removeFilter">Remove Filter</div>
+   </ff-asn-group-slider>
+</ff-asn>

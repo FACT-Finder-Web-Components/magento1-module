@@ -1,22 +1,22 @@
+<?php /* @var Omikron_Factfinder_Block_Adminhtml_System_Config_Button_Feed $this */ ?>
 <script type="text/javascript">
     function exportToCsv() {
         new Ajax.Request('<?php echo $this->getAjaxCheckUrl() ?>', {
             method: 'get',
             onSuccess: function (transport) {
-                var response = JSON.parse(transport.responseText);
+                var response = transport.responseJSON || transport.responseText.evalJSON(true) || {};
                 setExportToCsvMessage(response.message.message);
             },
-            onFailure: function (transport) {
+            onFailure: function () {
                 setExportToCsvMessage('<?php echo $this->jsQuoteEscape($this->__('There were an error during feed export. Please check the server log and contact the technical support.')) ?>');
             }
         });
     }
 
     function setExportToCsvMessage(message) {
-        document.getElementById("ffExportInfo").innerHTML = message;
+        document.getElementById('ffExportInfo').update(message);
     }
 </script>
 
 <?php echo $this->getButtonHtml() ?>
 <p id="ffExportInfo"></p>
-

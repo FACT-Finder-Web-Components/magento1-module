@@ -11,14 +11,23 @@
             <groups>
                 <general translate="label comment">
                     <label>Main settings</label>
-                    <comment><![CDATA[<div id="messages"><ul class="messages"><li class="notice-msg"><ul><li><span>Please always save the config in the upper right corner after making changes.</span></li></ul></li></ul></div>]]></comment>
+                    <comment><![CDATA[<ul class="messages"><li class="notice-msg"><ul><li>Please always save the config in the upper right corner after making changes.</li></ul></li></ul>]]></comment>
                     <sort_order>1</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <expanded>1</expanded>
                     <fields>
-                        <address translate="label comment">
+                        <is_enabled translate="label">
+                            <label>Module enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </is_enabled>
+                        <address translate="label">
                             <label>Server URL</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>1</sort_order>
@@ -26,7 +35,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </address>
-                        <channel translate="label comment">
+                        <channel translate="label">
                             <label>Channel</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>2</sort_order>
@@ -34,7 +43,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </channel>
-                        <username translate="label comment">
+                        <username translate="label">
                             <label>Username</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>3</sort_order>
@@ -42,7 +51,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </username>
-                        <password translate="label comment">
+                        <password translate="label">
                             <label>Password</label>
                             <frontend_type>password</frontend_type>
                             <sort_order>4</sort_order>
@@ -51,7 +60,7 @@
                             <show_in_store>1</show_in_store>
                             <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
                         </password>
-                        <authentication_prefix translate="label comment">
+                        <authentication_prefix translate="label">
                             <label>Authentication Prefix</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>5</sort_order>
@@ -59,7 +68,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </authentication_prefix>
-                        <authentication_postfix translate="label comment">
+                        <authentication_postfix translate="label">
                             <label>Authentication Postfix</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>6</sort_order>
@@ -67,7 +76,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </authentication_postfix>
-                        <ff_build_connection>
+                        <ff_build_connection translate="label">
                             <label>Test connection</label>
                             <frontend_type>button</frontend_type>
                             <frontend_model>factfinder/adminhtml_system_config_button_testConnection</frontend_model>
@@ -76,11 +85,20 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </ff_build_connection>
+                        <use_for_categories>
+                            <label>Use FACT-Finder® for category pages?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_for_categories>
                     </fields>
                 </general>
                 <components translate="label comment">
                     <label>Activated Web-Components</label>
-                    <comment>Please always save the config in the upper right corner after making changes.</comment>
+                    <comment><![CDATA[<ul class="messages"><li class="notice-msg"><ul><li>Please always save the config in the upper right corner after making changes.</li></ul></li></ul>]]></comment>
                     <sort_order>2</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
@@ -95,52 +113,7 @@
                             <show_in_store>1</show_in_store>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </ff_suggest>
-                        <ff_asn translate="label">
-                            <label>Filter / ASN</label>
-                            <frontend_type>select</frontend_type>
-                            <sort_order>20</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                        </ff_asn>
-                        <ff_paging translate="label">
-                            <label>Paging</label>
-                            <frontend_type>select</frontend_type>
-                            <sort_order>30</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                        </ff_paging>
-                        <ff_sortbox translate="label">
-                            <label>Sorting</label>
-                            <frontend_type>select</frontend_type>
-                            <sort_order>40</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                        </ff_sortbox>
-                        <ff_breadcrumb translate="label">
-                            <label>Breadcrumb</label>
-                            <frontend_type>select</frontend_type>
-                            <sort_order>50</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                        </ff_breadcrumb>
-                        <ff_productspp translate="label">
-                            <label>Products per page</label>
-                            <frontend_type>select</frontend_type>
-                            <sort_order>60</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                        </ff_productspp>
-                        <ff_campaign translate="label">
+                       <ff_campaign translate="label">
                             <label>Campaigns</label>
                             <frontend_type>select</frontend_type>
                             <sort_order>70</sort_order>
@@ -159,7 +132,7 @@
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </ff_pushedproductscampaign>
                         <ff_recommendation translate="label">
-                            <label>Recommendation</label>
+                            <label>Recommendations</label>
                             <frontend_type>select</frontend_type>
                             <sort_order>90</sort_order>
                             <show_in_default>1</show_in_default>
@@ -168,7 +141,7 @@
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </ff_recommendation>
                         <ff_similar translate="label">
-                            <label>Similar</label>
+                            <label>Similar Products</label>
                             <frontend_type>select</frontend_type>
                             <sort_order>100</sort_order>
                             <show_in_default>1</show_in_default>
@@ -176,15 +149,6 @@
                             <show_in_store>1</show_in_store>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </ff_similar>
-                        <ff_navigation translate="label">
-                            <label>Header Navigation</label>
-                            <frontend_type>select</frontend_type>
-                            <sort_order>110</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                        </ff_navigation>
                     </fields>
                 </components>
                 <advanced translate="label comment">
@@ -203,7 +167,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <source_model>factfinder/source_fFVersion</source_model>
+                            <source_model>factfinder/source_version</source_model>
                         </version>
                         <use_url_parameter translate="label comment">
                             <label>Use url parameter</label>
@@ -261,6 +225,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </keep_url_params>
+                        <parameter_whitelist translate="label comment">
+                            <label>Parameter whitelist</label>
+                            <comment>If any URL parameters are omitted through other attributes like use-url-parameter="false" or only-search-params you can add specific important parameters manually. Just use a comma separated list like: parameter-whitelist="param1,myParam"</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </parameter_whitelist>
                         <use_asn translate="label comment">
                             <label>Use ASN</label>
                             <comment>Determines if the the ASN is returned. Can be set to false to save performance, if the ASN is not required. Default is true.</comment>
@@ -474,7 +447,7 @@
                 </advanced>
                 <data_transfer translate="label comment">
                     <label>General export settings</label>
-                    <comment><![CDATA[<div id="messages"><ul class="messages"><li class="notice-msg"><ul><li><span>Please always save the config in the upper right corner after making changes. Especially before using the export-button.</span></li></ul></li></ul></div>]]></comment>
+                    <comment><![CDATA[<ul class="messages"><li class="notice-msg"><ul><li>Please always save the config in the upper right corner after making changes.</li></ul></li></ul>]]></comment>
                     <sort_order>4</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
@@ -523,7 +496,7 @@
                             <source_model>factfinder/source_attribute</source_model>
                         </ff_ean>
                         <ff_additional_attributes translate="label comment">
-                            <label>Select Additional Attributes</label>
+                            <label>Additional Attributes</label>
                             <comment>Select all attributes which should be exported to the product feed.</comment>
                             <frontend_type>multiselect</frontend_type>
                             <sort_order>6</sort_order>
@@ -533,8 +506,8 @@
                             <source_model>factfinder/source_attribute</source_model>
                         </ff_additional_attributes>
                         <ff_product_visibility translate="label comment">
-                            <label>Select Product Visibility</label>
-                            <comment>Visibility attribute values used in filtering prodcut collection.</comment>
+                            <label>Product Visibility</label>
+                            <comment>Visibility attribute values used in filtering product collection.</comment>
                             <frontend_type>multiselect</frontend_type>
                             <sort_order>7</sort_order>
                             <show_in_default>1</show_in_default>
@@ -543,7 +516,7 @@
                             <source_model>factfinder/source_visibility</source_model>
                         </ff_product_visibility>
                         <ff_price_customer_group translate="label comment">
-                            <label>Select Customer groups for price export</label>
+                            <label>Customer groups for price export</label>
                             <comment>Diffrent prices for selected customer groups will be exported. To have specific prices displayed for proper customer groups You need also to have MultiPricesSearchCallback defined at Fact Finder</comment>
                             <frontend_type>multiselect</frontend_type>
                             <sort_order>8</sort_order>
@@ -556,7 +529,7 @@
                 </data_transfer>
                 <ftp_data_transfer translate="label comment">
                     <label>Export to FTP</label>
-                    <comment><![CDATA[<div id="messages"><ul class="messages"><li class="notice-msg"><ul><li><span>Please always save the config in the upper right corner after making changes. Especially before using the export-button.</span></li></ul></li></ul></div>]]></comment>
+                    <comment><![CDATA[<ul class="messages"><li class="notice-msg"><ul><li>Please always save the config in the upper right corner after making changes.</li></ul></li></ul>]]></comment>
                     <sort_order>5</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
@@ -564,7 +537,7 @@
                     <expanded>1</expanded>
                     <fields>
                         <ff_upload_host translate="label comment">
-                            <label>FTP host</label>
+                            <label>FTP Host</label>
                             <comment>Please specify the FTP server address, where the export file(s) should be uploaded. For example shopname.fact-finder.de. This parameter shouldn't have any trailing slashes and shouldn't be prefixed with ftp://.</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>1</sort_order>
@@ -573,7 +546,7 @@
                             <show_in_store>1</show_in_store>
                         </ff_upload_host>
                         <ff_upload_port translate="label comment">
-                            <label>FTP port</label>
+                            <label>FTP Port</label>
                             <comment>Please specify the FTP server port. For example 21.</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>2</sort_order>
@@ -591,7 +564,7 @@
                             <show_in_store>1</show_in_store>
                         </ff_upload_path>
                         <ff_upload_user translate="label comment">
-                            <label>FTP user</label>
+                            <label>FTP User</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>4</sort_order>
                             <show_in_default>1</show_in_default>
@@ -599,7 +572,7 @@
                             <show_in_store>1</show_in_store>
                         </ff_upload_user>
                         <ff_upload_password translate="label comment">
-                            <label>FTP password</label>
+                            <label>FTP Password</label>
                             <frontend_type>password</frontend_type>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>

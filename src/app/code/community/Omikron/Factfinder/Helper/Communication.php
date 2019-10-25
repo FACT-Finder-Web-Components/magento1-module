@@ -1,105 +1,84 @@
 <?php
 
+use Mage_Core_Model_Store as Store;
+use Varien_Http_Client as HttpClient;
+
 class Omikron_Factfinder_Helper_Communication extends Mage_Core_Helper_Abstract
 {
-    // API data
-    const API_NAME = 'Search.ff';
+    const API_NAME  = 'Search.ff';
     const API_QUERY = 'FACT-Finder version';
 
-    /**
-     * @var Omikron_Factfinder_Helper_Data
-     */
+    /** @var Omikron_Factfinder_Helper_Data */
     private $dataHelper;
 
-    /**
-     * Omikron_Factfinder_Helper_Communication constructor.
-     */
     public function __construct()
     {
-        $this->dataHelper = Mage::helper('factfinder/data');
-    }
-
-    /**
-     * Update trackingProductNumber field role
-     *
-     * @param Mage_Core_Model_Store $store
-     * @return array
-     */
-    public function updateFieldRoles($store)
-    {
-        $conCheck = $this->checkConnection($store);
-        if($conCheck['hasFieldRoles']) {
-            $this->dataHelper->setFieldRoles($conCheck['fieldRoles']);
-        }
-
-        return $conCheck;
+        $this->dataHelper = Mage::helper('factfinder');
     }
 
     /**
      * Sends HTTP GET request to FACT-Finder. Returns the server response.
      *
-     * @param $apiName string
-     * @param $params string|array
-     * @return mixed
+     * @param string $apiName
+     * @param array  $params
+     *
+     * @return array
+     * @throws Zend_Http_Client_Exception
+     * @throws Zend_Uri_Exception
      */
-    public function sendToFF($apiName, $params)
+    public function sendToFF($apiName, array $params)
     {
-        $authentication = $this->dataHelper->getAuthArray();
-        $address = $this->dataHelper->getAddress();
+        $client = new HttpClient();
+        $client->setUri($this->dataHelper->getAddress() . $apiName);
+        $query = http_build_query($params + ['format' => 'json'] + $this->dataHelper->getAuthArray());
+        $client->getUri()->setQuery(preg_replace('#products%5B\d+%5D%5B(.+?)%5D=#', '\1=', $query));
 
-        $url = $address . $apiName . '?format=json&' . http_build_query($authentication) . '&';
-
-        if (is_array($params)) {
-            $url .= http_build_query($params);
-        } else {
-            $url .= $params;
+        try {
+            $result = (array) Mage::helper('core')->jsonDecode($client->request(HttpClient::GET)->getBody());
+        } catch (Zend_Json_Exception $e) {
+            $result = (array) $client->request(HttpClient::GET)->getBody();
         }
 
-        // Send HTTP GET with curl
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        // Special value '' for all supported encoding types.
-        curl_setopt($curl, CURLOPT_ENCODING, '');
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-
-        // Receive server response
-        $response = curl_exec($curl);
-
-        curl_close($curl);
-
-        return $response;
+        return $result;
     }
 
     /**
      * Triggers an ff import on the pushed data
      *
      * @param string $channelName
+     *
      * @return bool
      */
     public function pushImport($channelName)
     {
-        $response_json = json_decode($this->sendToFF('Import.ff', [
-            'channel'  => $channelName,
-            'type'     => 'suggest',
-            'format'   => 'json',
-            'quiet'    => 'true',
-            'download' => 'true',
-        ]), JSON_OBJECT_AS_ARRAY);
-
-        if (is_array($response_json) && isset($response_json['errors']) && is_array($response_json['errors']) && count($response_json['errors'])) {
+        try {
+            $response = $this->sendToFF('Import.ff', [
+                'channel'  => $channelName,
+                'type'     => 'suggest',
+                'quiet'    => 'true',
+                'download' => 'true',
+            ]);
+            if (isset($response['errors']) && is_array($response['errors']) && count($response['errors'])) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (Zend_Exception $e) {
+            Mage::logException($e);
             return false;
-        } else {
-            return true;
         }
     }
 
     /**
      * Update trackingProductNumber field role
      *
-     * @param Mage_Core_Model_Store $store
+     * @param Store $store
+     *
      * @return array
+     * @throws Mage_Core_Exception
+     * @throws Zend_Exception
      */
-    public function checkConnection($store)
+    public function checkConnection(Store $store)
     {
         $response = $this->sendToFF(self::API_NAME, [
             'query'   => self::API_QUERY,
@@ -107,30 +86,10 @@ class Omikron_Factfinder_Helper_Communication extends Mage_Core_Helper_Abstract
             'verbose' => 'true',
         ]);
 
-        $result = [];
-        $result['success'] = true;
-        $result['ff_error_response'] = '';
-        $result['ff_error_stacktrace'] = '';
-        $result['ff_response_decoded'] = json_decode($response, JSON_OBJECT_AS_ARRAY);
-
-        if (!is_array($result['ff_response_decoded'])) {
-            $result['ff_response_decoded'] = [];
-            $result['success'] = false;
-        }
-        if (isset($result['ff_response_decoded']['error'])) {
-            $result['ff_error_response'] = $result['ff_response_decoded']['error'];
-            if(isset($result['ff_response_decoded']['stacktrace'])) $result['ff_error_stacktrace'] = explode('at', $result['ff_response_decoded']['stacktrace'])[0];
-            $result['success'] = false;
-        }
-        if($result['success'] && isset($result['ff_response_decoded']['searchResult']) && isset($result['ff_response_decoded']['searchResult']['fieldRoles'])) {
-            $result['hasFieldRoles'] = true;
-            $result['fieldRoles'] = json_encode($result['ff_response_decoded']['searchResult']['fieldRoles']);
-        }
-        else {
-            $result['hasFieldRoles'] = false;
-            $result['fieldRoles'] = false;
+        if (isset($response['error'])) {
+            Mage::throwException($response['error']);
         }
 
-        return $result;
+        return $response;
     }
 }

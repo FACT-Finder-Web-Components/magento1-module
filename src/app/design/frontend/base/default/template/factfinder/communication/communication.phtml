@@ -10,14 +10,9 @@ $dataHelper = Mage::helper('factfinder/data');
         channel="<?php echo $dataHelper->getChannel(); ?>"
         search-immediate="<?php echo $this->getData('search_immediate') ? 'true' : 'false' ?>"
         use-url-parameter="<?php echo $dataHelper->getUseUrlParameter() ? 'true' : 'false' ?>"
-        <?php if($dataHelper->getUseCache()) {
-            echo 'use-cache';
-        } ?>
+        use-cache="<?php echo $dataHelper->getUseCache() ? 'true' : 'false' ?>"
         disable-cache="<?php echo $dataHelper->getDisableCache() ? 'true' : 'false' ?>"
         default-query="<?php echo $dataHelper->getDefaultQuery(); ?>"
-        add-params="<?php echo $dataHelper->getAddParams(); ?>"
-        add-tracking-params="<?php echo $dataHelper->getAddTrackingParams(); ?>"
-        keep-url-params="<?php echo $dataHelper->getKeepUrlParams(); ?>"
         use-asn="<?php echo $dataHelper->getUseAsn() ? 'true' : 'false' ?>"
         use-found-rows="<?php echo $dataHelper->getUseFoundWords() ? 'true' : 'false' ?>"
         use-campaigns="<?php echo $dataHelper->getFFCampaign() ? 'true' : 'false' ?>"
@@ -27,26 +22,20 @@ $dataHelper = Mage::helper('factfinder/data');
         use-browser-history="<?php echo $dataHelper->getUseBrowserHistory() ? 'true' : 'false' ?>"
         use-seo="<?php echo $dataHelper->getUseSeo() ? 'true' : 'false' ?>"
         seo-prefix="<?php echo $dataHelper->getSeoPrefix(); ?>"
-        <?php if($dataHelper->getOnlySearchParams()) {
-            echo 'only-search-params';
-        } ?>
+        only-search-params="<?php echo $dataHelper->getOnlySearchParams() ? 'true' : 'false' ?>"
         currency-code="<?php echo Mage::app()->getStore()->getCurrentCurrencyCode(); ?>"
         currency-country-code="<?php echo Mage::getStoreConfig('general/country/default'); ?>"
-        <?php if (Mage::getSingleton('customer/session')->isLoggedIn()) {
-            echo 'user-id="' . Mage::getSingleton('customer/session')->getId() . '"';
-        } ?>
->
-</ff-communication>
-
-<?php
-// It returns redirect campaign if enabled
-if ($dataHelper->getFFCampaign()) {
-    echo $this->getLayout()->createBlock('core/template')->setTemplate('factfinder/campaign/redirect.phtml')->toHtml();
-}
-?>
+        <?php if (Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+        user-id="<?php echo Mage::getSingleton('customer/session')->getId() ?>"
+        <?php endif; ?>
+        add-params="<?php echo implode(',', array_filter([$dataHelper->getAddParams(), $this->getData('add-params')])) ?>"
+        add-tracking-params="<?php echo implode(',', array_filter([$dataHelper->getAddTrackingParams(), $this->getData('add-tracking-params')])) ?>"
+        keep-url-params="<?php echo implode(',', array_filter([$dataHelper->getKeepUrlParams(), $this->getData('keep-url-params')])) ?>"
+        parameter-whitelist="<?php echo implode(',', array_filter([$dataHelper->getParameterWhiteList(), $this->getData('parameter-whitelist')])) ?>"
+></ff-communication>
 
 <script>
-    var ffRedirectPath = '<?php echo $this->jsQuoteEscape($this->getUrl('catalogsearch/result')) ?>';
+    var ffRedirectPath = '<?php echo $this->jsQuoteEscape($this->getUrl('factfinder/result')) ?>';
 
     document.addEventListener("ffReady", function () {
         factfinder.communication.fieldRoles = {

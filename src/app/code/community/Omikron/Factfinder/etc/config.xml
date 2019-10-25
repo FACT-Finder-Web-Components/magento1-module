@@ -10,11 +10,6 @@
             <factfinder>
                 <class>Omikron_Factfinder_Helper</class>
             </factfinder>
-            <catalogsearch>
-                <rewrite>
-                    <data>Omikron_Factfinder_Helper_CatalogSearch_Data</data>
-                </rewrite>
-            </catalogsearch>
         </helpers>
         <models>
             <factfinder>
@@ -24,14 +19,30 @@
     </global>
     <frontend>
         <events>
+            <controller_action_layout_load_before>
+                <observers>
+                    <add_layout_update>
+                        <class>factfinder/observer_category</class>
+                        <method>updateLayout</method>
+                    </add_layout_update>
+                </observers>
+            </controller_action_layout_load_before>
             <checkout_cart_product_add_after>
                 <observers>
                     <omikron_factfinder_model_observer>
-                        <class>factfinder/observer</class>
-                        <method>saveProductToSession</method>
+                        <class>factfinder/observer_cart</class>
+                        <method>addAfter</method>
                     </omikron_factfinder_model_observer>
                 </observers>
             </checkout_cart_product_add_after>
+            <checkout_submit_all_after>
+                <observers>
+                    <omikron_factfinder_model_observer>
+                        <class>factfinder/observer_checkout</class>
+                        <method>submitAllAfter</method>
+                    </omikron_factfinder_model_observer>
+                </observers>
+            </checkout_submit_all_after>
         </events>
         <layout>
             <updates>
@@ -50,13 +61,6 @@
             </modules>
         </translate>
         <routers>
-            <catalogsearch>
-                <args>
-                    <modules>
-                        <factfinder before="Mage_CatalogSearch">Omikron_Factfinder_CatalogSearch</factfinder>
-                    </modules>
-                </args>
-            </catalogsearch>
             <factfinder>
                 <use>standard</use>
                 <args>
@@ -92,15 +96,11 @@
         <factfinder>
             <general>
                 <is_enabled>0</is_enabled>
+                <password backend_model="adminhtml/system_config_backend_encrypted" />
                 <tracking_product_number_field_role>{"brand":"Manufacturer","campaignProductNumber":"ProductNumber","deeplink":"ProductUrl","description":"Description","displayProductNumber":"ProductNumber","ean":"EAN","imageUrl":"ImageUrl","masterArticleNumber":"MasterProductNumber","price":"Price","productName":"Name","trackingProductNumber":"ProductNumber"}</tracking_product_number_field_role>
             </general>
             <components>
                 <ff_suggest>0</ff_suggest>
-                <ff_asn>0</ff_asn>
-                <ff_paging>0</ff_paging>
-                <ff_sortbox>0</ff_sortbox>
-                <ff_breadcrumb>0</ff_breadcrumb>
-                <ff_productspp>0</ff_productspp>
                 <ff_campaign>0</ff_campaign>
                 <ff_pushedproductscampaign>0</ff_pushedproductscampaign>
                 <ff_recommendation>0</ff_recommendation>
