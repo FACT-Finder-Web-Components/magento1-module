@@ -68,28 +68,4 @@ class Omikron_Factfinder_Helper_Communication extends Mage_Core_Helper_Abstract
             return false;
         }
     }
-
-    /**
-     * Update trackingProductNumber field role
-     *
-     * @param Store $store
-     *
-     * @return array
-     * @throws Mage_Core_Exception
-     * @throws Zend_Exception
-     */
-    public function checkConnection(Store $store)
-    {
-        $response = $this->sendToFF(self::API_NAME, [
-            'query'   => self::API_QUERY,
-            'channel' => $this->dataHelper->getChannel($store->getId()),
-            'verbose' => 'true',
-        ]);
-
-        if (isset($response['error'])) {
-            Mage::throwException($response['error']);
-        }
-
-        return $response;
-    }
 }
