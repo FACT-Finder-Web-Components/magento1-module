@@ -36,7 +36,7 @@ class Omikron_Factfinder_Model_Client
 
             throw new ResponseException($response->getBody(), $response->getStatus());
         } catch (Zend_Json_Exception $e) {
-            return (array) $client->request(HttpClient::GET)->getBody();
+            return (array) $$response->getBody();
         }
     }
 

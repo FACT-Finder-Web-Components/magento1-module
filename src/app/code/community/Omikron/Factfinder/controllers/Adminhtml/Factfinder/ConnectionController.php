@@ -13,7 +13,7 @@ class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_
     private $authConfig;
 
     public function _construct( ) {
-        $this->testConnection = Mage::getModel('factfinder/api_testconnection');
+        $this->testConnection = Mage::getModel('factfinder/api_testConnection');
         $this->authConfig     = Mage::getModel('factfinder/config_auth');
     }
 

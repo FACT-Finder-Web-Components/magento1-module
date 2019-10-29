@@ -132,6 +132,7 @@
                 <ff_price_customer_group>0</ff_price_customer_group>
                 <ff_image_resize_width>200</ff_image_resize_width>
                 <ff_image_resize_height>200</ff_image_resize_height>
+                <ff_push_import_enabled>0</ff_push_import_enabled>
             </data_transfer>
             <ftp_data_transfer>
                 <ff_upload_password backend_model="adminhtml/system_config_backend_encrypted" />

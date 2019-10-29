@@ -3,7 +3,7 @@
 use Omikron_Factfinder_Model_Client as ApiClient;
 use Omikron_Factfinder_Exception_ResponseException as ResponseException;
 
-class Omikron_Factfinder_Model_Api_Testconnection
+class Omikron_Factfinder_Model_Api_TestConnection
 {
     /** @var ClientInterface */
     private $apiClient;
