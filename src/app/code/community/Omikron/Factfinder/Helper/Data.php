@@ -3,7 +3,6 @@
 class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
 {
     // General
-    const PATH_ENABLED  = 'factfinder/general/is_enabled';
     const PATH_ADDRESS  = 'factfinder/general/address';
     const PATH_CHANNEL  = 'factfinder/general/channel';
     const PATH_USERNAME = 'factfinder/general/username';
@@ -58,14 +57,6 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
 
     // Cron
     const PATH_FF_CRON_ENABLED   = 'factfinder/configurable_cron/enabled';
-
-    /**
-     * @return bool
-     */
-    public function isEnabled()
-    {
-        return Mage::getStoreConfigFlag(self::PATH_ENABLED);
-    }
 
     /**
      * Returns URL

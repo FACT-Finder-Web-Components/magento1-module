@@ -2,6 +2,7 @@
 
 use Omikron_Factfinder_Model_Tracking_Product as TrackingProduct;
 use Varien_Event_Observer as Event;
+use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
 
 class Omikron_Factfinder_Model_Observer_Cart
 {
@@ -11,10 +12,14 @@ class Omikron_Factfinder_Model_Observer_Cart
     /** @var Omikron_Factfinder_Helper_Product */
     private $productHelper;
 
+    /** @var CommunicationConfig */
+    private $config;
+
     public function __construct()
     {
-        $this->tracking      = Mage::getModel('factfinder/tracking');
+        $this->tracking      = Mage::getModel('factfinder/api_tracking');
         $this->productHelper = Mage::helper('factfinder/product');
+        $this->config        = Mage::getModel('factfinder/config_communication');
     }
 
     /**
@@ -25,7 +30,7 @@ class Omikron_Factfinder_Model_Observer_Cart
      */
     public function addAfter(Event $event)
     {
-        if (!Mage::helper('factfinder')->isEnabled()) {
+        if (!$this->config->isChannelEnabled()) {
             return;
         }
 

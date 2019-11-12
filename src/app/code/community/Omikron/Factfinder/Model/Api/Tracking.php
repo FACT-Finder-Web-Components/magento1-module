@@ -9,14 +9,11 @@ class Omikron_Factfinder_Model_Tracking
     /** @var ApiClient */
     private $apiClient;
 
-    /** @var Omikron_Factfinder_Helper_Data */
+    /** @var CommunicationConfig */
     private $config;
 
     /** @var Omikron_Factfinder_Model_SessionData */
     private $sessionData;
-
-    /** @var CommunicationConfig */
-    private $communicationConfig;
 
     /** @var string */
     private $apiName = 'Tracking.ff';
@@ -24,7 +21,6 @@ class Omikron_Factfinder_Model_Tracking
     public function __construct()
     {
         $this->apiClient   = Mage::getModel('factfinder/client');
-        $this->config      = Mage::helper('factfinder');
         $this->sessionData = Mage::getModel('factfinder/sessionData');
         $this->config      = Mage::getModel('factfinder/config_communication');
     }
