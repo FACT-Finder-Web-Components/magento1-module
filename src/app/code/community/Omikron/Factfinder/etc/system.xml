@@ -67,6 +67,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <depends><version separator=",">7.2,7.3</version></depends>
                         </authentication_prefix>
                         <authentication_postfix translate="label">
                             <label>Authentication Postfix</label>
@@ -75,7 +76,18 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <depends><version separator=",">7.2,7.3</version></depends>
                         </authentication_postfix>
+                        <version translate="label comment">
+                            <label>API Version</label>
+                            <comment>FACT-Finder version.</comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>factfinder/source_version</source_model>
+                        </version>
                         <ff_build_connection translate="label">
                             <label>Test connection</label>
                             <frontend_type>button</frontend_type>
@@ -159,16 +171,6 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <version translate="label comment">
-                            <label>API Version</label>
-                            <comment>FACT-Finder version.</comment>
-                            <frontend_type>select</frontend_type>
-                            <sort_order>1</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <source_model>factfinder/source_version</source_model>
-                        </version>
                         <use_url_parameter translate="label comment">
                             <label>Use url parameter</label>
                             <comment>If set to true, the http parameters of the current search are pushed to the browser url.</comment>

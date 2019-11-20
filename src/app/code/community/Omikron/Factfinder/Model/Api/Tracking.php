@@ -4,7 +4,7 @@ use Omikron_Factfinder_Model_Tracking_Product as TrackingProduct;
 use Omikron_Factfinder_Model_Client as ApiClient;
 use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
 
-class Omikron_Factfinder_Model_Tracking
+class Omikron_Factfinder_Model_Tracking implements Omikron_Factfinder_Model_Interface_Api_TrackingInterface
 {
     /** @var ApiClient */
     private $apiClient;
@@ -28,8 +28,10 @@ class Omikron_Factfinder_Model_Tracking
     /**
      * @param string            $event
      * @param TrackingProduct[] $trackingProducts
+     *
+     * @return void
      */
-    public function execute($event, array $trackingProducts)
+    public function execute(string $event, array $trackingProducts)
     {
         try {
             $params = [
@@ -47,7 +49,7 @@ class Omikron_Factfinder_Model_Tracking
                 }, $trackingProducts),
             ];
 
-            $this->apiClient->sendRequest($this->config->getAddress() . '/' . $this->apiName, $params);
+            $this->apiClient->get($this->config->getAddress() . '/' . $this->apiName, $params);
         } catch (Zend_Exception $e) {
             Mage::logException($e);
         }

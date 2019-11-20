@@ -14,7 +14,7 @@ class Omikron_Factfinder_Model_Api_Credentials
     /** @var string */
     private $postfix;
 
-    public function __construct($username, $password, $prefix, $postfix)
+    public function __construct(string $username, string $password, string $prefix = '', string $postfix = '')
     {
         $this->username = $username;
         $this->password = $password;
@@ -25,7 +25,7 @@ class Omikron_Factfinder_Model_Api_Credentials
     /**
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         $timestamp = (int) (microtime(true) * 1000);
         return [
@@ -35,8 +35,8 @@ class Omikron_Factfinder_Model_Api_Credentials
         ];
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return http_build_query($this->toArray());
+        return 'Basic ' . base64_encode("$this->username:$this->password");
     }
 }

@@ -6,17 +6,29 @@ use Omikron_Factfinder_Model_Config_Auth as AuthConfig;
 use Varien_Http_Adapter_Curl as CurlAdapter;
 use Varien_Http_Client as HttpClient;
 
-class Omikron_Factfinder_Model_Client
+class Omikron_Factfinder_Model_Client implements Omikron_Factfinder_Model_Interface_ClientInterface
 {
     /** @var AuthConfig */
     private $authConfig;
 
-    public function __construct()
+    /** @var Credentials */
+    private $credentials;
+
+    public function __construct(Credentials $credentials = null)
     {
+        $this->credentials = $credentials;
         $this->authConfig = Mage::getModel('factfinder/config_auth');
     }
 
-    public function sendRequest($endpoint, array $params)
+    /**
+     * @param string $endpoint
+     * @param array  $params
+     *
+     * @return array
+     * @throws ResponseException
+     * @throws ResponseException
+     */
+    public function get(string $endpoint, array $params): array
     {
         $client = new HttpClient();
         $client->setHeaders('Accept', 'application/json');
@@ -40,9 +52,14 @@ class Omikron_Factfinder_Model_Client
         }
     }
 
+    public function post(string $endpoint, array $params): array
+    {
+        throw new \BadMethodCallException('FACT-Finder API for version 7.3 and lower does not accept POST requests');
+    }
+
     private function getCredentials(AuthConfig $config)
     {
-        return new Credentials(
+        return $this->credentials ? $this->credentials : new Credentials(
             $config->getUsername(),
             $config->getPassword(),
             $config->getAuthenticationPrefix(),
