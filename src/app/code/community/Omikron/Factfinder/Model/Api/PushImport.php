@@ -16,7 +16,7 @@ class Omikron_Factfinder_Model_Api_PushImport implements Omikron_Factfinder_Mode
 
     public function __construct()
     {
-        $this->apiClient           = Mage::getModel('factfinder/client');
+        $this->apiClient           = new ApiClient();
         $this->communicationConfig = Mage::getModel('factfinder/config_communication');
     }
 

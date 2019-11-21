@@ -48,7 +48,7 @@ class Omikron_Factfinder_Model_Client implements Omikron_Factfinder_Model_Interf
 
             throw new ResponseException($response->getBody(), $response->getStatus());
         } catch (Zend_Json_Exception $e) {
-            return (array) $$response->getBody();
+            return (array) $response->getBody();
         }
     }
 

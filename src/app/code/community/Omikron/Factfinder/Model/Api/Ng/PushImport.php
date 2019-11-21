@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Omikron_Factfinder_Model_ClientNG as ClientNG;
+use Omikron_Factfinder_Model_ClientNG as ApiClient;
 
 class Omikron_Factfinder_Model_Api_Ng_PushImport implements Omikron_Factfinder_Model_Interface_Api_PushImportInterface
 {
@@ -14,8 +14,8 @@ class Omikron_Factfinder_Model_Api_Ng_PushImport implements Omikron_Factfinder_M
 
     public function __construct()
     {
-        $this->apiClient           = Mage::getModel('factfinder/clientNG');
-        $this->communicationConfig = Mage::getModel('factfinderng/config_communication');
+        $this->apiClient           = new ApiClient();
+        $this->communicationConfig = Mage::getModel('factfinder/config_communication');
     }
 
     public function execute(int $scopeId = null, array $params = []): bool

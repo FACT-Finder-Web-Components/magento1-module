@@ -1,10 +1,10 @@
 <?php
 
-use Omikron_Factfinder_Model_Tracking_Product as TrackingProduct;
+use Omikron_Factfinder_Model_Api_Tracking_Product as TrackingProduct;
 use Omikron_Factfinder_Model_Client as ApiClient;
 use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
 
-class Omikron_Factfinder_Model_Tracking implements Omikron_Factfinder_Model_Interface_Api_TrackingInterface
+class Omikron_Factfinder_Model_Api_Tracking implements Omikron_Factfinder_Model_Interface_Api_TrackingInterface
 {
     /** @var ApiClient */
     private $apiClient;
@@ -20,7 +20,7 @@ class Omikron_Factfinder_Model_Tracking implements Omikron_Factfinder_Model_Inte
 
     public function __construct()
     {
-        $this->apiClient   = Mage::getModel('factfinder/client');
+        $this->apiClient   = new ApiClient();
         $this->sessionData = Mage::getModel('factfinder/sessionData');
         $this->config      = Mage::getModel('factfinder/config_communication');
     }

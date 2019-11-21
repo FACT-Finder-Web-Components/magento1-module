@@ -1,13 +1,13 @@
 <?php
 
-use Omikron_Factfinder_Model_Tracking_Product as TrackingProduct;
+use Omikron_Factfinder_Model_Api_Tracking_Product as TrackingProduct;
 use Varien_Event_Observer as Event;
 use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
 
 class Omikron_Factfinder_Model_Observer_Cart
 {
-    /** @var Omikron_Factfinder_Model_Tracking */
-    private $tracking;
+    /** @var Omikron_Factfinder_Model_Api_TrackingFactory */
+    private $trackingFactory;
 
     /** @var Omikron_Factfinder_Helper_Product */
     private $productHelper;
@@ -17,9 +17,9 @@ class Omikron_Factfinder_Model_Observer_Cart
 
     public function __construct()
     {
-        $this->tracking      = Mage::getModel('factfinder/api_tracking');
-        $this->productHelper = Mage::helper('factfinder/product');
-        $this->config        = Mage::getModel('factfinder/config_communication');
+        $this->trackingFactory  = Mage::getModel('factfinder/api_trackingFactory');
+        $this->productHelper    = Mage::helper('factfinder/product');
+        $this->config           = Mage::getModel('factfinder/config_communication');
     }
 
     /**
@@ -45,6 +45,6 @@ class Omikron_Factfinder_Model_Observer_Cart
             $product->getFinalPrice(1),
             $quoteItem->getQty());
 
-        $this->tracking->execute('cart', [$trackingProduct]);
+        $this->trackingFactory->create()->execute('cart', [$trackingProduct]);
     }
 }
