@@ -5,6 +5,11 @@
             <factfinder>
                 <class>Omikron_Factfinder_Block</class>
             </factfinder>
+            <page>
+                <rewrite>
+                    <html_head>Omikron_Factfinder_Block_Html_Head</html_head>
+                </rewrite>
+            </page>
         </blocks>
         <helpers>
             <factfinder>
