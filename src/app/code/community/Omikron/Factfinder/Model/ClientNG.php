@@ -5,8 +5,8 @@ declare(strict_types=1);
 use Omikron_Factfinder_Exception_ResponseException as ResponseException;
 use Omikron_Factfinder_Model_Config_Auth as AuthConfig;
 use Omikron_Factfinder_Model_Api_Credentials as Credentials;
-use Varien_Http_Adapter_Curl as CurlAdapter;
-use Varien_Http_Client as HttpClient;
+use Omikron_Factfinder_Model_Http_Adapter_Curl as CurlAdapter;
+use Zend_Http_Client as HttpClient;
 
 class Omikron_Factfinder_Model_ClientNG implements Omikron_Factfinder_Model_Interface_ClientInterface
 {
