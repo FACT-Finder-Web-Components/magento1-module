@@ -13,7 +13,7 @@ class Omikron_Factfinder_Model_Api_TestConnectionFactory extends Omikron_Factfin
      */
     public function create(array $params = []): TestConnectionInterface
     {
-        if ((isset($params['version']) && $params['version'] == 'ng') || $this->config->isNg()) {
+        if ((isset($params['version']) && $params['version'] == 'ng')) {
             return Mage::getModel('factfinder/api_ng_testConnection');
         }
 
