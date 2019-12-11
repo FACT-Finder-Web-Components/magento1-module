@@ -3,9 +3,8 @@
 declare(strict_types=1);
 
 use Omikron_Factfinder_Exception_ResponseException as ResponseException;
-use Omikron_Factfinder_Model_Config_Auth as AuthConfig;
 use Omikron_Factfinder_Model_Api_Credentials as Credentials;
-use Omikron_Factfinder_Model_Http_Adapter_Curl as CurlAdapter;
+use Omikron_Factfinder_Model_Config_Auth as AuthConfig;
 use Zend_Http_Client as HttpClient;
 
 class Omikron_Factfinder_Model_ClientNG implements Omikron_Factfinder_Model_Interface_ClientInterface
@@ -35,13 +34,11 @@ class Omikron_Factfinder_Model_ClientNG implements Omikron_Factfinder_Model_Inte
         $client = $this->initClient();
         try {
             $query = preg_replace('#products%5B\d+%5D%5B(.+?)%5D=#', '\1=', http_build_query($params));
-            $client->setUri($endpoint . '?' . $query);
-            $client->getUri()->setQuery(
-                preg_replace('#products%5B\d+%5D%5B(.+?)%5D=#', '\1=', http_build_query($params))
-            );
+            $client->setUri($endpoint);
+            $client->getUri()->setQuery($query);
             $response = $client->request(HttpClient::GET);
 
-            if ($response->getStatus() >= 200 && $response->getStatus() < 300) {
+            if ($response->isSuccessful()) {
                 return (array) Mage::helper('core')->jsonDecode($response->getBody());
             }
 
@@ -81,22 +78,12 @@ class Omikron_Factfinder_Model_ClientNG implements Omikron_Factfinder_Model_Inte
     {
         $client = new HttpClient();
         $client->setHeaders('Accept', 'application/json');
-        $client->setHeaders('Authorization', $this->getCredentials($this->authConfig));
-
-        $curlAdapter = new CurlAdapter();
-        $curlAdapter->setOptions([CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1]);
-        $client->setAdapter($curlAdapter);
-
+        $client->setAuth($this->authConfig->getUsername(), $this->authConfig->getPassword());
+        $client->setAdapter(new class() extends Varien_Http_Adapter_Curl {
+            public function read() {
+                return str_replace('HTTP/2 ', 'HTTP/1.1 ', parent::read());
+            }
+        });
         return $client;
-    }
-
-    private function getCredentials(AuthConfig $config): Credentials
-    {
-        return $this->credentials ? $this->credentials : new Credentials(
-            $config->getUsername(),
-            $config->getPassword(),
-            $config->getAuthenticationPrefix(),
-            $config->getAuthenticationPostfix()
-        );
     }
 }

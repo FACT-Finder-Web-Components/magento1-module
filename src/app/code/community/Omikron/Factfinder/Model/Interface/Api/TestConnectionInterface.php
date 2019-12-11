@@ -1,7 +1,7 @@
 <?php
 
-use Omikron_Factfinder_Model_Api_Credentials as Credentials;
 use Omikron_Factfinder_Exception_ResponseException as ResponseException;
+use Omikron_Factfinder_Model_Api_Credentials as Credentials;
 
 interface Omikron_Factfinder_Model_Interface_Api_TestConnectionInterface
 {

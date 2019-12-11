@@ -1,10 +1,10 @@
 <?php
 
-use Omikron_Factfinder_Model_Api_Tracking_Product as TrackingProduct;
-use Varien_Event_Observer as Event;
-use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
-use Omikron_Factfinder_Model_Api_TrackingFactory as TrackingFactory;
 use Omikron_Factfinder_Helper_Product as ProductHelper;
+use Omikron_Factfinder_Model_Api_Tracking_Product as TrackingProduct;
+use Omikron_Factfinder_Model_Api_TrackingFactory as TrackingFactory;
+use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
+use Varien_Event_Observer as Event;
 
 class Omikron_Factfinder_Model_Observer_Cart
 {

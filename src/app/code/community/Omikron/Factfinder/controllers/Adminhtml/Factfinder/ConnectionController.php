@@ -1,8 +1,8 @@
 <?php
 
-use Omikron_Factfinder_Model_Config_AuthConfig as AuthConfig;
 use Omikron_Factfinder_Model_Api_Credentials as Credentials;
 use Omikron_Factfinder_Model_Api_TestConnectionFactory as TestConnectionFactory;
+use Omikron_Factfinder_Model_Config_Auth as AuthConfig;
 use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
 
 class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_Adminhtml_Controller_Action
@@ -16,7 +16,8 @@ class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_
     /** @var CommunicationConfig */
     private $communicationConfig;
 
-    public function _construct( ) {
+    protected function _construct()
+    {
         $this->testConnectionFactory = Mage::getModel('factfinder/api_testConnectionFactory');
         $this->authConfig            = Mage::getModel('factfinder/config_auth');
         $this->communicationConfig   = Mage::getModel('factfinder/config_communication');
@@ -24,7 +25,7 @@ class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_
 
     public function testAction()
     {
-        $message = __('Connection successfully established.');
+        $message = $this->__('Connection successfully established.');
 
         try {
             $request = $this->getRequest();
@@ -63,11 +64,14 @@ class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_
 
     /**
      * @param array $params
+     *
      * @return array
      */
     private function extractAuthParams(array $params)
     {
-        return array_filter($params, function ($k) {return in_array($k, ['username', 'password', 'authenticationPrefix', 'authenticationPostfix']);}, ARRAY_FILTER_USE_KEY);
+        return array_filter($params, function ($k) {
+            return in_array($k, ['username', 'password', 'authenticationPrefix', 'authenticationPostfix']);
+        }, ARRAY_FILTER_USE_KEY);
     }
 
     protected function _isAllowed()

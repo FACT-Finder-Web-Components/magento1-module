@@ -20,7 +20,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
     const PATH_FF_SIMILAR = 'factfinder/components/ff_similar';
 
     // Advanced
-    const PATH_VERSION = 'factfinder/advanced/version';
+    const PATH_VERSION = 'factfinder/general/version';
     const PATH_USE_URL_PARAMETER = 'factfinder/advanced/use_url_parameter';
     const PATH_USE_CACHE = 'factfinder/advanced/use_cache';
     const PATH_DEFAULT_QUERY = 'factfinder/advanced/default_query';
