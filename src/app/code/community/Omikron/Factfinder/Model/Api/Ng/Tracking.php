@@ -1,12 +1,12 @@
 <?php
 
-use Omikron_Factfinder_Model_ClientNG as ApiClient;
 use Omikron_Factfinder_Model_Api_Tracking_Product as TrackingProduct;
+use Omikron_Factfinder_Model_ClientNG as ApiClient;
 use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
 
 class Omikron_Factfinder_Model_Api_Ng_Tracking implements Omikron_Factfinder_Model_Interface_Api_TrackingInterface
 {
-    /** @var ClientNG */
+    /** @var ApiClient */
     private $apiClient;
 
     /** @var Omikron_Factfinder_Model_SessionData */
@@ -17,9 +17,9 @@ class Omikron_Factfinder_Model_Api_Ng_Tracking implements Omikron_Factfinder_Mod
 
     public function __construct()
     {
-        $this->apiClient        = new ApiClient();
-        $this->sessionData      = Mage::getModel('factfinder/sessionData');
-        $this->config           = Mage::getModel('factfinder/config_communication');
+        $this->apiClient   = new ApiClient();
+        $this->sessionData = Mage::getModel('factfinder/sessionData');
+        $this->config      = Mage::getModel('factfinder/config_communication');
     }
 
     /**
@@ -33,12 +33,12 @@ class Omikron_Factfinder_Model_Api_Ng_Tracking implements Omikron_Factfinder_Mod
         try {
             $params = array_map(function (TrackingProduct $trackingProduct) {
                 return array_filter([
-                    'id' => $trackingProduct->getTrackingNumber(),
+                    'id'       => $trackingProduct->getTrackingNumber(),
                     'masterId' => $trackingProduct->getMasterArticleNumber(),
-                    'price' => $trackingProduct->getPrice(),
-                    'count' => $trackingProduct->getCount(),
-                    'sid' => $this->sessionData->getSessionId(),
-                    'userId' => $this->sessionData->getUserId(),
+                    'price'    => $trackingProduct->getPrice(),
+                    'count'    => $trackingProduct->getCount(),
+                    'sid'      => $this->sessionData->getSessionId(),
+                    'userId'   => $this->sessionData->getUserId(),
                 ]);
             }, $trackingProducts);
 

@@ -3,13 +3,14 @@
 declare(strict_types=1);
 
 use Omikron_Factfinder_Model_ClientNG as ApiClient;
+use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
 
 class Omikron_Factfinder_Model_Api_Ng_PushImport implements Omikron_Factfinder_Model_Interface_Api_PushImportInterface
 {
-    /** @var ClientNG */
+    /** @var ApiClient */
     private $apiClient;
 
-    /** @var CommunicationConfig\ */
+    /** @var CommunicationConfig */
     private $communicationConfig;
 
     public function __construct()
@@ -25,16 +26,16 @@ class Omikron_Factfinder_Model_Api_Ng_PushImport implements Omikron_Factfinder_M
         }
 
         $params += [
-            'channel'  => $this->communicationConfig->getChannel($scopeId),
-            'quiet'    => 'true',
+            'channel' => $this->communicationConfig->getChannel($scopeId),
+            'quiet'   => 'true',
         ];
 
         $response = [];
         $endpoint = $this->communicationConfig->getAddress() . sprintf('/rest/%s/import', $this->communicationConfig->getApi());
-        foreach (['data','suggest'] as $type) {
+        foreach (['data', 'suggest'] as $type) {
             $response = array_merge_recursive($response, $this->apiClient->post($endpoint . "/$type", $params));
         }
 
-        return $response && !(isset($response['errors']) || isset($response['error']));
+        return $response && !($response['errors'] ?? $response['error'] ?? false);
     }
 }

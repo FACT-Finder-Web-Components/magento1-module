@@ -3,16 +3,16 @@
 class Omikron_Factfinder_Model_Api_Credentials
 {
     /** @var string */
-    private $username;
+    protected $username;
 
     /** @var string */
-    private $password;
+    protected $password;
 
     /** @var string */
-    private $prefix;
+    protected $prefix;
 
     /** @var string */
-    private $postfix;
+    protected $postfix;
 
     public function __construct(string $username, string $password, string $prefix = '', string $postfix = '')
     {

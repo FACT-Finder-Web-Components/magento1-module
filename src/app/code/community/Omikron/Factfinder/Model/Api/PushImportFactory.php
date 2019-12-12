@@ -8,10 +8,9 @@ class Omikron_Factfinder_Model_Api_PushImportFactory extends Omikron_Factfinder_
 {
     public function create(array $params = []): PushImportInterface
     {
-        if ($this->isNg()) {
+        if ($this->config->isNg()) {
             return Mage::getModel('factfinder/api_ng_pushImport');
         }
-
         return Mage::getModel('factfinder/api_pushImport');
     }
 }
