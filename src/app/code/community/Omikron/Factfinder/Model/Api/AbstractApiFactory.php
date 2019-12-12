@@ -12,5 +12,5 @@ abstract class Omikron_Factfinder_Model_Api_AbstractApiFactory
         $this->config = Mage::getModel('factfinder/config_communication');
     }
 
-    public abstract function create(array $params = []);
+    abstract public function create(array $params = []);
 }
