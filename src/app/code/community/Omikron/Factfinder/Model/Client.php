@@ -36,9 +36,7 @@ class Omikron_Factfinder_Model_Client implements Omikron_Factfinder_Model_Interf
         $client->setUri($endpoint);
         $client->getUri()->setQuery(preg_replace('#products%5B\d+%5D%5B(.+?)%5D=#', '\1=', http_build_query($params)));
 
-        $curlAdapter = new CurlAdapter();
-        $curlAdapter->setOptions([CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1]);
-        $client->setAdapter($curlAdapter);
+        $client->setAdapter(new CurlAdapter());
 
         try {
             $response = $client->request(HttpClient::GET);

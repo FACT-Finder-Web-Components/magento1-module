@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Omikron_Factfinder_Exception_ResponseException as ResponseException;
 use Omikron_Factfinder_Model_Api_Credentials as Credentials;
 use Omikron_Factfinder_Model_Config_Auth as AuthConfig;
+use Omikron_Factfinder_Model_Http_Adapter_Curl as CurlAdapter;
 use Zend_Http_Client as HttpClient;
 
 class Omikron_Factfinder_Model_ClientNG implements Omikron_Factfinder_Model_Interface_ClientInterface
@@ -79,11 +80,7 @@ class Omikron_Factfinder_Model_ClientNG implements Omikron_Factfinder_Model_Inte
         $client = new HttpClient();
         $client->setHeaders('Accept', 'application/json');
         $client->setAuth($this->authConfig->getUsername(), $this->authConfig->getPassword());
-        $client->setAdapter(new class() extends Varien_Http_Adapter_Curl {
-            public function read() {
-                return str_replace('HTTP/2 ', 'HTTP/1.1 ', parent::read());
-            }
-        });
+        $client->setAdapter(new CurlAdapter());
         return $client;
     }
 }
