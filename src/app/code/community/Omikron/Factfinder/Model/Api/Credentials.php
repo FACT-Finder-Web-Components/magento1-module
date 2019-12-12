@@ -37,6 +37,6 @@ class Omikron_Factfinder_Model_Api_Credentials
 
     public function __toString(): string
     {
-        return 'Basic ' . base64_encode("$this->username:$this->password");
+        return 'Basic ' . base64_encode("{$this->username}:{$this->password}");
     }
 }

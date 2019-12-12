@@ -6,14 +6,9 @@ use Omikron_Factfinder_Model_Interface_Api_TestConnectionInterface as TestConnec
 
 class Omikron_Factfinder_Model_Api_TestConnectionFactory extends Omikron_Factfinder_Model_Api_AbstractApiFactory
 {
-    /**
-     * @param array $params
-     *
-     * @return Omikron_Factfinder_Model_Interface_Api_TestConnectionInterface
-     */
     public function create(array $params = []): TestConnectionInterface
     {
-        if ((isset($params['version']) && $params['version'] == 'ng')) {
+        if (($params['version'] ?? '7.3') === 'ng') {
             return Mage::getModel('factfinder/api_ng_testConnection');
         }
 

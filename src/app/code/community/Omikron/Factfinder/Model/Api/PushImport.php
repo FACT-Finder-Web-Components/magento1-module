@@ -45,6 +45,6 @@ class Omikron_Factfinder_Model_Api_PushImport implements Omikron_Factfinder_Mode
             $response       = array_merge_recursive($response, $this->apiClient->sendRequest($endpoint, $params));
         }
 
-        return $response && !(isset($response['errors']) || isset($response['error']));
+        return $response && !($response['errors'] ?? $response['error'] ?? false);
     }
 }
