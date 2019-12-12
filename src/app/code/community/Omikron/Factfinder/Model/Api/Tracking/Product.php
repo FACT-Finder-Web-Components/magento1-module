@@ -1,6 +1,6 @@
 <?php
 
-class Omikron_Factfinder_Model_Tracking_Product
+class Omikron_Factfinder_Model_Api_Tracking_Product
 {
     /** @var string */
     private $trackingNumber;
@@ -22,34 +22,22 @@ class Omikron_Factfinder_Model_Tracking_Product
         $this->count               = $count;
     }
 
-    /**
-     * @return string
-     */
-    public function getTrackingNumber()
+    public function getTrackingNumber(): string
     {
         return $this->trackingNumber;
     }
 
-    /**
-     * @return string
-     */
-    public function getMasterArticleNumber()
+    public function getMasterArticleNumber(): string
     {
         return $this->masterArticleNumber;
     }
 
-    /**
-     * @return string
-     */
-    public function getPrice()
+    public function getPrice(): string
     {
         return $this->price;
     }
 
-    /**
-     * @return int
-     */
-    public function getCount()
+    public function getCount(): int
     {
         return $this->count;
     }
