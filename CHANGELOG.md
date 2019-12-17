@@ -1,4 +1,8 @@
 # Changelog
+## Unreleased
+### Changed
+- Upgrade Web Components version to 3.11.1
+
 ## [v1.1.0] - 2019-10-25
 ### Changed
 - Avoid all rewrites of Magento core classes and implement search result in a dedicated controller

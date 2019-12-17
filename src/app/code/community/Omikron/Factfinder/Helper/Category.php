@@ -26,7 +26,7 @@ class Omikron_Factfinder_Helper_Category extends Mage_Core_Helper_Abstract
             default:
                 $path = 'ROOT';
                 foreach ($categories as $item) {
-                    $value[] = vsprintf('fiter%s%s=%s', array_map('urlencode', [$this->param, $path, $item]));
+                    $value[] = vsprintf('filter%s%s=%s', array_map('urlencode', [$this->param, $path, $item]));
                     $path    = "{$path}/{$item}";
                 }
                 break;
