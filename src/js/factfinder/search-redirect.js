@@ -1,7 +1,7 @@
 document.addEventListener('ffReady', function () {
     var redirectPath = window.ffRedirectPath || '/factfinder/result';
 
-    factfinder.communication.FFCommunicationEventAggregator.addBeforeDispatchingCallback(function (event) {
+    factfinder.communication.EventAggregator.addBeforeDispatchingCallback(function (event) {
         if (event.type === 'search' && !event.__immediate) {
             delete event.type;
             window.location.href = redirectPath + factfinder.common.dictToParameterString(event);

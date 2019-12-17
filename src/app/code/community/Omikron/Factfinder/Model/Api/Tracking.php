@@ -1,13 +1,15 @@
 <?php
 
-use Omikron_Factfinder_Model_Tracking_Product as TrackingProduct;
+use Omikron_Factfinder_Model_Api_Tracking_Product as TrackingProduct;
+use Omikron_Factfinder_Model_Client as ApiClient;
+use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
 
-class Omikron_Factfinder_Model_Tracking
+class Omikron_Factfinder_Model_Api_Tracking implements Omikron_Factfinder_Model_Interface_Api_TrackingInterface
 {
-    /** @var Omikron_Factfinder_Helper_Communication */
-    private $communication;
+    /** @var ApiClient */
+    private $apiClient;
 
-    /** @var Omikron_Factfinder_Helper_Data */
+    /** @var CommunicationConfig */
     private $config;
 
     /** @var Omikron_Factfinder_Model_SessionData */
@@ -18,16 +20,18 @@ class Omikron_Factfinder_Model_Tracking
 
     public function __construct()
     {
-        $this->communication = Mage::helper('factfinder/communication');
-        $this->config        = Mage::helper('factfinder');
-        $this->sessionData   = Mage::getModel('factfinder/sessionData');
+        $this->apiClient   = new ApiClient();
+        $this->sessionData = Mage::getModel('factfinder/sessionData');
+        $this->config      = Mage::getModel('factfinder/config_communication');
     }
 
     /**
      * @param string            $event
      * @param TrackingProduct[] $trackingProducts
+     *
+     * @return void
      */
-    public function execute($event, array $trackingProducts)
+    public function execute(string $event, array $trackingProducts)
     {
         try {
             $params = [
@@ -45,7 +49,7 @@ class Omikron_Factfinder_Model_Tracking
                 }, $trackingProducts),
             ];
 
-            $this->communication->sendToFF($this->apiName, $params);
+            $this->apiClient->get($this->config->getAddress() . '/' . $this->apiName, $params);
         } catch (Zend_Exception $e) {
             Mage::logException($e);
         }

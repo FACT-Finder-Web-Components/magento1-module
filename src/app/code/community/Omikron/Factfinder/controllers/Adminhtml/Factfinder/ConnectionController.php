@@ -1,19 +1,43 @@
 <?php
 
+use Omikron_Factfinder_Model_Api_Credentials as Credentials;
+use Omikron_Factfinder_Model_Api_TestConnectionFactory as TestConnectionFactory;
+use Omikron_Factfinder_Model_Config_Auth as AuthConfig;
+use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
+
 class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_Adminhtml_Controller_Action
 {
+    /** @var TestConnectionFactory */
+    private $testConnectionFactory;
+
+    /** @var AuthConfig */
+    private $authConfig;
+
+    /** @var CommunicationConfig */
+    private $communicationConfig;
+
+    protected function _construct()
+    {
+        $this->testConnectionFactory = Mage::getModel('factfinder/api_testConnectionFactory');
+        $this->authConfig            = Mage::getModel('factfinder/config_auth');
+        $this->communicationConfig   = Mage::getModel('factfinder/config_communication');
+    }
+
     public function testAction()
     {
-        $message = $this->__('Success! Connection successfully tested!');
+        $message = $this->__('Connection successfully established.');
 
         try {
-            Mage::register('ff-auth', $this->getAuthFromRequest(), true);
-            Mage::helper('factfinder/communication')->checkConnection(Mage::app()->getStore());
-        } catch (Exception $e) {
-            $message = $this->__('Connection could not be established: %s', $e->getMessage());
+            $request = $this->getRequest();
+            $params  = ['channel' => $request->getParam('channel')];
+            $this->testConnectionFactory
+                ->create($request->getParams())
+                ->execute($request->getParam('serverUrl'), $params, $this->getCredentials($request->getParams()));
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
         }
 
-        $this->jsonResponse($message);
+        return $this->jsonResponse($message);
     }
 
     private function jsonResponse($message)
@@ -23,19 +47,31 @@ class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_
     }
 
     /**
+     * @param array $params
+     *
+     * @return mixed
+     */
+    private function getCredentials(array $params)
+    {
+        $params += [
+            'prefix'  => $params['authenticationPrefix'],
+            'postfix' => $params['authenticationPostfix'],
+        ];
+
+        $params = $this->extractAuthParams($params);
+        return new Credentials(...array_values($params));
+    }
+
+    /**
+     * @param array $params
+     *
      * @return array
      */
-    private function getAuthFromRequest()
+    private function extractAuthParams(array $params)
     {
-        $request = $this->getRequest();
-        return [
-            'serverUrl'             => $request->getPost('serverUrl'),
-            'channel'               => $request->getPost('channel'),
-            'password'              => md5($request->getPost('password')),
-            'username'              => $request->getPost('username'),
-            'authenticationPrefix'  => $request->getPost('authenticationPrefix'),
-            'authenticationPostfix' => $request->getPost('authenticationPostfix'),
-        ];
+        return array_filter($params, function ($k) {
+            return in_array($k, ['username', 'password', 'authenticationPrefix', 'authenticationPostfix']);
+        }, ARRAY_FILTER_USE_KEY);
     }
 
     protected function _isAllowed()

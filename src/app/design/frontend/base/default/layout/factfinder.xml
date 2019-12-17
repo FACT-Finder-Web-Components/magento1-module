@@ -1,6 +1,11 @@
 <?xml version="1.0"?>
 <layout>
     <factfinder_product_list>
+        <reference name="root">
+            <reference name="head">
+                <action method="replaceItem"><type>js</type><name>prototype/prototype.js</name><replace>factfinder/prototype/prototype.js</replace></action>
+            </reference>
+        </reference>
         <update handle="page_two_columns_left" />
 
         <block type="core/template" name="ff.result.list" template="factfinder/catalog/product/list.phtml">

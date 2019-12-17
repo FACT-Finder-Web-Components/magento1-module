@@ -7,35 +7,24 @@ class Omikron_Factfinder_Model_Export_Product
     const FEED_FILE_FILETYPE = 'csv';
     const BATCH_SIZE         = 3000;
 
-    /**
-     * @var Omikron_Factfinder_Helper_Data
-     */
-    private $dataHelper;
+    /** @var Omikron_Factfinder_Helper_Data */
+    protected $dataHelper;
 
-    /**
-     * @var Omikron_Factfinder_Helper_Product
-     */
-    private $productHelper;
+    /** @var Omikron_Factfinder_Helper_Product */
+    protected $productHelper;
 
-    /**
-     * @var Omikron_Factfinder_Helper_Upload
-     */
-    private $uploadHelper;
+    /** @var Omikron_Factfinder_Helper_Upload */
+    protected $uploadHelper;
 
-    /**
-     * @var Omikron_Factfinder_Helper_Communication
-     */
-    private $communicationHelper;
+    /** @var Omikron_Factfinder_Model_Api_PushImport */
+    protected $pushImport;
 
-    /**
-     * Omikron_Factfinder_Model_Export_Product constructor.
-     */
     public function __construct()
     {
-        $this->dataHelper = Mage::helper('factfinder/data');
+        $this->dataHelper    = Mage::helper('factfinder/data');
         $this->productHelper = Mage::helper('factfinder/product');
-        $this->uploadHelper = Mage::helper('factfinder/upload');
-        $this->communicationHelper = Mage::helper('factfinder/communication');
+        $this->uploadHelper  = Mage::helper('factfinder/upload');
+        $this->pushImport    = Mage::getModel('factfinder/api_pushImport');
     }
 
     /**
@@ -65,13 +54,7 @@ class Omikron_Factfinder_Model_Export_Product
             return $result;
         }
 
-//        if ($this->dataHelper->isPushImportEnabled($store->getId())) {
-//            if ($this->communicationHelper->pushImport($this->dataHelper->getChannel($store->getId()))) {
-//                $result['message'] .= ' ' . $this->dataHelper->__('Import successfully pushed.');
-//            } else {
-//                $result['message'] .= ' ' . $this->dataHelper->__('Import not successful.');
-//            }
-//        }
+        $this->pushImport->execute($store->getId());
 
         return $result;
     }
@@ -159,7 +142,7 @@ class Omikron_Factfinder_Model_Export_Product
      *
      * @return array
      */
-    private function buildFeedRow($product, $store)
+    protected function buildFeedRow($product, $store)
     {
         $row = [];
         $attributes = [
@@ -180,7 +163,7 @@ class Omikron_Factfinder_Model_Export_Product
         ];
 
         foreach ($attributes as $attribute) {
-            $row[$attribute] = trim(str_replace(["\r\n", "\r", "\n", '  '], ' ', call_user_func_array([$this->productHelper, "get$attribute"], [$product, $store])));
+            $row[$attribute] = trim(preg_replace('#\s+#', ' ', $this->productHelper->{"get$attribute"}($product, $store)));
         }
 
         return $row;

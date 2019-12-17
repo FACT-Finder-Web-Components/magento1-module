@@ -3,7 +3,6 @@
 class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
 {
     // General
-    const PATH_ENABLED  = 'factfinder/general/is_enabled';
     const PATH_ADDRESS  = 'factfinder/general/address';
     const PATH_CHANNEL  = 'factfinder/general/channel';
     const PATH_USERNAME = 'factfinder/general/username';
@@ -21,7 +20,7 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
     const PATH_FF_SIMILAR = 'factfinder/components/ff_similar';
 
     // Advanced
-    const PATH_VERSION = 'factfinder/advanced/version';
+    const PATH_VERSION = 'factfinder/general/version';
     const PATH_USE_URL_PARAMETER = 'factfinder/advanced/use_url_parameter';
     const PATH_USE_CACHE = 'factfinder/advanced/use_cache';
     const PATH_DEFAULT_QUERY = 'factfinder/advanced/default_query';
@@ -58,14 +57,6 @@ class Omikron_Factfinder_Helper_Data extends Mage_Core_Helper_Abstract
 
     // Cron
     const PATH_FF_CRON_ENABLED   = 'factfinder/configurable_cron/enabled';
-
-    /**
-     * @return bool
-     */
-    public function isEnabled()
-    {
-        return Mage::getStoreConfigFlag(self::PATH_ENABLED);
-    }
 
     /**
      * Returns URL

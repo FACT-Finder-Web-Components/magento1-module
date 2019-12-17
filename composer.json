@@ -11,6 +11,8 @@
     }
   ],
   "require": {
+    "php": "^7.0",
+    "ext-curl": "*",
     "ext-json": "*"
   },
   "require-dev": {

@@ -451,7 +451,7 @@ class Omikron_Factfinder_Helper_Product extends Mage_Core_Helper_Abstract
             $this->categories[$parentCategory->getId()] = $parentCategory;
         }
 
-        $path       = urlencode($category->getName());
+        $path       = $category->getName();
         $parentPath = $this->getCategoryPathByCategory($parentCategory, $store);
         $path       = $parentPath === '' ? $path : $parentPath . '/' . $path;
 
