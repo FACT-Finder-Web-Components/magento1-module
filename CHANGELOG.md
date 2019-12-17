@@ -1,7 +1,20 @@
 # Changelog
-## Unreleased
+## [v2.0.0] - 2019-12-17
+### Added
+- Added NG compatibility
+- Added custom Curl adapter to ensure HTTP/1.1 is used
+
 ### Changed
-- Upgrade Web Components version to 3.11.1
+- Upgraded Web Components version to 3.11.1
+- Added support for PHP 7.0
+- Drop support for PHP 5.6
+- Refactored HttpClient
+- Refactored TestConnection
+- Refactored PushImport
+- Refactored Tracking
+- Refactored Product Helper
+- Refactored Data Helper
+- Removed Communication helper
 
 ## [v1.1.0] - 2019-10-25
 ### Changed
@@ -94,6 +107,7 @@
 - Allow user to choose which visibilities should be applied to collection filter
 - Divide product collection into batches in order to prevent memory exhaustion on product collection load
 
+[v2.0.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v2.0.0
 [v1.1.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v1.1.0
 [v1.0.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v1.0.0
 [v0.10.0]:     https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v0.10.0
