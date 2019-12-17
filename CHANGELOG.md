@@ -1,6 +1,6 @@
 # Changelog
 ## Unreleased
-###Changed
+### Changed
 - Upgrade Web Components version to 3.11.1
 
 ## [v1.1.0] - 2019-10-25
