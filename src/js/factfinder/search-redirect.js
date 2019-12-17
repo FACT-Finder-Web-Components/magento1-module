@@ -7,12 +7,6 @@ document.addEventListener('ffReady', function () {
             window.location.href = redirectPath + factfinder.common.dictToParameterString(event);
         }
     });
-
-    factfinder.communication.ResultDispatcher.subscribe('records', function (records) {
-        records.forEach((r) => {
-            r.record.ImageUrl = r.record.ImageUrl.replace('http://magento-demo.loc', '');
-        });
-    });
 });
 
 document.addEventListener('dom-updated', function () {
