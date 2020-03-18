@@ -39,8 +39,9 @@ class Omikron_Factfinder_Model_Api_PushImport implements Omikron_Factfinder_Mode
         ];
 
         $response = [];
+        $importTypes = explode('', Mage::getStoreConfig('factfinder/data_transfer/ff_push_import_types', $scopeId));
         $endpoint = $this->communicationConfig->getAddress() . '/' . $this->apiName;
-        foreach (['data','suggest'] as $type) {
+        foreach ($importTypes as $type) {
             $params['type'] = $type;
             $response       = array_merge_recursive($response, $this->apiClient->sendRequest($endpoint, $params));
         }
