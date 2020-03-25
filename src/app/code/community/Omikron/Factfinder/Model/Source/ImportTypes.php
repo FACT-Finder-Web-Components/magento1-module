@@ -1,7 +1,5 @@
 <?php
 
-use Mage_Eav_Model_Entity_Attribute as Attribute;
-
 class Omikron_Factfinder_Model_Source_ImportTypes
 {
     /**
