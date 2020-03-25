@@ -537,6 +537,15 @@
                             <show_in_store>1</show_in_store>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </ff_push_import_enabled>
+                        <ff_push_import_types>
+                            <label>Pushed import types</label>
+                            <sort_order>10</sort_order>
+                            <frontend_type>multiselect</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>factfinder/source_importTypes</source_model>
+                        </ff_push_import_types>
                     </fields>
                 </data_transfer>
                 <ftp_data_transfer translate="label comment">
