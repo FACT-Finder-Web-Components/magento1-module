@@ -40,14 +40,14 @@ endif; ?>
 </div>
 
 <script>
-    document.addEventListener('ffReady', function () {
+    document.addEventListener('WebComponentsReady', function () {
         factfinder.communication.ResultDispatcher.subscribe('result', function (result) {
-            if (result.resultStatus === 'nothingFound') {
+            if (!result.resultStatus || result.resultStatus === 'nothingFound') {
                 document.querySelector('.category-products').style.display = 'none';
                 document.getElementById('ff-nothing-found').style.display = 'block';
             } else {
-                document.querySelector('.category-products').style.display = 'block';
                 document.getElementById('ff-nothing-found').style.display = 'none';
+                document.querySelector('.category-products').style.display = 'block';
             }
         });
     });

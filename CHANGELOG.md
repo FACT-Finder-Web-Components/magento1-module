@@ -1,4 +1,12 @@
 # Changelog
+## Unreleased
+### Fixed
+- Parameter 'api' is now provided in NG context
+- Advisor campaign question are now  rendered correctly when contains html
+- 'Your search returns no results.' phrase is now rendered correctly in NG context
+- autocomplete="off" is now added to correct input field
+- 'Show more' buttons on "tree" like filters are now styled consistently with the rest
+
 ## [v2.0.0] - 2019-12-17
 ### Added
 - Added NG compatibility
