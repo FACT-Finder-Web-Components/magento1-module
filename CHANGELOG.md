@@ -1,4 +1,11 @@
 # Changelog
+## Unreleased
+### Changed
+- Upgrade Web Components to version 3.13.0
+
+### Added
+- Added RECOMMENDATION to available import type to be pushed after feed is uploaded.
+
 ## [v2.0.0] - 2019-12-17
 ### Added
 - Added NG compatibility
