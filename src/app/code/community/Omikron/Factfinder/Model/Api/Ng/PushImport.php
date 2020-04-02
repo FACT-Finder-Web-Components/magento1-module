@@ -31,7 +31,7 @@ class Omikron_Factfinder_Model_Api_Ng_PushImport implements Omikron_Factfinder_M
         ];
 
         $response = [];
-        $importTypes = explode('', Mage::getStoreConfig('factfinder/data_transfer/ff_push_import_types', $scopeId));
+        $importTypes = explode(',', Mage::getStoreConfig('factfinder/data_transfer/ff_push_import_types', $scopeId));
         $endpoint = $this->communicationConfig->getAddress() . sprintf('/rest/%s/import', $this->communicationConfig->getApi());
         foreach ($importTypes as $type) {
             $response = array_merge_recursive($response, $this->apiClient->post($endpoint . "/$type", $params));
