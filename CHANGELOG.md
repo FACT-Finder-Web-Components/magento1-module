@@ -1,5 +1,11 @@
 # Changelog
 ## Unreleased
+### Added
+- Added RECOMMENDATION to available import type to be pushed after feed is uploaded
+
+### Changed
+- Upgrade Web Components to version 3.13.0
+
 ### Fixed
 - Parameter `api` is now provided in NG context
 - Advisor campaign questions containing HTML are now rendered correctly

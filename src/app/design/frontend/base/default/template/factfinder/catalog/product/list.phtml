@@ -11,9 +11,11 @@ endif; ?>
 
 <?php echo $this->getChildHtml('breadcrumbs') ?>
 
-<p id="ff-nothing-found">
-    <?php echo $this->escapeHtml($this->__('Your search returns no results.')) ?>
-</p>
+<ff-template scope="result" unresolved>
+    {{^resultCount}}
+    <p class="note-msg"><?php echo $this->escapeHtml($this->__('Your search returns no results.')) ?></p>
+    {{/resultCount}}
+</ff-template>
 
 <div class="category-products">
     <?php echo $this->getChildHtml('toolbar') ?>
@@ -44,9 +46,7 @@ endif; ?>
         factfinder.communication.ResultDispatcher.subscribe('result', function (result) {
             if (!result.resultStatus || result.resultStatus === 'nothingFound') {
                 document.querySelector('.category-products').style.display = 'none';
-                document.getElementById('ff-nothing-found').style.display = 'block';
             } else {
-                document.getElementById('ff-nothing-found').style.display = 'none';
                 document.querySelector('.category-products').style.display = 'block';
             }
         });
