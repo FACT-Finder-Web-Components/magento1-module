@@ -1,9 +1,12 @@
 document.addEventListener('ffReady', function () {
     var redirectPath = window.ffRedirectPath || '/factfinder/result';
+    var isSearchResultPage = function () {
+        return window.location.href.indexOf(redirectPath) >= 0;
+    };
 
     factfinder.communication.EventAggregator.addBeforeDispatchingCallback(function (event) {
-        if (event.type === 'search' && !event.__immediate) {
-            delete event.type;
+        if (event.type === 'search' && !isSearchResultPage() && !event.searchImmediate && event.navigation !== 'true') {
+            event.cancel();
             window.location.href = redirectPath + factfinder.common.dictToParameterString(event);
         }
     });
