@@ -1,9 +1,5 @@
-<style>
-    [unresolved] {
-        opacity: 0;
-        display: none;
-    }
-</style>
-<script src="<?php echo Mage::getBaseUrl('js'); ?>factfinder/ff-web-components/vendor/custom-elements-es5-adapter.js"></script>
-<script src="<?php echo Mage::getBaseUrl('js'); ?>factfinder/ff-web-components/vendor/webcomponents-loader.js"></script>
-<script defer src="<?php echo Mage::getBaseUrl('js'); ?>factfinder/ff-web-components/bundle.js"></script>
+<?php /** @var Mage_Core_Block_Template $this */ ?>
+<script src="<?php echo $this->getJsUrl('factfinder/ff-web-components/vendor/custom-elements-es5-adapter.js') ?>"></script>
+<script src="<?php echo $this->getJsUrl('factfinder/ff-web-components/vendor/webcomponents-loader.js') ?>"></script>
+<script src="<?php echo $this->getJsUrl('factfinder/ff-web-components/bundle.js') ?>" defer></script>
+<style>[unresolved]{opacity:0;display:none}</style>
