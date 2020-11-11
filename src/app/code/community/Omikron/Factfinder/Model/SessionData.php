@@ -22,8 +22,6 @@ class Omikron_Factfinder_Model_SessionData
 
     private function getCorrectSessionId($sessionId, $length = 30)
     {
-        $sessionId = $sessionId ?: sha1(uniqid('', true));
-        $sessionId = str_repeat($sessionId, ceil($length / (strlen($sessionId)) + 1));
-        return substr($sessionId, 0, $length);
+        return substr(md5($sessionId ?: uniqid('', true)), 0, $length);
     }
 }

@@ -22,6 +22,7 @@ class Omikron_Factfinder_Model_Observer_Category
 
     private function isUsedForCategories()
     {
-        return Mage::getStoreConfigFlag(self::CONFIG_PATH_USE_FOR_CATEGORIES);
+        $enabled = Mage::getModel('factfinder/config_communication')->isChannelEnabled();
+        return $enabled && Mage::getStoreConfigFlag(self::CONFIG_PATH_USE_FOR_CATEGORIES);
     }
 }

@@ -3,6 +3,9 @@
 ### Changed
 - Upgrade Web Components to version 3.15.9
 
+### Fixed
+- Check activation flag on the frontend before rendering blocks
+
 ## [v2.0.1] - 2020-04-02
 ### Added
 - Added RECOMMENDATION to available import type to be pushed after feed is uploaded

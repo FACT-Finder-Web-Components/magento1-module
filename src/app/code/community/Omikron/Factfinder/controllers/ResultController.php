@@ -7,6 +7,15 @@ class Omikron_Factfinder_ResultController extends Mage_Core_Controller_Front_Act
     /** @var string */
     protected $_realModuleName = 'Mage_CatalogSearch';
 
+    public function preDispatch()
+    {
+        parent::preDispatch();
+        if (!Mage::getSingleton('factfinder/config_communication')->isChannelEnabled()) {
+            $this->norouteAction();
+        }
+        return $this;
+    }
+
     public function indexAction()
     {
         $this->loadLayout();
