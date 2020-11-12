@@ -73,7 +73,7 @@
     <!-- Cart Campaign -->
     <checkout_cart_index>
         <block type="checkout/cart" name="ff.campaign.cart" template="factfinder/campaign/cart.phtml" />
-        <action ifconfig="factfinder/general/is_enabled" block="content" method="append"><name>ff.communication</name></action>
+        <action ifconfig="factfinder/general/is_enabled" block="content" method="append"><name>ff.campaign.cart</name></action>
     </checkout_cart_index>
 
     <!-- Default css and js -->
