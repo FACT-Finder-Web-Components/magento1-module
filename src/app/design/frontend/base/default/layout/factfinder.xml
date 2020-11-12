@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
 <layout>
     <factfinder_product_list>
-        <reference name="root">
-            <reference name="head">
-                <action method="replaceItem"><type>js</type><name>prototype/prototype.js</name><replace>factfinder/prototype/prototype.js</replace></action>
-            </reference>
-        </reference>
         <update handle="page_two_columns_left" />
+
+        <action name="head" method="replaceItem">
+            <type>js</type>
+            <name>prototype/prototype.js</name>
+            <replace>factfinder/prototype/prototype.js</replace>
+        </action>
 
         <block type="core/template" name="ff.result.list" template="factfinder/catalog/product/list.phtml">
             <block type="core/template" name="ff.campaign_advisor" as="advisor_campaign" template="factfinder/campaign/advisor.phtml" />
@@ -54,52 +55,45 @@
 
     <!-- Product Details Campaign and Similar Products -->
     <catalog_product_view>
-        <reference name="content">
-            <block type="catalog/product_view" name="ff.product.campaign" template="factfinder/campaign/product.phtml" />
-            <block type="catalog/product_view" name="ff.product.similar_products" template="factfinder/catalog/product/similar_products.phtml" />
-            <block type="catalog/product_view" name="ff.product.upsell" template="factfinder/catalog/product/list/upsell.phtml" />
-        </reference>
+        <block type="catalog/product_view" name="ff.product.campaign" template="factfinder/campaign/product.phtml" />
+        <block type="catalog/product_view" name="ff.product.similar_products" template="factfinder/catalog/product/similar_products.phtml" />
+        <block type="catalog/product_view" name="ff.product.upsell" template="factfinder/catalog/product/list/upsell.phtml" />
+
+        <action ifconfig="factfinder/general/is_enabled" block="content" method="append"><name>ff.product.campaign</name></action>
+        <action ifconfig="factfinder/general/is_enabled" block="content" method="append"><name>ff.product.similar_products</name></action>
+        <action ifconfig="factfinder/general/is_enabled" block="content" method="append"><name>ff.product.upsell</name></action>
     </catalog_product_view>
 
     <!-- Landing Page Campaign -->
     <cms_index_index>
-        <reference name="content">
-            <block type="core/template" name="factfinder_landing_page_campaign" template="factfinder/campaign/landing_page.phtml" />
-        </reference>
+        <block type="checkout/cart" name="factfinder_landing_page_campaign" template="factfinder/campaign/cart.phtml" />
+        <action ifconfig="factfinder/general/is_enabled" block="content" method="append"><name>factfinder_landing_page_campaign</name></action>
     </cms_index_index>
 
     <!-- Cart Campaign -->
     <checkout_cart_index>
-        <reference name="content">
-            <block type="checkout/cart" name="factfinder_cart_campaign" template="factfinder/campaign/cart.phtml" />
-        </reference>
+        <block type="checkout/cart" name="ff.campaign.cart" template="factfinder/campaign/cart.phtml" />
+        <action ifconfig="factfinder/general/is_enabled" block="content" method="append"><name>ff.campaign.cart</name></action>
     </checkout_cart_index>
 
     <!-- Default css and js -->
     <default>
-        <reference name="head">
-            <action method="addJs">
-                <script>factfinder/search-redirect.js</script>
-            </action>
-            <action method="addCss">
-                <stylesheet>css/factfinder/factfinder.css</stylesheet>
-            </action>
-            <block type="core/template" name="ff.communication.elements" template="factfinder/communication/elements.phtml" />
-        </reference>
+        <block type="core/template" name="ff.communication" template="factfinder/communication/communication.phtml" />
+        <block type="core/template" name="ff.communication.elements" template="factfinder/communication/elements.phtml" />
+        <block type="core/template" name="ff.campaign.redirect" template="factfinder/campaign/redirect.phtml" />
+
+        <!-- Head Elements -->
+        <action ifconfig="factfinder/general/is_enabled" block="head" method="append"><name>ff.communication.elements</name></action>
+        <action ifconfig="factfinder/general/is_enabled" block="head" method="addCss"><css>css/factfinder/factfinder.css</css></action>
+        <action ifconfig="factfinder/general/is_enabled" block="head" method="addJs"><script>factfinder/search-redirect.js</script></action>
 
         <!-- Search Box and Suggest -->
-        <action method="setTemplate" block="top.search">
+        <action ifconfig="factfinder/general/is_enabled" block="top.search" method="setTemplate">
             <template>factfinder/catalogsearch/form.mini.phtml</template>
         </action>
 
         <!-- Communication -->
-        <reference name="after_body_start">
-            <block type="core/template" name="ff.communication" template="factfinder/communication/communication.phtml" />
-        </reference>
-
-        <block type="core/template" name="ff.campaign_redirect" template="factfinder/campaign/redirect.phtml" />
-        <action method="append" block="after_body_start" ifconfig="factfinder/components/ff_campaign">
-            <name>ff.campaign_redirect</name>
-        </action>
+        <action ifconfig="factfinder/general/is_enabled" block="after_body_start" method="append"><name>ff.communication</name></action>
+        <action ifconfig="factfinder/general/is_enabled" block="after_body_start" method="append"><name>ff.campaign.redirect</name></action>
     </default>
 </layout>
