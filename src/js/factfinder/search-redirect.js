@@ -1,24 +1,20 @@
 document.addEventListener('ffReady', function () {
-    var redirectPath = window.ffRedirectPath || '/factfinder/result';
-    var isSearchResultPage = function () {
-        return window.location.href.indexOf(redirectPath) >= 0;
-    };
+    const redirectPath = window.ffRedirectPath || '/factfinder/result';
 
-    factfinder.communication.EventAggregator.addBeforeDispatchingCallback(function (event) {
-        if (event.type === 'search' && !isSearchResultPage() && !event.searchImmediate && event.navigation !== 'true') {
-            event.cancel();
-            window.location.href = redirectPath + factfinder.common.dictToParameterString(event);
+    document.addEventListener('before-search', function (event) {
+        if (['productDetail', 'getRecords'].lastIndexOf(event.detail.type) === -1) {
+            event.preventDefault();
+            window.location = redirectPath + factfinder.common.dictToParameterString(event.detail);
         }
     });
-});
 
-document.addEventListener('dom-updated', function () {
-    var parentCategory = document.getElementsByClassName('ff-suggest-parent-category');
-    Array.prototype.forEach.call(parentCategory, function (el) {
-        if (el.innerText === '>') {
-            el.style.display = 'none';
-        } else {
-            el.style.display = 'inline-block';
-        }
+    document.addEventListener('dom-updated', function () {
+        document.querySelectorAll('.ff-suggest-parent-category').forEach(function (el) {
+            if (el.innerText.trim() === '>') {
+                el.style.display = 'none';
+            } else {
+                el.style.display = 'inline-block';
+            }
+        });
     });
 });
