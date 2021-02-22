@@ -43,6 +43,10 @@
         <remove name="category.products" />
         <remove name="catalog.leftnav" />
 
+        <reference name="after_body_start">
+            <block type="core/template" name="ff.history.cb" template="factfinder/catalog/layer/history_callback.phtml" />
+        </reference>
+
         <reference name="content">
             <block type="catalog/category_view" name="breadcrumbs" as="breadcrumbs" before="-" />
         </reference>

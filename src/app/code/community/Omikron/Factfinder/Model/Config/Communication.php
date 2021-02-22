@@ -8,6 +8,7 @@ class Omikron_Factfinder_Model_Config_Communication
     const PATH_ADDRESS = 'factfinder/general/address';
     const PATH_CHANNEL = 'factfinder/general/channel';
     const PATH_VERSION = 'factfinder/general/version';
+    const PATH_API     = 'factfinder/general/api';
 
     public function isChannelEnabled($scopeId = null): bool
     {
@@ -31,7 +32,7 @@ class Omikron_Factfinder_Model_Config_Communication
 
     public function getApi(): string
     {
-        return 'v3';
+        return Mage::getStoreConfig(self::PATH_API);
     }
 
     public function isNg(): bool
