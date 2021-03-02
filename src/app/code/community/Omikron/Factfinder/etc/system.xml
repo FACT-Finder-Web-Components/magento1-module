@@ -78,17 +78,6 @@
                             <show_in_store>1</show_in_store>
                             <depends><version separator=",">7.2,7.3</version></depends>
                         </authentication_postfix>
-                        <api translate="label comment">
-                            <label>API Version</label>
-                            <comment>Relevant only for FACT-Finder NG</comment>
-                            <frontend_type>select</frontend_type>
-                            <sort_order>7</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <source_model>factfinder/source_api</source_model>
-                            <depends><version>ng</version></depends>
-                        </api>
                         <version translate="label comment">
                             <label>FACT-Finder Version</label>
                             <frontend_type>select</frontend_type>
