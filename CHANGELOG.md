@@ -1,4 +1,12 @@
 # Changelog
+## [v2.2.0] - 2021-03-02
+### Changed
+- Upgrade Web Components to version 4.0.0
+- Use FACT-Finder REST API v4
+
+### Fixed
+- Exclude category filter from URL on category pages
+
 ## [v2.1.0] - 2020-11-12
 ### Changed
 - Upgrade Web Components to version 3.15.9
