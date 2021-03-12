@@ -44,7 +44,7 @@ In Advanced Settings you can set parameters related to the `ff-communication`. Y
 The SDK allows you to generate feed based on your database. In this tab you can specify what attributes you want to export. Please remember to save settings before doing export.
 
 ### Cron schedule
-The SDK allows you to automatize feed file export by Cron. You can do this by selecting proper time of execution and frequency in module configuration.Please remember that in order to automatize feed file export You need to correctly configure Magento Cron by adding execution of magento.sh script to system crontab file. For more information about that topic, visit the   [Setting Up Cronjobs](https://devdocs.magento.com/guides/m1x/install/installing_install.html?_ga=2.156043643.1120492099.1543215907-1043651934.1538723178#install-cron).
+The SDK allows you to automatize feed file export by Cron. You can do this by selecting proper time of execution and frequency in module configuration.Please remember that in order to automatize feed file export You need to correctly configure Magento Cron by adding execution of magento.sh script to system crontab file.
  
 ![Export to FTP](documentation/cron-configuration.png "Cron configuration")
 
