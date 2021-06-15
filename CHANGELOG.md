@@ -1,4 +1,8 @@
 # Changelog
+## Unreleased
+### Fixed
+- Fix fieldRole `trackingProductNumber` name
+
 ## [v2.2.0] - 2021-03-02
 ### Changed
 - Upgrade Web Components to version 4.0.0
