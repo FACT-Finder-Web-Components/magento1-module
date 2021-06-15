@@ -1,5 +1,8 @@
 # Changelog
-## Unreleased
+## [v2.2.1] - 2021-06-15
+### Changed
+- Upgrade Web Components to version 4.0.3
+
 ### Fixed
 - Fix fieldRole `trackingProductNumber` name
 
@@ -140,6 +143,7 @@
 - Allow user to choose which visibilities should be applied to collection filter
 - Divide product collection into batches in order to prevent memory exhaustion on product collection load
 
+[v2.2.1]:      https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v2.2.1
 [v2.2.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v2.2.0
 [v2.1.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v2.1.0
 [v2.0.1]:      https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v2.0.1
