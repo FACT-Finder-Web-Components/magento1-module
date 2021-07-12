@@ -4,7 +4,7 @@ document.addEventListener('ffReady', function () {
     document.addEventListener('before-search', function (event) {
         if (['productDetail', 'getRecords'].lastIndexOf(event.detail.type) === -1) {
             event.preventDefault();
-            window.location = redirectPath + factfinder.common.dictToParameterString(event.detail);
+            window.location = redirectPath + factfinder.common.dictToParameterString(factfinder.common.encodeDict(event.detail));
         }
     });
 
