@@ -13,7 +13,8 @@
   "require": {
     "php": "^7.0",
     "ext-curl": "*",
-    "ext-json": "*"
+    "ext-json": "*",
+    "omikron/factfinder-communication-sdk": "^0.9.1"
   },
   "require-dev": {
     "magento-ecg/coding-standard": "^3.1",
