@@ -13,27 +13,16 @@ class Omikron_Factfinder_Model_SdkClient_ClientBuilderConfigurator
     /** @var string */
     private $serverUrl;
 
-    /** @var string */
-    private $version;
-
-    /**
-     * Omikron_Factfinder_Model_SdkClient_ClientBuilderConfigurator constructor.
-     * @param Credentials $credentials
-     * @param string $serverUrl
-     * @param string $version
-     */
-    public function __construct(Credentials $credentials, string $serverUrl, string $version)
+    public function __construct(Credentials $credentials, string $serverUrl)
     {
         $this->credentials = $credentials;
         $this->serverUrl = $serverUrl;
-        $this->version = $version;
     }
 
     public function getBuilder(): ClientBuilder
     {
         return (new ClientBuilder())
             ->withCredentials($this->credentials)
-            ->withVersion($this->version)
             ->withServerUrl($this->serverUrl);
     }
 

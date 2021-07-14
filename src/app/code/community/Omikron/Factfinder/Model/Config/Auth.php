@@ -20,12 +20,12 @@ class Omikron_Factfinder_Model_Config_Auth
         return Mage::getStoreConfig(self::PATH_PASSWORD);
     }
 
-    public function getAuthenticationPrefix(): string
+    public function getAuthenticationPrefix(): ?string
     {
         return Mage::getStoreConfig(self::PATH_AUTHENTICATION_PREFIX);
     }
 
-    public function getAuthenticationPostfix(): string
+    public function getAuthenticationPostfix(): ?string
     {
         return Mage::getStoreConfig(self::PATH_AUTHENTICATION_POSTFIX);
     }

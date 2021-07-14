@@ -7,6 +7,7 @@ use Omikron_Factfinder_Model_Api_Credentials as Credentials;
 use Omikron_Factfinder_Model_Config_Auth as AuthConfig;
 use Omikron_Factfinder_Model_Http_Adapter_Curl as CurlAdapter;
 use Zend_Http_Client as HttpClient;
+use Omikron_Factfinder_Model_SdkClient_Client as SdkClient;
 
 class Omikron_Factfinder_Model_ClientNG implements Omikron_Factfinder_Model_Interface_ClientInterface
 {
@@ -16,10 +17,14 @@ class Omikron_Factfinder_Model_ClientNG implements Omikron_Factfinder_Model_Inte
     /** @var Credentials */
     private $credentials;
 
+    /** @var SdkClient */
+    private $sdkClient;
+
     public function __construct(Credentials $credentials = null)
     {
         $this->credentials = $credentials;
         $this->authConfig  = Mage::getModel('factfinder/config_auth');
+        $this->sdkClient   = Mage::getModel('factfinder/sdkClient_client');
     }
 
     /**
@@ -32,12 +37,15 @@ class Omikron_Factfinder_Model_ClientNG implements Omikron_Factfinder_Model_Inte
      */
     public function get(string $endpoint, array $params): array
     {
-        $client = $this->initClient();
+        $this->sdkClient->init($this->authConfig);
+
         try {
             $query = preg_replace('#products%5B\d+%5D%5B(.+?)%5D=#', '\1=', http_build_query($params));
-            $client->setUri($endpoint);
-            $client->getUri()->setQuery($query);
-            $response = $client->request(HttpClient::GET);
+
+            $response = $this->sdkClient
+                ->setServerUrl($endpoint)
+                ->setQuery($query)
+                ->makeGetRequest();
 
             if ($response->isSuccessful()) {
                 return (array) Mage::helper('core')->jsonDecode($response->getBody());

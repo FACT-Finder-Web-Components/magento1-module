@@ -4,7 +4,6 @@ use Omikron_Factfinder_Model_Api_Credentials as Credentials;
 use Omikron_Factfinder_Model_Api_TestConnectionFactory as TestConnectionFactory;
 use Omikron_Factfinder_Model_Config_Auth as AuthConfig;
 use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
-use Omikron_Factfinder_Model_SdkClient_Client as SdkClient;
 
 class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_Adminhtml_Controller_Action
 {
@@ -16,9 +15,6 @@ class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_
 
     /** @var CommunicationConfig */
     private $communicationConfig;
-
-    /** @var SdkClient */
-    private $sdkClient;
 
     protected function _construct()
     {
@@ -33,10 +29,11 @@ class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_
         $message = $this->__('Connection successfully established.');
 
         try {
-            $this->sdkClient
-                ->init($this->getRequest())
-                ->makeGetRequest();
-
+            $request = $this->getRequest();
+            $params  = ['channel' => $request->getParam('channel')];
+            $this->testConnectionFactory
+                ->create($request->getParams())
+                ->execute($request->getParam('serverUrl'), $params, $this->getCredentials($request->getParams()));
         } catch (\Exception $e) {
             $message = $e->getMessage();
         }

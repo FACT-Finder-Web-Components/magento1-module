@@ -7,7 +7,8 @@ use Omikron_Factfinder_Model_SdkClient_ClientBuilderConfigurator as ClientBuilde
 use Mage_Core_Controller_Request_Http as HttpRequest;
 use Omikron_Factfinder_Model_SdkClient_Helper_Credentials as Credentials;
 use Psr\Http\Message\ResponseInterface;
-
+use Omikron\FactFinder\Communication\Client\ClientInterface;
+use Omikron_Factfinder_Model_Config_Auth as AuthConfig;
 
 class Omikron_Factfinder_Model_SdkClient_Client
 {
@@ -23,43 +24,59 @@ class Omikron_Factfinder_Model_SdkClient_Client
     /** @var string */
     private $serverUrl;
     /** @var string */
+    private $query;
+    /** @var string */
     private $channel;
     /** @var string */
     private $version;
     /** @var ClientBuilder */
     private $clientBuilder;
 
-    public function init(HttpRequest $request): self
+    public function init(AuthConfig $authConfig): self
     {
-        $this->request = $request;
-        $this->parameters = $this->request->getParams();
-        $this->credentials = $this->getCredentials();
-        $this->serverUrl = $this->parameters['serverUrl'];
-        $this->channel = $this->parameters['channel'];
-        $this->version = $this->parameters['version'];
-        $this->clientBuilder = (new ClientBuilderConfiguration($this->credentials, $this->serverUrl, $this->version))->getBuilder();
+        $this->credentials = $this->getCredentials($authConfig);
 
         return $this;
     }
 
     public function makeGetRequest(array $options = []): ResponseInterface
     {
-        $client = $this->clientBuilder->build();
+        $client = $this->getClient();
+        $url = sprintf('%s?%s', $this->serverUrl, $this->query);
 
-        return $client->request(self::GET, $this->serverUrl, $options);
+        return $client->request(self::GET, $url, $options);
     }
 
-    private function getParameters()
+    public function makePostRequest(array $options = [])
     {
-        return $this->request->getParams();
+
     }
 
-    private function getCredentials(): \Omikron\FactFinder\Communication\Credentials
+    public function setServerUrl(string $serverUrl): self
     {
-        $this->credentials = (new Credentials($this->parameters))->create();
+        $this->serverUrl = $serverUrl;
+
+        return $this;
+    }
+
+    public function setQuery(string $query): self
+    {
+        $this->query = $query;
+
+        return $this;
+    }
+
+    private function getClient(): ClientInterface
+    {
+        $this->clientBuilder = (new ClientBuilderConfiguration($this->credentials, $this->serverUrl))->getBuilder();
+        return $this->clientBuilder->build();
+    }
+
+    private function getCredentials(Omikron_Factfinder_Model_Config_Auth $authConfig): \Omikron\FactFinder\Communication\Credentials
+    {
+        $this->credentials = (new Credentials($authConfig))->create();
 
         return $this->credentials;
 
     }
-
 }
