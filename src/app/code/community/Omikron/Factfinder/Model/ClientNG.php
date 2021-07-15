@@ -47,11 +47,11 @@ class Omikron_Factfinder_Model_ClientNG implements Omikron_Factfinder_Model_Inte
                 ->setQuery($query)
                 ->makeGetRequest();
 
-            if ($response->isSuccessful()) {
+            if ($response->getStatusCode() === 200) {
                 return (array) Mage::helper('core')->jsonDecode($response->getBody());
             }
 
-            throw new ResponseException($response->getBody(), $response->getStatus());
+            throw new ResponseException($response->getBody(), $response->getStatusCode());
         } catch (Zend_Json_Exception $e) {
             return (array) $response->getBody();
         }

@@ -4,31 +4,23 @@ include __DIR__ . DIRECTORY_SEPARATOR . '../../../../../../../../vendor/autoload
 
 use Omikron\FactFinder\Communication\Client\ClientBuilder;
 use Omikron_Factfinder_Model_SdkClient_ClientBuilderConfigurator as ClientBuilderConfiguration;
-use Mage_Core_Controller_Request_Http as HttpRequest;
 use Omikron_Factfinder_Model_SdkClient_Helper_Credentials as Credentials;
 use Psr\Http\Message\ResponseInterface;
 use Omikron\FactFinder\Communication\Client\ClientInterface;
 use Omikron_Factfinder_Model_Config_Auth as AuthConfig;
+use Omikron\FactFinder\Communication\ServerUrl;
 
 class Omikron_Factfinder_Model_SdkClient_Client
 {
     private const GET = 'GET';
     private const POST = 'POST';
 
-    /** @var HttpRequest */
-    private $request;
-    /** @var array */
-    private $parameters;
     /** @var \Omikron\FactFinder\Communication\Credentials */
     private $credentials;
     /** @var string */
     private $serverUrl;
     /** @var string */
     private $query;
-    /** @var string */
-    private $channel;
-    /** @var string */
-    private $version;
     /** @var ClientBuilder */
     private $clientBuilder;
 
@@ -41,20 +33,18 @@ class Omikron_Factfinder_Model_SdkClient_Client
 
     public function makeGetRequest(array $options = []): ResponseInterface
     {
-        $client = $this->getClient();
         $url = sprintf('%s?%s', $this->serverUrl, $this->query);
-
-        return $client->request(self::GET, $url, $options);
+        return $this->getClient()->request(self::GET, $url, $options);
     }
 
-    public function makePostRequest(array $options = [])
+    public function makePostRequest(array $options = []): ResponseInterface
     {
-
+        return $this->getClient()->request(self::POST, $this->serverUrl, $options);
     }
 
     public function setServerUrl(string $serverUrl): self
     {
-        $this->serverUrl = $serverUrl;
+        $this->serverUrl = (new ServerUrl($serverUrl))->__toString();
 
         return $this;
     }
@@ -75,8 +65,6 @@ class Omikron_Factfinder_Model_SdkClient_Client
     private function getCredentials(Omikron_Factfinder_Model_Config_Auth $authConfig): \Omikron\FactFinder\Communication\Credentials
     {
         $this->credentials = (new Credentials($authConfig))->create();
-
         return $this->credentials;
-
     }
 }
