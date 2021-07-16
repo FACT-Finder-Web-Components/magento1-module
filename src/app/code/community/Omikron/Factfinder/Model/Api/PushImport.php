@@ -45,22 +45,7 @@ class Omikron_Factfinder_Model_Api_PushImport implements Omikron_Factfinder_Mode
 
         $this->sdkClient->init($this->authConfig);
         $importAdapter = (new AdapterFactory($this->sdkClient, $this->communicationConfig))->getImportAdapter();
-        $result = $importAdapter->import($scopeId);
 
-//        $params += [
-//            'channel'  => $this->communicationConfig->getChannel($scopeId),
-//            'quiet'    => 'true',
-//            'download' => 'true',
-//        ];
-//
-//        $response = [];
-//        $importTypes = explode(',', Mage::getStoreConfig('factfinder/data_transfer/ff_push_import_types', $scopeId));
-//        $endpoint = $this->communicationConfig->getAddress() . '/' . $this->apiName;
-//        foreach ($importTypes as $type) {
-//            $params['type'] = $type;
-//            $response       = array_merge_recursive($response, $this->apiClient->sendRequest($endpoint, $params));
-//        }
-//
-//        return $response && !($response['errors'] ?? $response['error'] ?? false);
+        return $importAdapter->import($scopeId);
     }
 }

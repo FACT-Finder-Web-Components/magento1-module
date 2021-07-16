@@ -32,7 +32,9 @@ class Omikron_Factfinder_Model_SdkClient_Resources_NG_ImportAdapter implements I
         $response = [];
 
         foreach ($importTypes as $type) {
-            $response[] = $this->sdkClient->setServerUrl($endpoint . DIRECTORY_SEPARATOR . $type)->makePostRequest($params);
+            $response[] = $this->sdkClient
+                ->setServerUrl($endpoint . DIRECTORY_SEPARATOR . $type)
+                ->makePostRequest($params);
         }
 
         array_map(function ($item) {
