@@ -30,10 +30,10 @@ class Omikron_Factfinder_Model_SdkClient_Resources_Standard_ImportAdapter implem
         ];
         $response = [];
         $importTypes = $this->getPushImportDataTypes($scopeId);
-        $endpoint = $this->communicationConfig->getAddress() . '/v4';
+        $endpoint = $this->communicationConfig->getAddress() . '/rest/v4/import';
         foreach ($importTypes as $type) {
             $params['type'] = $type;
-            $response[] = $this->sdkClient->setServerUrl($endpoint)->makeGetRequest($params);
+            $response[] = $this->sdkClient->setServerUrl($endpoint . DIRECTORY_SEPARATOR . $type)->makePostRequest($params);
         }
 
         array_map(function ($item) {
