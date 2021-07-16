@@ -22,6 +22,9 @@ class Omikron_Factfinder_Model_Export_Product
     /** @var Omikron_Factfinder_Model_Api_Ng_PushImport */
     protected $ngPushImport;
 
+    /** @var Omikron_Factfinder_Model_Config_Communication */
+    protected $communicationConfig;
+
     public function __construct()
     {
         $this->dataHelper    = Mage::helper('factfinder/data');
@@ -29,6 +32,7 @@ class Omikron_Factfinder_Model_Export_Product
         $this->uploadHelper  = Mage::helper('factfinder/upload');
         $this->pushImport    = Mage::getModel('factfinder/api_pushImport');
         $this->ngPushImport   = Mage::getModel('factfinder/api_ng_pushImport');
+        $this->communicationConfig   = Mage::getModel('factfinder/config_communication');
     }
 
     /**
@@ -41,7 +45,7 @@ class Omikron_Factfinder_Model_Export_Product
     public function exportProduct($store, $filename = '')
     {
         if ($filename == '') {
-            $filename = $this->dataHelper->getChannel($store->getId());
+            $filename = $this->communicationConfig->getChannel($store->getId());
         }
 
         $fullname = self::FEED_FILE . $filename . '.' . self::FEED_FILE_FILETYPE;
@@ -59,7 +63,7 @@ class Omikron_Factfinder_Model_Export_Product
 //        }
 
         $this->pushImport->execute($store->getId());
-//        $this->ngPushImport->execute($store->getId());
+
         return $result;
     }
 
