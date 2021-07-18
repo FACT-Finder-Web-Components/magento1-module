@@ -123,21 +123,21 @@ class Omikron_Factfinder_Model_Export_Product
         $productCount = $this->getFilteredProductCollection($store)->getSize();
         $currentOffset  = 0;
 
-//        while ($currentOffset < $productCount) {
-//            /** @var Mage_Catalog_Model_Resource_Product_Collection $products */
-//            $products = $this->getProducts($store, $currentOffset);
-//            foreach ($products as $product) {
-//                $product->setStoreId($store->getId());
-//                $rowData = $this->buildFeedRow($product, $store);
-//                if ($addHeaderCols) {
-//                    $addHeaderCols = false;
-//                    $output[]      = array_keys($rowData);
-//                }
-//                $output[] = $this->writeLine($rowData);
-//            }
-//
-//            $currentOffset += $products->count();
-//        }
+        while ($currentOffset < $productCount) {
+            /** @var Mage_Catalog_Model_Resource_Product_Collection $products */
+            $products = $this->getProducts($store, $currentOffset);
+            foreach ($products as $product) {
+                $product->setStoreId($store->getId());
+                $rowData = $this->buildFeedRow($product, $store);
+                if ($addHeaderCols) {
+                    $addHeaderCols = false;
+                    $output[]      = array_keys($rowData);
+                }
+                $output[] = $this->writeLine($rowData);
+            }
+
+            $currentOffset += $products->count();
+        }
 
         return $output;
     }
