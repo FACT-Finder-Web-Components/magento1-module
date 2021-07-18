@@ -1,9 +1,9 @@
 <?php
 
-use Omikron_Factfinder_Model_Api_Credentials as Credentials;
-use Omikron_Factfinder_Model_Api_TestConnectionFactory as TestConnectionFactory;
 use Omikron_Factfinder_Model_Config_Auth as AuthConfig;
 use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
+use Omikron_Factfinder_Model_SdkClient_Client as SdkClient;
+use Omikron_Factfinder_Model_SdkClient_Resources_AdapterFactory as AdapterFactory;
 
 class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_Adminhtml_Controller_Action
 {
@@ -15,13 +15,15 @@ class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_
 
     /** @var CommunicationConfig */
     private $communicationConfig;
-
+    /** @var SdkClient */
+    protected $sdkClient;
     protected function _construct()
     {
         $this->testConnectionFactory = Mage::getModel('factfinder/api_testConnectionFactory');
         $this->authConfig            = Mage::getModel('factfinder/config_auth');
         $this->communicationConfig   = Mage::getModel('factfinder/config_communication');
         $this->sdkClient             = Mage::getModel('factfinder/sdkClient_client');
+        $this->sdkClient->init($this->authConfig);
     }
 
     public function testAction()
@@ -29,11 +31,8 @@ class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_
         $message = $this->__('Connection successfully established.');
 
         try {
-            $request = $this->getRequest();
-            $params  = ['channel' => $request->getParam('channel')];
-            $this->testConnectionFactory
-                ->create($request->getParams())
-                ->execute($request->getParam('serverUrl'), $params, $this->getCredentials($request->getParams()));
+            $connectionAdapter = (new AdapterFactory($this->sdkClient, $this->communicationConfig))->getConnectionAdapter();
+            $connectionAdapter->connect();
         } catch (\Exception $e) {
             $message = $e->getMessage();
         }
@@ -45,38 +44,5 @@ class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_
     {
         $this->getResponse()->setHeader('Content-type', 'application/json');
         $this->getResponse()->setBody(Mage::helper('core')->jsonEncode(['message' => $message]));
-    }
-
-    /**
-     * @param array $params
-     *
-     * @return mixed
-     */
-    private function getCredentials(array $params)
-    {
-        $params += [
-            'prefix'  => $params['authenticationPrefix'],
-            'postfix' => $params['authenticationPostfix'],
-        ];
-
-        $params = $this->extractAuthParams($params);
-        return new Credentials(...array_values($params));
-    }
-
-    /**
-     * @param array $params
-     *
-     * @return array
-     */
-    private function extractAuthParams(array $params)
-    {
-        return array_filter($params, function ($k) {
-            return in_array($k, ['username', 'password', 'authenticationPrefix', 'authenticationPostfix']);
-        }, ARRAY_FILTER_USE_KEY);
-    }
-
-    protected function _isAllowed()
-    {
-        return Mage::getSingleton('admin/session')->isAllowed('system/config/factfinder');
     }
 }

@@ -29,6 +29,7 @@ class Omikron_Factfinder_Model_Api_PushImport implements Omikron_Factfinder_Mode
         $this->communicationConfig = Mage::getModel('factfinder/config_communication');
         $this->sdkClient   = Mage::getModel('factfinder/sdkClient_client');
         $this->authConfig  = Mage::getModel('factfinder/config_auth');
+        $this->sdkClient->init($this->authConfig);
     }
 
     /**
@@ -42,8 +43,6 @@ class Omikron_Factfinder_Model_Api_PushImport implements Omikron_Factfinder_Mode
         if (!Mage::getStoreConfigFlag('factfinder/data_transfer/ff_push_import_enabled', $scopeId)) {
             return false;
         }
-
-        $this->sdkClient->init($this->authConfig);
         $importAdapter = (new AdapterFactory($this->sdkClient, $this->communicationConfig))->getImportAdapter();
 
         return $importAdapter->import($scopeId);

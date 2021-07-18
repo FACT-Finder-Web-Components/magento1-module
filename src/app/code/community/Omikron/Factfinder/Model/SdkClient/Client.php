@@ -27,13 +27,12 @@ class Omikron_Factfinder_Model_SdkClient_Client
     public function init(AuthConfig $authConfig): self
     {
         $this->credentials = $this->getCredentials($authConfig);
-
         return $this;
     }
 
     public function makeGetRequest(array $options = []): ResponseInterface
     {
-        $url = sprintf('%s?%s', $this->serverUrl, $this->query);
+        $url = sprintf('%s?%s', rtrim($this->serverUrl, '/'), $this->query);
         return $this->getClient()->request(self::GET, $url, $options);
     }
 
@@ -45,14 +44,12 @@ class Omikron_Factfinder_Model_SdkClient_Client
     public function setServerUrl(string $serverUrl): self
     {
         $this->serverUrl = (new ServerUrl($serverUrl))->__toString();
-
         return $this;
     }
 
-    public function setQuery(string $query): self
+    public function setQuery(array $parameters): self
     {
-        $this->query = $query;
-
+        $this->query = preg_replace('#products%5B\d+%5D%5B(.+?)%5D=#', '\1=', http_build_query($parameters));
         return $this;
     }
 

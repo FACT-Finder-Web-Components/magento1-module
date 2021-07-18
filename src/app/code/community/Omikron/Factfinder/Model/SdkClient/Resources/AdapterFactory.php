@@ -1,12 +1,15 @@
 <?php
 
 use Omikron_Factfinder_Model_SdkClient_Client as SdkClient;
-use Omikron_Factfinder_Model_SdkClient_Resources_Import as Import;
+use Omikron_Factfinder_Model_SdkClient_Resources_ImportInterface as Import;
+use Omikron_Factfinder_Model_SdkClient_Resources_ConnectionInterface as Connection;
 use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
 
 class Omikron_Factfinder_Model_SdkClient_Resources_AdapterFactory
 {
     private const NG_VERSION = 'ng';
+    private const IMPORT_ADAPTER_TYPE = 'Import';
+    private const CONNECTION_ADAPTER_TYPE = 'Connection';
 
     /** @var SdkClient */
     private $sdkClient;
@@ -22,18 +25,19 @@ class Omikron_Factfinder_Model_SdkClient_Resources_AdapterFactory
 
     public function getImportAdapter(): Import
     {
-        $class = $this->getAdapterClass();
-
+        $class = $this->getAdapterClass(self::IMPORT_ADAPTER_TYPE);
         return new $class($this->sdkClient, $this->communicationConfig);
     }
 
-    private function getAdapterClass(): string
+    public function getConnectionAdapter(): Connection
     {
-        switch ($this->communicationConfig->getVersion()) {
-            case self::NG_VERSION:
-                return 'Omikron_Factfinder_Model_SdkClient_Resources_NG_ImportAdapter';
-            default:
-                return 'Omikron_Factfinder_Model_SdkClient_Resources_Standard_ImportAdapter';
-        }
+        $class = $this->getAdapterClass(self::CONNECTION_ADAPTER_TYPE);
+        return new $class($this->sdkClient, $this->communicationConfig);
+    }
+
+    private function getAdapterClass(string $adapter): string
+    {
+        $type = $this->communicationConfig->getVersion() === self::NG_VERSION ? 'NG' : 'Standard';
+        return sprintf('Omikron_Factfinder_Model_SdkClient_Resources_%s_%sAdapter', $type, $adapter);
     }
 }

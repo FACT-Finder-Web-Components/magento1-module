@@ -1,6 +1,6 @@
 <?php
 
-use Omikron_Factfinder_Model_SdkClient_Resources_Import as ImportInterface;
+use Omikron_Factfinder_Model_SdkClient_Resources_ImportInterface as ImportInterface;
 use Omikron_Factfinder_Model_SdkClient_Client as SdkClient;
 use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
 use Omikron_Factfinder_Model_SdkClient_Resources_GetPushImportDataTypesTrait as PushImportDataTypesTrait;
