@@ -56,11 +56,11 @@ class Omikron_Factfinder_Model_Export_Product
             return $result;
         }
 
-//        $result = $this->uploadFeed($fullname);
-//
-//        if (isset($result['has_errors']) && $result['has_errors']) {
-//            return $result;
-//        }
+        $result = $this->uploadFeed($fullname);
+
+        if (isset($result['has_errors']) && $result['has_errors']) {
+            return $result;
+        }
 
         $this->pushImport->execute($store->getId());
 
