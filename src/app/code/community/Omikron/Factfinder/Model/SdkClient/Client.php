@@ -17,10 +17,13 @@ class Omikron_Factfinder_Model_SdkClient_Client
 
     /** @var \Omikron\FactFinder\Communication\Credentials */
     private $credentials;
+
     /** @var string */
     private $serverUrl;
+
     /** @var string */
     private $query;
+
     /** @var ClientBuilder */
     private $clientBuilder;
 
