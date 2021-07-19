@@ -37,7 +37,7 @@ class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_
             $message = $e->getMessage();
         }
 
-        return $this->jsonResponse($message);
+        $this->jsonResponse($message);
     }
 
     private function jsonResponse($message)

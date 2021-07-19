@@ -248,7 +248,6 @@ class Omikron_Factfinder_Model_Export_Product
                 $io->streamWriteCsv($item, ';');
             }
             $io->streamClose();
-            $io->close();
         } catch (\Exception $e) {
             $result['has_errors'] = true;
             $result['message'] = $this->dataHelper->__('Error: Could not write file') . ' - ' . $e->getMessage();
