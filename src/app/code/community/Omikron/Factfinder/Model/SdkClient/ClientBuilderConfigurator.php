@@ -1,7 +1,5 @@
 <?php
 
-include __DIR__ . DIRECTORY_SEPARATOR . '../../../../../../../../vendor/autoload.php';
-
 use Omikron\FactFinder\Communication\Credentials;
 use Omikron\FactFinder\Communication\Client\ClientBuilder;
 

@@ -7,9 +7,6 @@ use Omikron_Factfinder_Model_SdkClient_Resources_AdapterFactory as AdapterFactor
 
 class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_Adminhtml_Controller_Action
 {
-    /** @var TestConnectionFactory */
-    private $testConnectionFactory;
-
     /** @var AuthConfig */
     private $authConfig;
 
@@ -19,7 +16,6 @@ class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_
     protected $sdkClient;
     protected function _construct()
     {
-        $this->testConnectionFactory = Mage::getModel('factfinder/api_testConnectionFactory');
         $this->authConfig            = Mage::getModel('factfinder/config_auth');
         $this->communicationConfig   = Mage::getModel('factfinder/config_communication');
         $this->sdkClient             = Mage::getModel('factfinder/sdkClient_client');
