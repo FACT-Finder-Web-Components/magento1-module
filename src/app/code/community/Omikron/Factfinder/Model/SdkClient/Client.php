@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__ . '/../../../../../../../../vendor/autoload.php';
+include __DIR__ . '/../../../../../../../../../../vendor/autoload.php';
 
 use Omikron\FactFinder\Communication\Client\ClientBuilder;
 use Omikron_Factfinder_Model_SdkClient_ClientBuilderConfigurator as ClientBuilderConfiguration;

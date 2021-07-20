@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__ . '/../../../../../../../../../vendor/autoload.php';
+include __DIR__ . '/../../../../../../../../../../../vendor/autoload.php';
 
 use Omikron\FactFinder\Communication\Credentials as SdkCredentials;
 use Omikron_Factfinder_Model_Config_Auth as AuthConfig;
