@@ -1,5 +1,0 @@
-suites:
-  factfinder_communication:
-    namespace: Omikron\FactFinder\Communication
-    psr4_prefix: Omikron\FactFinder\Communication
-    src_path: '%paths.config%/src'

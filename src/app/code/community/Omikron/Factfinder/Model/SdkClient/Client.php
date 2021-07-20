@@ -1,5 +1,7 @@
 <?php
 
+include __DIR__ . '/../../../../../../../lib/CommunicationSDK/vendor/autoload.php';
+
 use Omikron\FactFinder\Communication\Client\ClientBuilder;
 use Omikron_Factfinder_Model_SdkClient_ClientBuilderConfigurator as ClientBuilderConfiguration;
 use Omikron_Factfinder_Model_SdkClient_Helper_Credentials as Credentials;

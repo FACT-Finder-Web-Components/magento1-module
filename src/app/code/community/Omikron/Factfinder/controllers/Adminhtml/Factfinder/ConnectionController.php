@@ -12,8 +12,10 @@ class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_
 
     /** @var CommunicationConfig */
     private $communicationConfig;
+
     /** @var SdkClient */
     protected $sdkClient;
+
     protected function _construct()
     {
         $this->authConfig            = Mage::getModel('factfinder/config_auth');
