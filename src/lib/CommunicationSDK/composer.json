@@ -1,0 +1,13 @@
+{
+    "name": "paulfcdd/communication-sdk",
+    "authors": [
+        {
+            "name": "Pavel Novikov",
+            "email": "paulfcdd@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "classmap": ["src/"]
+    }
+}
