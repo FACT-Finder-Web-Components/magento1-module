@@ -5,6 +5,7 @@ declare(strict_types=1);
 include MAGENTO_ROOT . '/vendor/autoload.php';
 
 use Omikron\FactFinder\Communication\Client\ClientBuilder;
+use Omikron\FactFinder\Communication\Version;
 use Omikron\FactFinder\Communication\Client\ClientException;
 use Omikron\FactFinder\Communication\Resource\AdapterFactory;
 use Omikron_Factfinder_Model_Api_CredentialsFactory as CredentialsFactory;
@@ -61,7 +62,8 @@ class Omikron_Factfinder_Model_Api_PushImport implements Omikron_Factfinder_Mode
 
     private function getPushImportDataTypes(int $scopeId = null): array
     {
-        $dataTypes  = Mage::getStoreConfig('faultfinder/data_transfer/ff_push_import_types', $scopeId);
-        return explode(',', str_replace('data', 'search', $dataTypes));
+        $dataTypes  = Mage::getStoreConfig('factfinder/data_transfer/ff_push_import_types', $scopeId);
+        $isNg = $this->communicationConfig->getVersion() === Version::NG;
+        return $dataTypes ? explode(',', $isNg ? str_replace('data', 'search', $dataTypes) : $dataTypes) : [];
     }
 }

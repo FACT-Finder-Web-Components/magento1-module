@@ -31,8 +31,6 @@ class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_
 
     public function testAction()
     {
-        $message = $this->__('Connection successfully established.');
-
         try {
             $request = $this->getRequest();
             $clientBuilder = $this->clientBuilder
