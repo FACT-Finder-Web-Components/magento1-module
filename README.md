@@ -11,7 +11,7 @@ You can download the module from Github by cloning it directly or saving as ZIP 
 To install the module, please copy content of the `src` directory into the main directory of Magento 1 shop.
 
 ### Installing dependencies
-Since this plugin using `Fact-Finder php-communication-sdk` package as a dependency it should be installed manually.
+Since this plugin using `FACT-Finder® Communication SDK for PHP` package as a dependency, it should be installed manually.
 Because of Magento 1 does no support compose autoloader You need to reproduce follow steps:
 - login to the server where Magento 1 is installed via SSH
 - copy `composer.json` file to the root of Your Magento 1 directory
