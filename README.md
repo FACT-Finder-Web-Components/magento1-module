@@ -14,7 +14,7 @@ To install the module, please copy content of the `src` directory into the main 
 Since this plugin using `FACT-Finder® Communication SDK for PHP` package as a dependency, it should be installed manually.
 Because of Magento 1 does no support compose autoloader You need to reproduce follow steps:
 - login to the server where Magento 1 is installed via SSH
-- copy `composer.json` file to the root of Your Magento 1 directory
+- run composer require: "omikron/factfinder-communication-sdk"
 - type command in terminal `composer install` to install all dependencies. 
   Dependencies will be installed to the `vendor` folder in the root of Your Magento 1 directory
 
