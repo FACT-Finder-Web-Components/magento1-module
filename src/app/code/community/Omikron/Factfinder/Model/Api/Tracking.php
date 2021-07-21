@@ -1,28 +1,32 @@
 <?php
 
+declare(strict_types=1);
+
+include MAGENTO_ROOT . '/vendor/autoload.php';
+
+use Omikron\FactFinder\Communication\Client\ClientBuilder;
+use Omikron\FactFinder\Communication\Client\ClientException;
+use Omikron\FactFinder\Communication\Resource\AdapterFactory;
+use Omikron_Factfinder_Model_Api_CredentialsFactory as CredentialsFactory;
 use Omikron_Factfinder_Model_Api_Tracking_Product as TrackingProduct;
-use Omikron_Factfinder_Model_Client as ApiClient;
 use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
 
 class Omikron_Factfinder_Model_Api_Tracking implements Omikron_Factfinder_Model_Interface_Api_TrackingInterface
 {
-    /** @var ApiClient */
-    private $apiClient;
-
     /** @var CommunicationConfig */
-    private $config;
+    private $communicationConfig;
 
     /** @var Omikron_Factfinder_Model_SessionData */
     private $sessionData;
 
-    /** @var string */
-    private $apiName = 'Tracking.ff';
+    /** @var ClientBuilder */
+    private $clientBuilder;
 
     public function __construct()
     {
-        $this->apiClient   = new ApiClient();
-        $this->sessionData = Mage::getModel('factfinder/sessionData');
-        $this->config      = Mage::getModel('factfinder/config_communication');
+        $this->clientBuilder       = new ClientBuilder();
+        $this->sessionData         = Mage::getModel('factfinder/sessionData');
+        $this->communicationConfig = Mage::getModel('factfinder/config_communication');
     }
 
     /**
@@ -34,23 +38,28 @@ class Omikron_Factfinder_Model_Api_Tracking implements Omikron_Factfinder_Model_
     public function execute(string $event, array $trackingProducts)
     {
         try {
-            $params = [
-                'event'    => $event,
-                'channel'  => $this->config->getChannel(),
-                'products' => array_map(function (TrackingProduct $trackingProduct) {
-                    return array_filter([
-                        'id'       => $trackingProduct->getTrackingNumber(),
-                        'masterId' => $trackingProduct->getMasterArticleNumber(),
-                        'price'    => $trackingProduct->getPrice(),
-                        'count'    => $trackingProduct->getCount(),
-                        'sid'      => $this->sessionData->getSessionId(),
-                        'userId'   => $this->sessionData->getUserId(),
-                    ]);
-                }, $trackingProducts),
-            ];
+            $clientBuilder = $this->clientBuilder
+                ->withServerUrl($this->communicationConfig->getAddress())
+                ->withCredentials(CredentialsFactory::create());
 
-            $this->apiClient->get($this->config->getAddress() . '/' . $this->apiName, $params);
-        } catch (Zend_Exception $e) {
+            $trackingAdapter =
+                (new AdapterFactory($clientBuilder, $this->communicationConfig->getVersion()))->getTrackingAdapter();
+            $trackingAdapter->track(
+                $this->communicationConfig->getChannel(), $event,
+                array_map(function (TrackingProduct $trackingProduct) {
+                    return array_filter(
+                        [
+                            'id'       => $trackingProduct->getTrackingNumber(),
+                            'masterId' => $trackingProduct->getMasterArticleNumber(),
+                            'price'    => $trackingProduct->getPrice(),
+                            'count'    => $trackingProduct->getCount(),
+                            'sid'      => $this->sessionData->getSessionId(),
+                            'userId'   => $this->sessionData->getUserId(),
+                        ]
+                    );
+                }, $trackingProducts));
+
+        } catch (ClientException $e) {
             Mage::logException($e);
         }
     }
