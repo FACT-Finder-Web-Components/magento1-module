@@ -19,12 +19,15 @@ class Omikron_Factfinder_Model_Export_Product
     /** @var Omikron_Factfinder_Model_Api_PushImport */
     protected $pushImport;
 
+    /** @var Omikron_Factfinder_Model_Config_Communication */
+    protected $communicationConfig;
+
     public function __construct()
     {
-        $this->dataHelper    = Mage::helper('factfinder/data');
-        $this->productHelper = Mage::helper('factfinder/product');
-        $this->uploadHelper  = Mage::helper('factfinder/upload');
-        $this->pushImport    = Mage::getModel('factfinder/api_pushImport');
+        $this->productHelper       = Mage::helper('factfinder/product');
+        $this->uploadHelper        = Mage::helper('factfinder/upload');
+        $this->pushImport          = Mage::getModel('factfinder/api_pushImport');
+        $this->communicationConfig = Mage::getModel('factfinder/config_communication');
     }
 
     /**
@@ -37,7 +40,7 @@ class Omikron_Factfinder_Model_Export_Product
     public function exportProduct($store, $filename = '')
     {
         if ($filename == '') {
-            $filename = $this->dataHelper->getChannel($store->getId());
+            $filename = $this->communicationConfig->getChannel($store->getId());
         }
 
         $fullname = self::FEED_FILE . $filename . '.' . self::FEED_FILE_FILETYPE;
@@ -57,48 +60,6 @@ class Omikron_Factfinder_Model_Export_Product
         $this->pushImport->execute($store->getId());
 
         return $result;
-    }
-
-    /**
-     * @param Mage_Core_Model_Store $store
-     *
-     * @return array
-     */
-    public function uploadProduct($store)
-    {
-        $result = [];
-
-        $filename = self::FEED_FILE . $this->dataHelper->getChannel($store->getId()) . '.' . self::FEED_FILE_FILETYPE;
-
-        $io = new Varien_Io_File();
-
-        if (!$io->fileExists(self::FEED_PATH . DS . $filename)) {
-            $result['has_errors'] = true;
-            $result['message'] = $this->dataHelper->__('Error! There is no generated CSV file.');
-        } else {
-            $result = $this->uploadFeed($filename);
-        }
-
-        return $result;
-    }
-
-    /**
-     * Export all products for a specific store
-     * using external url
-     *
-     * @param Mage_Core_Model_Store $store
-     *
-     * @return array
-     */
-    public function exportProductWithExternalUrl($store)
-    {
-        $filename = self::FEED_FILE . $this->dataHelper->getChannel($store->getId()) . '.' . self::FEED_FILE_FILETYPE;
-        $output = $this->buildFeed($store);
-
-        return [
-            'filename' => $filename,
-            'data' => $output
-        ];
     }
 
     /**
@@ -167,6 +128,17 @@ class Omikron_Factfinder_Model_Export_Product
         }
 
         return $row;
+    }
+
+    public function exportProductWithExternalUrl($store): array
+    {
+        $filename = self::FEED_FILE . $this->communicationConfig->getChannel($store->getId()) . '.' . self::FEED_FILE_FILETYPE;
+        $output = $this->buildFeed($store);
+
+        return [
+            'filename' => $filename,
+            'data' => $output
+        ];
     }
 
     /**
@@ -251,7 +223,7 @@ class Omikron_Factfinder_Model_Export_Product
             $io->close();
         } catch (\Exception $e) {
             $result['has_errors'] = true;
-            $result['message'] = $this->dataHelper->__('Error: Could not write file') . ' - ' . $e->getMessage();
+            $result['message'] = __('Error: Could not write file') . ' - ' . $e->getMessage();
         }
 
         return $result;
@@ -272,7 +244,7 @@ class Omikron_Factfinder_Model_Export_Product
 
         if ($uploadResult['success']) {
             $result['has_errors'] = false;
-            $result['message'] = $this->dataHelper->__('File uploaded successfully!');
+            $result['message'] = __('File uploaded successfully!');
         } else {
             $result['has_errors'] = true;
             $result['message'] = $uploadResult['message'];
