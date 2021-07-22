@@ -1,4 +1,8 @@
 # Changelog
+## Unreleased
+### Changed
+- Replace old connection methods with PHP Communication SDK library and add new dependency for plugin
+
 ## [v2.2.1] - 2021-06-15
 ### Changed
 - Upgrade Web Components to version 4.0.3
