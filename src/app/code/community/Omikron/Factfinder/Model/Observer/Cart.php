@@ -1,15 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 use Omikron_Factfinder_Helper_Product as ProductHelper;
-use Omikron_Factfinder_Model_Api_Tracking_Product as TrackingProduct;
-use Omikron_Factfinder_Model_Api_TrackingFactory as TrackingFactory;
+use Omikron_Factfinder_Model_Api_Tracking as Tracking;
 use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
 use Varien_Event_Observer as Event;
 
 class Omikron_Factfinder_Model_Observer_Cart
 {
-    /** @var TrackingFactory */
-    private $trackingFactory;
+    /** @var Tracking */
+    private $tracking;
 
     /** @var ProductHelper */
     private $productHelper;
@@ -19,9 +20,9 @@ class Omikron_Factfinder_Model_Observer_Cart
 
     public function __construct()
     {
-        $this->trackingFactory  = Mage::getModel('factfinder/api_trackingFactory');
-        $this->productHelper    = Mage::helper('factfinder/product');
-        $this->config           = Mage::getModel('factfinder/config_communication');
+        $this->tracking      = Mage::getModel('factfinder/api_tracking');
+        $this->productHelper = Mage::helper('factfinder/product');
+        $this->config        = Mage::getModel('factfinder/config_communication');
     }
 
     /**
@@ -41,12 +42,15 @@ class Omikron_Factfinder_Model_Observer_Cart
         /** @var Mage_Sales_Model_Quote_Item $quoteItem */
         $quoteItem = $event->getData('quote_item');
 
-        $trackingProduct = new TrackingProduct(
-            $this->productHelper->getProductNumber($product),
-            $this->productHelper->getMasterProductNumber($product),
-            $product->getFinalPrice(1),
-            $quoteItem->getQty());
-
-        $this->trackingFactory->create()->execute('cart', [$trackingProduct]);
+        $this->tracking->execute(
+            'cart', [
+                [
+                    'id'       => $this->productHelper->getProductNumber($product),
+                    'masterId' => $this->productHelper->getMasterProductNumber($product),
+                    'price'    => $product->getFinalPrice(1),
+                    'count'      => $quoteItem->getQty()
+                ]
+            ]
+        );
     }
 }

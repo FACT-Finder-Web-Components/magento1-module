@@ -1,7 +1,7 @@
 <?php
 /** @var Omikron_Factfinder_Helper_Data $dataHelper */
 $dataHelper = Mage::helper('factfinder/data');
-
+$productSkus = '';
 if ($dataHelper->getFFPushedproductscampaign()) {
     $cart = Mage::getModel('checkout/cart')->getQuote();
     $productSkus = '';
