@@ -18,22 +18,24 @@ class Omikron_Factfinder_Model_Api_CredentialsFactory
             case true:
                 /** @var AuthConfig */
                 $authConfig = Mage::getModel('factfinder/config_auth');
-
-                return new Credentials(
-                    $authConfig->getUsername(),
-                    $authConfig->getPassword(),
-                    $authConfig->getAuthenticationPrefix(),
-                    $authConfig->getAuthenticationPostfix()
-                );
+                break;
             default:
-                return new Credentials(...array_values(self::getCredentials($authData)));
+                $authData = self::getCredentials($authData);
+                break;
         }
+
+        return new Credentials(
+            $authData['username'] ?? $authConfig->getUsername(),
+            $authData['password'] ?? $authConfig->getPassword(),
+            $authData['authenticationPrefix'] ?? $authConfig->getAuthenticationPrefix(),
+            $authData['authenticationPostfix'] ?? $authConfig->getAuthenticationPostfix()
+        );
     }
 
     private static function getCredentials(array $params): array
     {
         $params += [
-            'prefix'  => $params['authenticationPrefix'],
+            'prefix' => $params['authenticationPrefix'],
             'postfix' => $params['authenticationPostfix'],
         ];
 
