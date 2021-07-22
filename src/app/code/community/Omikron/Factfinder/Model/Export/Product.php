@@ -36,6 +36,7 @@ class Omikron_Factfinder_Model_Export_Product
      * @param Mage_Core_Model_Store $store
      * @param string $filename
      * @return array
+     * @throws \Psr\Http\Client\ClientExceptionInterface
      */
     public function exportProduct($store, $filename = '')
     {

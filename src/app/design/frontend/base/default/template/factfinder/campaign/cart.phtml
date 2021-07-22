@@ -4,7 +4,6 @@ $dataHelper = Mage::helper('factfinder/data');
 $productSkus = '';
 if ($dataHelper->getFFPushedproductscampaign()) {
     $cart = Mage::getModel('checkout/cart')->getQuote();
-    $productSkus = '';
     foreach ($cart->getAllVisibleItems() as $item) {
         $productSkus .= $item->getProduct()->getSku() . ',';
     }
