@@ -11,7 +11,7 @@ use Omikron\FactFinder\Communication\Resource\AdapterFactory;
 use Omikron_Factfinder_Model_Api_CredentialsFactory as CredentialsFactory;
 use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
 
-class Omikron_Factfinder_Model_Api_PushImport implements Omikron_Factfinder_Model_Interface_Api_PushImportInterface
+class Omikron_Factfinder_Model_Api_PushImport
 {
     /** @var ClientBuilder */
     private $clientBuilder;

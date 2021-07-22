@@ -10,7 +10,7 @@ use Omikron\FactFinder\Communication\Resource\AdapterFactory;
 use Omikron_Factfinder_Model_Api_CredentialsFactory as CredentialsFactory;
 use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
 
-class Omikron_Factfinder_Model_Api_Tracking implements Omikron_Factfinder_Model_Interface_Api_TrackingInterface
+class Omikron_Factfinder_Model_Api_Tracking
 {
     /** @var CommunicationConfig */
     private $communicationConfig;
