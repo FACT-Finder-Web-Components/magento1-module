@@ -1,6 +1,6 @@
 # Changelog
 ## Unreleased
-### Changed
+### Breaking
 - Replace old connection methods with PHP Communication SDK library and add new dependency for plugin
 
 ## [v2.2.1] - 2021-06-15
