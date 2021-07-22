@@ -38,7 +38,6 @@ class Omikron_Factfinder_Model_Api_CredentialsFactory
         ];
 
         return self::extractAuthParams($params);
-
     }
 
     private static function extractAuthParams(array $params): array
