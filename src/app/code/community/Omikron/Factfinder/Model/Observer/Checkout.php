@@ -1,9 +1,9 @@
 <?php
+
 declare(strict_types=1);
 
 use Mage_Sales_Model_Order_Item as OrderItem;
 use Omikron_Factfinder_Helper_Product as ProductHelper;
-use Omikron_Factfinder_Model_Api_Tracking_Product as TrackingProduct;
 use Omikron_Factfinder_Model_Api_Tracking as Tracking;
 use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
 use Varien_Event_Observer as Event;
@@ -43,12 +43,12 @@ class Omikron_Factfinder_Model_Observer_Checkout
 
         $trackingProducts = array_map(
             function (OrderItem $item) {
-                return new TrackingProduct(
-                    $this->productHelper->getProductNumber($item->getProduct()),
-                    $this->productHelper->getMasterProductNumber($item->getProduct()),
-                    $item->getPrice(),
-                    $item->getQtyOrdered()
-                );
+                return [
+                    'id'       => $this->productHelper->getProductNumber($item->getProduct()),
+                    'masterId' => $this->productHelper->getMasterProductNumber($item->getProduct()),
+                    'price'    => $item->getPrice(),
+                    'count'    => $item->getQtyOrdered()
+                ];
             }, $cart->getAllVisibleItems()
         );
 

@@ -8,7 +8,6 @@ use Omikron\FactFinder\Communication\Client\ClientBuilder;
 use Omikron\FactFinder\Communication\Client\ClientException;
 use Omikron\FactFinder\Communication\Resource\AdapterFactory;
 use Omikron_Factfinder_Model_Api_CredentialsFactory as CredentialsFactory;
-use Omikron_Factfinder_Model_Api_Tracking_Product as TrackingProduct;
 use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
 
 class Omikron_Factfinder_Model_Api_Tracking implements Omikron_Factfinder_Model_Interface_Api_TrackingInterface
@@ -30,8 +29,8 @@ class Omikron_Factfinder_Model_Api_Tracking implements Omikron_Factfinder_Model_
     }
 
     /**
-     * @param string            $event
-     * @param TrackingProduct[] $trackingProducts
+     * @param string $event
+     * @param array  $trackingProducts
      *
      * @return void
      */
@@ -46,18 +45,14 @@ class Omikron_Factfinder_Model_Api_Tracking implements Omikron_Factfinder_Model_
                 (new AdapterFactory($clientBuilder, $this->communicationConfig->getVersion()))->getTrackingAdapter();
             $trackingAdapter->track(
                 $this->communicationConfig->getChannel(), $event,
-                array_map(function (TrackingProduct $trackingProduct) {
-                    return array_filter(
-                        [
-                            'id'       => $trackingProduct->getTrackingNumber(),
-                            'masterId' => $trackingProduct->getMasterArticleNumber(),
-                            'price'    => $trackingProduct->getPrice(),
-                            'count'    => $trackingProduct->getCount(),
-                            'sid'      => $this->sessionData->getSessionId(),
-                            'userId'   => $this->sessionData->getUserId(),
-                        ]
-                    );
-                }, $trackingProducts));
+                array_map(function (array $trackingProduct) {
+                        return array_filter($trackingProduct +
+                            [
+                                'sid'    => $this->sessionData->getSessionId(),
+                                'userId' => $this->sessionData->getUserId(),
+                            ]
+                        );
+                    }, $trackingProducts));
 
         } catch (ClientException $e) {
             Mage::logException($e);
