@@ -1,8 +1,14 @@
 # Changelog
-## Unreleased
+## [v3.0.0] - 2021-07-23
 ### Breaking
-- Replace old connection methods with PHP Communication SDK library and add new dependency for plugin
+- Replace old connection methods with [FACT-Finder® Communication SDK for PHP](https://github.com/FACT-Finder-Web-Components/php-communication-sdk) and add new dependency for plugin.
+    **Note:** Please check the module [Installing dependencies](https://github.com/FACT-Finder-Web-Components/magento1-module#installing-dependencies) for how to add it to your Magento instance
 
+### Changed
+- Remove obsolete code
+
+### Fix
+ - Event data coming from searchbox element is not URLencoded before redirecting to search result page
 ## [v2.2.1] - 2021-06-15
 ### Changed
 - Upgrade Web Components to version 4.0.3
@@ -147,6 +153,7 @@
 - Allow user to choose which visibilities should be applied to collection filter
 - Divide product collection into batches in order to prevent memory exhaustion on product collection load
 
+[v3.0.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v3.0.0
 [v2.2.1]:      https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v2.2.1
 [v2.2.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v2.2.0
 [v2.1.0]:      https://github.com/FACT-Finder-Web-Components/magento1-module/releases/tag/v2.1.0
