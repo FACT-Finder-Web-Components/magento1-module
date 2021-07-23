@@ -2,7 +2,6 @@
 include MAGENTO_ROOT . '/vendor/autoload.php';
 
 use Omikron\FactFinder\Communication\Client\ClientBuilder;
-use Omikron\FactFinder\Communication\Credentials;
 use Omikron\FactFinder\Communication\Resource\AdapterFactory;
 use Omikron_Factfinder_Model_Config_Auth as AuthConfig;
 use Omikron_Factfinder_Model_Config_Communication as CommunicationConfig;
@@ -42,7 +41,7 @@ class Omikron_Factfinder_Adminhtml_Factfinder_ConnectionController extends Mage_
             $message = $e->getMessage();
         }
 
-        return $this->jsonResponse($message);
+        $this->jsonResponse($message);
     }
 
     private function jsonResponse($message)

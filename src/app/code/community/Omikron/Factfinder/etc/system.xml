@@ -190,15 +190,6 @@
                             <show_in_store>1</show_in_store>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </use_cache>
-                        <default_query translate="label comment">
-                            <label>Default query</label>
-                            <comment>Determines which search term should be used by default. Default is '*'</comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>4</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </default_query>
                         <add_params translate="label comment">
                             <label>Add params</label>
                             <comment>With this property you can deliver standard parameters which will then be attached to the search request. Example: param1=abc,param2=xyz.</comment>
@@ -235,36 +226,6 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </parameter_whitelist>
-                        <use_asn translate="label comment">
-                            <label>Use ASN</label>
-                            <comment>Determines if the the ASN is returned. Can be set to false to save performance, if the ASN is not required. Default is true.</comment>
-                            <frontend_type>select</frontend_type>
-                            <sort_order>9</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                        </use_asn>
-                        <use_found_rows translate="label comment">
-                            <label>Use found rows</label>
-                            <comment>For found records, FACT-Finder is capable of returning the words which lead to the find. The determination of these words costs performance. It is therefore deactivated by default. If true, words are created. If false, words are not created.</comment>
-                            <frontend_type>select</frontend_type>
-                            <sort_order>10</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                        </use_found_rows>
-                        <use_campaigns translate="label comment">
-                            <label>Use campaigns</label>
-                            <comment>Use this parameter if you want to prevent the campaign manager from checking if there is a campaign for this search request.If true, campaigns are analyzed and returned. If false, campaigns are ignored. Default is true.</comment>
-                            <frontend_type>select</frontend_type>
-                            <sort_order>11</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                        </use_campaigns>
                         <feedback_campaign_label translate="label comment">
                             <label>Feedback campaign label</label>
                             <comment>Set the feedback campaign webcomponent label to appropriate value. This value has to match a configured label value inside the FACT-Finder backend. Default is empty.</comment>
@@ -346,66 +307,6 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </shopping_cart_feedback_label>
-                        <generate_advisor_tree translate="label comment">
-                            <label>Generate advisor tree</label>
-                            <comment>Is used with advisor campaigns. Please refer the campaign manager documentation. If true, the whole question-answer-tree is returned with the advisor campaign. If false, only the currently active questions and their answers are returned. Default is false.</comment>
-                            <frontend_type>select</frontend_type>
-                            <sort_order>21</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                        </generate_advisor_tree>
-                        <disable_cache translate="label comment">
-                            <label>Disable cache</label>
-                            <comment>Controls the usage of search result caches. If true, cache is ignored. If false, cache is used. Default is false.</comment>
-                            <frontend_type>select</frontend_type>
-                            <sort_order>22</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                        </disable_cache>
-                        <use_personalization translate="label comment">
-                            <label>Use personalization</label>
-                            <comment>Allows activating/deactivating of request personalization. If true, the search result is personalized if the personalization module is active and all other requirements are met. If false, the search result is not personalized. Default is true.</comment>
-                            <frontend_type>select</frontend_type>
-                            <sort_order>23</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                        </use_personalization>
-                        <use_semantic_enhancer translate="label comment">
-                            <label>Use semantic enhancer</label>
-                            <comment>Allows activating/deactivating of the semantic enrichment of requests. If true, the search result is semantically enriched if the enhanced module is activated and all other requirements are met. If false, the search result is not semantically enriched. Default value is true.</comment>
-                            <frontend_type>select</frontend_type>
-                            <sort_order>24</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                        </use_semantic_enhancer>
-                        <use_aso translate="label comment">
-                            <label>Use ASO</label>
-                            <comment>Allows activating/deactivating of automated search optimization. If true, the search result is automatically optimized. If false, the search result is not optimized. Default is true.</comment>
-                            <frontend_type>select</frontend_type>
-                            <sort_order>25</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                        </use_aso>
-                        <use_browser_history translate="label comment">
-                            <label>Use browser history</label>
-                            <comment>If true, the search history is pushed to the browser history, even without using url parameter. Default is true.</comment>
-                            <frontend_type>select</frontend_type>
-                            <sort_order>26</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                        </use_browser_history>
                         <use_seo translate="label comment">
                             <label>Use SEO</label>
                             <comment>If true, web components will use the FACT-Finder SEO API. Set this only to true if the module is active in FACT-Finder.</comment>
